@@ -1,7 +1,8 @@
 import React from "react";
 import MainMenu from "../components/MainMenu"
-import {Button, Container, Grid, Menu, Segment, Table} from "semantic-ui-react";
+import {Button, Container, Grid, Menu, Modal, Segment, Table} from "semantic-ui-react";
 import Icon from "semantic-ui-react/dist/commonjs/elements/Icon";
+import CreateHoneyHarvestForm from "../forms/CreateHoneyHarvestForm";
 
 
 class HoneyHarvest extends React.Component {
@@ -20,7 +21,7 @@ class HoneyHarvest extends React.Component {
                                 <h1 style={{textAlign: "center"}}>Учёт сбора мёда</h1>
                             </Grid.Column>
                             <Grid.Column>
-                                <Button
+                                <Modal trigger={<Button
                                     color='green'
                                     content='Добавить'
                                     size='medium'
@@ -28,7 +29,12 @@ class HoneyHarvest extends React.Component {
                                     floated='right'
                                     label={{ basic: true, color: 'green', pointing: 'left', content: '2,048' }}
                                     style={{marginRight: "30px"}}
-                                />
+                                />}>
+                                    <Modal.Header>Новый медосбор</Modal.Header>
+                                    <Modal.Content>
+                                        <CreateHoneyHarvestForm />
+                                    </Modal.Content>
+                                </Modal>
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>

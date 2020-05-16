@@ -21,8 +21,11 @@ class PasecaModel extends React.Component {
             rows.push(<div className="row-style">{columns}</div>);
         }
 
-        return <div style={{width: this.maxX*12, height:this.maxY*12, boxShadow: "2px 2px 2px gray"}}>
-            {rows}
+        return <div style={{width: "100%", overflowX: "scroll", overflowY: "scroll"}}>
+            <div style={{width: this.maxX*12+12, height:this.maxY*12+12, boxSizing: "border-box",
+                boxShadow: "2px 2px 2px gray"}}>
+                {rows}
+            </div>
         </div>
 
     }

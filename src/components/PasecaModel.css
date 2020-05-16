@@ -7,13 +7,12 @@
     font-size: 0;
     line-height: 0;
     border: 1px solid grey;
-    display: table-cell;
+    display: inline-block;
+    box-sizing: border-box;
 }
 
 .block-style:hover
 {
-    width: 13px;
-    height: 13px;
     border: 2px solid black;
 }
 
@@ -24,4 +23,5 @@
     font-size: 0;
     line-height: 0;
     display: table-row;
+    box-sizing: border-box;
 }

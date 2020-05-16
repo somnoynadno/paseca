@@ -1,8 +1,8 @@
 import React from "react";
 import MainMenu from "../components/MainMenu"
-import {Button, Container, Grid, Menu, Segment, Table} from "semantic-ui-react";
+import {Button, Container, Grid, Menu, Modal, Segment, Table} from "semantic-ui-react";
 import Icon from "semantic-ui-react/dist/commonjs/elements/Icon";
-
+import CreateHoneySaleForm from "../forms/CreateHoneySaleForm";
 
 class HoneySale extends React.Component {
     // constructor(props) {
@@ -20,7 +20,7 @@ class HoneySale extends React.Component {
                                 <h1 style={{textAlign: "center"}}>Учёт продаж</h1>
                             </Grid.Column>
                             <Grid.Column>
-                                <Button
+                                <Modal trigger={<Button
                                     color='green'
                                     content='Добавить'
                                     size='medium'
@@ -28,7 +28,12 @@ class HoneySale extends React.Component {
                                     floated='right'
                                     label={{ basic: true, color: 'green', pointing: 'left', content: '2,048' }}
                                     style={{marginRight: "30px"}}
-                                />
+                                />}>
+                                    <Modal.Header>Новая продажа</Modal.Header>
+                                    <Modal.Content>
+                                        <CreateHoneySaleForm />
+                                    </Modal.Content>
+                                </Modal>
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>
