@@ -1,0 +1,27 @@
+.block-style
+{
+    width: 12px;
+    height: 12px;
+    margin: 0;
+    padding: 0;
+    font-size: 0;
+    line-height: 0;
+    border: 1px solid grey;
+    display: table-cell;
+}
+
+.block-style:hover
+{
+    width: 13px;
+    height: 13px;
+    border: 2px solid black;
+}
+
+.row-style
+{
+    margin: 0;
+    padding: 0;
+    font-size: 0;
+    line-height: 0;
+    display: table-row;
+}
