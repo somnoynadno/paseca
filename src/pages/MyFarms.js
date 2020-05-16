@@ -1,7 +1,8 @@
 import React from "react";
 import MainMenu from "../components/MainMenu"
-import {Button, Card, Container, Grid, Icon, Segment} from "semantic-ui-react";
+import {Button, Card, Container, Grid, Icon, Modal, Segment} from "semantic-ui-react";
 import {Redirect} from "react-router-dom";
+import CreateBeeFarmForm from "../forms/CreateBeeFarmForm";
 
 
 class MyFarms extends React.Component {
@@ -39,14 +40,19 @@ class MyFarms extends React.Component {
                                 <h1 style={{textAlign: "center"}}>Выбор пасеки</h1>
                             </Grid.Column>
                             <Grid.Column>
-                                <Button
+                                <Modal trigger={<Button
                                     color='green'
                                     content='Создать новую'
                                     size='medium'
                                     icon='plus'
                                     floated='right'
                                     style={{marginRight: "30px"}}
-                                />
+                                />}>
+                                    <Modal.Header>Новая пасека</Modal.Header>
+                                    <Modal.Content>
+                                        <CreateBeeFarmForm />
+                                    </Modal.Content>
+                                </Modal>
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>
