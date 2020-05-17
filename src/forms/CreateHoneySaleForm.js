@@ -1,16 +1,6 @@
 import {Button, Form, Input, Select} from "semantic-ui-react";
 import React from "react";
-
-const farmOptions = [
-    { key: 'f1', text: 'Пасека 1', value: '1' },
-    { key: 'f2', text: 'Пасека 2', value: '2' },
-    { key: 'f3', text: 'Пасека 3', value: '3' },
-]
-
-const honeyOptions = [
-    { key: 'h1', text: 'Мёд 1', value: '1' },
-    { key: 'h2', text: 'Мёд 2', value: '2' },
-]
+import {API} from "../http/API";
 
 
 class CreateHoneySaleForm extends React.Component {
@@ -22,23 +12,63 @@ class CreateHoneySaleForm extends React.Component {
             bee_farm_id: '',
             amount: '',
             total_price: '',
-            date: ''
+            date: '',
+            errorText: '',
+            honeyTypes: [],
+            beeFarms: []
         }
 
         this.handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
-        this.handleSubmit = () => {
-            // TODO: API call
-            console.log(this.state);
+        this.api = new API();
+
+        this.handleChange = (e, { name, value }) => this.setState({ [name]: value })
+
+        this.handleSubmit = async () => {
+            if (!this.state.honey_type_id || !this.state.bee_farm_id) {
+                this.setState({errorText: "Вы заполнили не все поля"})
+            } else {
+                this.setState({errorText: ""})
+                await this.api.CreateHoneySale(this.state.amount, this.state.date,
+                    this.state.honey_type_id, this.state.bee_farm_id, this.state.total_price
+                ).then((resp) => {
+                    if (resp.constructor !== Error) {
+                        // everything is fine => reload page
+                        document.location.reload();
+                    } else {
+                        this.setState({errorText: resp.message});
+                    }
+                })
+            }
         }
     }
+
+    componentDidMount = async () => {
+        await this.api.GetHoneyTypes().then((resp) => {
+                let options = [];
+                for (let r of resp) {
+                    options.push({text: r.name, value: r.id.toString()})
+                }
+                this.setState({honeyTypes: options})
+            }
+        );
+        await this.api.GetBeeFarms().then((resp) => {
+                let options = [];
+                for (let r of resp) {
+                    options.push({text: r.name, value: r.id.toString()})
+                }
+                this.setState({beeFarms: options})
+            }
+        );
+    }
+
     render() {
         return <Form onSubmit={this.handleSubmit}>
             <Form.Group widths='equal'>
                 <Form.Field
                     control={Select}
                     label='Пасека'
-                    options={farmOptions}
+                    options={this.state.beeFarms}
                     placeholder='Выберите пасеку'
                     required
                     name='bee_farm_id'
@@ -48,7 +78,7 @@ class CreateHoneySaleForm extends React.Component {
                 <Form.Field
                     control={Select}
                     label='Мёд'
-                    options={honeyOptions}
+                    options={this.state.honeyTypes}
                     placeholder='Выберите вид мёда'
                     required
                     name='honey_type_id'
@@ -89,8 +119,7 @@ class CreateHoneySaleForm extends React.Component {
                 />
             </Form.Group>
             <Form.Field control={Button}>Создать</Form.Field>
-            <strong>onChange:</strong>
-            <pre>{JSON.stringify(this.state, null, 2)}</pre>
+            <strong style={{color: "red"}}>{this.state.errorText}</strong>
         </Form>
     }
 }

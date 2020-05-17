@@ -56,10 +56,10 @@ class HoneyHarvest extends React.Component {
                     <Table celled>
                         <Table.Header>
                             <Table.Row>
-                                <Table.HeaderCell>Улей</Table.HeaderCell>
+                                <Table.HeaderCell>Семья</Table.HeaderCell>
                                 <Table.HeaderCell>Дата</Table.HeaderCell>
-                                <Table.HeaderCell>Количество</Table.HeaderCell>
-                                <Table.HeaderCell>Тип мёда</Table.HeaderCell>
+                                <Table.HeaderCell>Количество (кг)</Table.HeaderCell>
+                                <Table.HeaderCell>Сорт мёда</Table.HeaderCell>
                             </Table.Row>
                         </Table.Header>
 
@@ -78,7 +78,6 @@ class HoneyHarvest extends React.Component {
                                         </Table.Cell>
                                         <Table.Cell>{s["amount"]}</Table.Cell>
                                         <Table.Cell>{s["honey_type"].name}</Table.Cell>
-                                        <Table.Cell>{s["total_price"]}</Table.Cell>
                                     </Table.Row>
                                 })
                             }

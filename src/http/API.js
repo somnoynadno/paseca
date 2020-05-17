@@ -161,4 +161,39 @@ export class API {
         })
     }
 
+    CreateHoneyHarvest(amount, date, honeyTypeID, beeFamilyID) {
+        this.CheckToken();
+        return new Promise((resolve) => {
+            HTTP.axios.post(`/lk/honey_harvest`, {
+                amount: parseFloat(amount),
+                date: date,
+                honey_type_id: parseInt(honeyTypeID),
+                bee_family_id: parseInt(beeFamilyID)
+            })
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                console.log(error);
+            });
+        })
+    }
+
+    CreateHoneySale(amount, date, honeyTypeID, beeFarmID, totalPrice) {
+        this.CheckToken();
+        return new Promise((resolve) => {
+            HTTP.axios.post(`/lk/honey_sale`, {
+                amount: parseFloat(amount),
+                date: date,
+                honey_type_id: parseInt(honeyTypeID),
+                bee_farm_id: parseInt(beeFarmID),
+                total_price: parseFloat(totalPrice)
+            })
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                console.log(error);
+            });
+        })
+    }
+
 }
