@@ -65,8 +65,21 @@ class BeeFarm extends React.Component {
                                 </Modal>
                             </Grid.Column>
                         </Grid.Row>
-                        <Grid.Row style={{padding: "30px"}}>
+                        <Grid.Row style={{paddingLeft: "30px"}}>
                             <PasecaModel maxX={70} maxY={20} />
+                        </Grid.Row>
+                        <Grid.Row style={{paddingLeft: "30px"}}>
+                            <Modal trigger={<Button
+                                color='blue'
+                                content='Изменение пасеки'
+                                size='small'
+                                icon='pencil'
+                            />}>
+                                <Modal.Header>Изменение пасеки</Modal.Header>
+                                <Modal.Content>
+                                    TODO
+                                </Modal.Content>
+                            </Modal>
                         </Grid.Row>
                         <Grid.Row columns={1}>
                             <Grid.Column>

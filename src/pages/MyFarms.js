@@ -68,7 +68,7 @@ class MyFarms extends React.Component {
                         </Grid.Row>
                     </Grid>
                     <Card.Group>
-                        {this.state.beeFarms === null ? <Segment style={{minHeight: "100px"}} loading /> :
+                        {this.state.beeFarms === null ? <Segment style={{minHeight: "100px", width: "100%"}} loading /> :
                             this.state.beeFarms.map((farm) => {
                                 return <Card name={farm.id} onClick={this.handleItemClick.bind(this)}>
                                     <Card.Content>

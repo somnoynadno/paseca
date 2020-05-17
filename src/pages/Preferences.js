@@ -59,7 +59,7 @@ class Preferences extends React.Component {
                                 <Button>Изменить данные</Button>
                                 <Button>Изменить пароль</Button>
                                 <Button>Управление подпиской</Button>
-                                <Button>Связать с поддержкой</Button>
+                                <Button>Связаться с поддержкой</Button>
                             </Button.Group>
                         </Grid.Column>
                     </Grid.Row>

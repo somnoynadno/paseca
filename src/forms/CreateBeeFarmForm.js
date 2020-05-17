@@ -1,41 +1,66 @@
 import {Button, Form, Input, Select} from "semantic-ui-react";
 import React from "react";
+import {API} from "../http/API";
 
-const beeFarmTypeOptions = [
-    { text: 'Основная', value: '1' },
-    { text: 'Кочевая', value: '2' },
-]
-
-const beeFarmSizeOptions = [
-    { text: 'Большая', value: '1' },
-    { text: 'Средняя', value: '2' },
-]
 
 class CreateBeeFarmForm extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            bee_farm_type_id: '',
-            bee_farm_size_id: '',
-            name: '',
-            location: ''
+            bee_farm_type_id: null,
+            bee_farm_size_id: null,
+            name: null,
+            location: null,
+            errorText: '',
+            beeFarmSizes: null,
+            beeFarmTypes: null
         }
+
+        this.api = new API();
 
         this.handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
-        this.handleSubmit = () => {
-            // TODO: API call
-            console.log(this.state);
+        this.handleSubmit = async () => {
+            await this.api.CreateBeeFarm(this.state.name, this.state.location,
+                this.state.bee_farm_size_id, this.state.bee_farm_type_id
+            ).then((resp) => {
+                if (resp.constructor !== Error) {
+                    // everything is fine => reload page
+                    document.location.reload();
+                } else {
+                    this.setState({errorText: resp.message});
+                }
+            })
         }
     }
+
+    componentDidMount = async () => {
+        await this.api.GetBeeFarmSizes().then((resp) => {
+                let options = [];
+                for (let r of resp) {
+                    options.push({text: r.name, value: r.id.toString()})
+                }
+                this.setState({beeFarmSizes: options})
+            }
+        );
+        await this.api.GetBeeFarmTypes().then((resp) => {
+                let options = [];
+                for (let r of resp) {
+                    options.push({text: r.name, value: r.id.toString()})
+                }
+                this.setState({beeFarmTypes: options})
+            }
+        );
+    }
+
     render() {
         return <Form onSubmit={this.handleSubmit}>
             <Form.Group widths='equal'>
                 <Form.Field
                     control={Select}
                     label='Тип пасеки'
-                    options={beeFarmTypeOptions}
+                    options={this.state.beeFarmTypes}
                     placeholder='Выберите тип пасеки'
                     required
                     name='bee_farm_type_id'
@@ -45,7 +70,7 @@ class CreateBeeFarmForm extends React.Component {
                 <Form.Field
                     control={Select}
                     label='Размер пасеки'
-                    options={beeFarmSizeOptions}
+                    options={this.state.beeFarmSizes}
                     placeholder='Выберите размер пасеки'
                     required
                     name='bee_farm_size_id'
@@ -75,8 +100,7 @@ class CreateBeeFarmForm extends React.Component {
                 />
             </Form.Group>
             <Form.Field control={Button}>Создать</Form.Field>
-            <strong>onChange:</strong>
-            <pre>{JSON.stringify(this.state, null, 2)}</pre>
+            <strong style={{color: "red"}}>{this.state.errorText}</strong>
         </Form>
     }
 }

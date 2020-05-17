@@ -71,4 +71,46 @@ export class API {
             });
         })
     }
+
+    CreateBeeFarm(name, location, beeFarmSizeID, beeFarmTypeID) {
+        this.CheckToken();
+        return new Promise((resolve) => {
+            HTTP.axios.post(`/lk/bee_farm`, {
+                    name: name,
+                    location: location,
+                    bee_farm_size_id: parseInt(beeFarmSizeID),
+                    bee_farm_type_id: parseInt(beeFarmTypeID)
+                })
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                console.log(error);
+            });
+        })
+    }
+
+    GetBeeFarmTypes() {
+        this.CheckToken();
+        return new Promise((resolve) => {
+            HTTP.axios.get(`/lk/bee_farm_types`)
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                console.log(error);
+            });
+        })
+    }
+
+    GetBeeFarmSizes() {
+        this.CheckToken();
+        return new Promise((resolve) => {
+            HTTP.axios.get(`/lk/bee_farm_sizes`)
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                console.log(error);
+            });
+        })
+    }
+
 }
