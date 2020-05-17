@@ -41,7 +41,7 @@ class Preferences extends React.Component {
                             <Image src={user} alt="..." />
                         </Grid.Column>
                         <Grid.Column width={7}>
-                            {this.state.user === null ? <Segment style={{minHeight: "160px"}} loading /> :
+                            {this.state.user === null ? <Segment style={{minHeight: "180px"}} loading /> :
                                 <div>
                                     <h1>{this.state.user.name + " " + this.state.user.surname}</h1>
                                     <h3>{this.state.user.email}</h3>
@@ -49,9 +49,9 @@ class Preferences extends React.Component {
                                     <span>Статус: {this.state.user["subscription_status"].status}</span><br />
                                     <span>Дата окончания: {this.state.user["subscription_end"]}</span><br />
                                     <hr /><br />
-                                    <Button negative onClick={this.logout.bind(this)}>Выйти</Button>
                                 </div>
                             }
+                            <Button negative onClick={this.logout.bind(this)}>Выйти</Button>
                         </Grid.Column>
                         <Grid.Column>
                             <h3>Управление профилем</h3>

@@ -1,14 +1,29 @@
 import React from "react";
 import MainMenu from "../components/MainMenu"
-import {Button, Container, Grid, Menu, Modal, Segment, Table} from "semantic-ui-react";
-import Icon from "semantic-ui-react/dist/commonjs/elements/Icon";
+import {Button, Container, Grid, Loader, Modal, Segment, Table} from "semantic-ui-react";
 import CreateHoneyHarvestForm from "../forms/CreateHoneyHarvestForm";
+import {API} from "../http/API";
 
 
 class HoneyHarvest extends React.Component {
-    // constructor(props) {
-    //     super(props);
-    // }
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            honeyHarvests: null,
+            harvestsNum: ''
+        }
+
+        this.api = new API();
+    }
+
+    componentDidMount = async () => {
+        let harvests = await this.api.GetUsersHoneyHarvests();
+        this.setState({
+            honeyHarvests: harvests,
+            harvestsNum: harvests.length
+        });
+    }
 
     render() {
         return <div>
@@ -27,7 +42,7 @@ class HoneyHarvest extends React.Component {
                                     size='medium'
                                     icon='pencil'
                                     floated='right'
-                                    label={{ basic: true, color: 'green', pointing: 'left', content: '2,048' }}
+                                    label={{ basic: true, color: 'green', pointing: 'left', content: this.state.harvestsNum }}
                                     style={{marginRight: "30px"}}
                                 />}>
                                     <Modal.Header>Новый медосбор</Modal.Header>
@@ -49,50 +64,25 @@ class HoneyHarvest extends React.Component {
                         </Table.Header>
 
                         <Table.Body>
-                            <Table.Row>
-                                <Table.Cell>Cell</Table.Cell>
-                                <Table.Cell>Cell</Table.Cell>
-                                <Table.Cell>Cell</Table.Cell>
-                                <Table.Cell>Cell</Table.Cell>
-                            </Table.Row>
-                            <Table.Row>
-                                <Table.Cell>Cell</Table.Cell>
-                                <Table.Cell>Cell</Table.Cell>
-                                <Table.Cell>Cell</Table.Cell>
-                                <Table.Cell>Cell</Table.Cell>
-                            </Table.Row>
-                            <Table.Row>
-                                <Table.Cell>Cell</Table.Cell>
-                                <Table.Cell>Cell</Table.Cell>
-                                <Table.Cell>Cell</Table.Cell>
-                                <Table.Cell>Cell</Table.Cell>
-                            </Table.Row>
-                            <Table.Row>
-                                <Table.Cell>Cell</Table.Cell>
-                                <Table.Cell>Cell</Table.Cell>
-                                <Table.Cell>Cell</Table.Cell>
-                                <Table.Cell>Cell</Table.Cell>
-                            </Table.Row>
+                            {this.state.honeyHarvests === null ? <Table.Row><Loader active inline /></Table.Row> :
+                                this.state.honeyHarvests.map((s) => {
+                                    return <Table.Row>
+                                        <Table.Cell>{s["bee_family"].name}</Table.Cell>
+                                        <Table.Cell>
+                                            {s["date"] === null ? '' :
+                                                (new Date(s["date"])).toLocaleString('ru', {
+                                                    year: 'numeric',
+                                                    month: 'long',
+                                                    day: 'numeric',})
+                                            }
+                                        </Table.Cell>
+                                        <Table.Cell>{s["amount"]}</Table.Cell>
+                                        <Table.Cell>{s["honey_type"].name}</Table.Cell>
+                                        <Table.Cell>{s["total_price"]}</Table.Cell>
+                                    </Table.Row>
+                                })
+                            }
                         </Table.Body>
-
-                        <Table.Footer>
-                            <Table.Row>
-                                <Table.HeaderCell colSpan='3'>
-                                    <Menu floated='right' pagination>
-                                        <Menu.Item as='a' icon>
-                                            <Icon name='chevron left' />
-                                        </Menu.Item>
-                                        <Menu.Item as='a'>1</Menu.Item>
-                                        <Menu.Item as='a'>2</Menu.Item>
-                                        <Menu.Item as='a'>3</Menu.Item>
-                                        <Menu.Item as='a'>4</Menu.Item>
-                                        <Menu.Item as='a' icon>
-                                            <Icon name='chevron right' />
-                                        </Menu.Item>
-                                    </Menu>
-                                </Table.HeaderCell>
-                            </Table.Row>
-                        </Table.Footer>
                     </Table>
                 </Segment>
             </Container>

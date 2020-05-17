@@ -113,4 +113,52 @@ export class API {
         })
     }
 
+    GetUsersHoneySales() {
+        this.CheckToken();
+        return new Promise((resolve) => {
+            HTTP.axios.get(`/lk/honey_sales`)
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                console.log(error);
+            });
+        })
+    }
+
+    GetUsersHoneyHarvests() {
+        this.CheckToken();
+        return new Promise((resolve) => {
+            HTTP.axios.get(`/lk/honey_harvests`)
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                console.log(error);
+            });
+        })
+    }
+
+    GetHoneyTypes() {
+        this.CheckToken();
+        return new Promise((resolve) => {
+            HTTP.axios.get(`/lk/honey_types`)
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                console.log(error);
+            });
+        })
+    }
+
+    GetUsersBeeFamilies() {
+        this.CheckToken();
+        return new Promise((resolve) => {
+            HTTP.axios.get(`/lk/bee_families`)
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                console.log(error);
+            });
+        })
+    }
+
 }
