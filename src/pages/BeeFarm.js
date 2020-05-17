@@ -1,13 +1,17 @@
 import React from "react";
 import MainMenu from "../components/MainMenu"
-import {Button, Container, Grid, Modal, Segment} from "semantic-ui-react";
+import {Button, Container, Grid, Menu, Modal, Segment} from "semantic-ui-react";
 import PasecaModel from "../components/PasecaModel";
 
 
 class BeeFarm extends React.Component {
-    // constructor(props) {
-    //     super(props);
-    // }
+    constructor(props) {
+        super(props);
+
+        this.state = { activeItem: 'bio' }
+
+        this.handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+    }
 
     render() {
         return <div>
@@ -15,18 +19,18 @@ class BeeFarm extends React.Component {
                 <MainMenu activeItem={'Мои пасеки'} />
                 <Segment>
                     <Grid>
-                        <Grid.Row columns={2} relaxed='very'>
+                        <Grid.Row columns={3} >
                             <Grid.Column>
                                 <h1 style={{textAlign: "center"}}>Название пасеки</h1>
                             </Grid.Column>
-                            <Grid.Column>
+                            <Grid.Column width={10}>
                                 <Modal trigger={<Button
                                     color='orange'
                                     content='Добавить улей'
                                     size='medium'
                                     icon='archive'
                                     floated='right'
-                                    style={{marginRight: "20px"}}
+                                    style={{margin: "0 10px"}}
                                 />}>
                                     <Modal.Header>Новый улей</Modal.Header>
                                     <Modal.Content>
@@ -39,9 +43,22 @@ class BeeFarm extends React.Component {
                                     size='medium'
                                     icon='add'
                                     floated='right'
-                                    style={{marginRight: "20px"}}
+                                    style={{margin: "0 10px"}}
                                 />}>
                                     <Modal.Header>Новая семья</Modal.Header>
+                                    <Modal.Content>
+                                        TODO
+                                    </Modal.Content>
+                                </Modal>
+                                <Modal trigger={<Button
+                                    color='red'
+                                    content='Создать напоминание'
+                                    size='medium'
+                                    icon='attention'
+                                    floated='right'
+                                    style={{margin: "0 10px"}}
+                                />}>
+                                    <Modal.Header>Новое напоминание</Modal.Header>
                                     <Modal.Content>
                                         TODO
                                     </Modal.Content>
@@ -53,13 +70,33 @@ class BeeFarm extends React.Component {
                         </Grid.Row>
                         <Grid.Row columns={1}>
                             <Grid.Column>
-                                <Segment>
-                                    <h2>Семьи</h2>
-                                </Segment>
+                                <Menu stackable pointing secondary>
+                                    <Menu.Item
+                                        name='Семьи'
+                                        active={this.state.activeItem === 'Семьи'}
+                                        onClick={this.handleItemClick}
+                                    />
+                                    <Menu.Item
+                                        name='Ульи'
+                                        active={this.state.activeItem === 'Ульи'}
+                                        onClick={this.handleItemClick}
+                                    />
+                                    <Menu.Item
+                                        name='Напоминания'
+                                        active={this.state.activeItem === 'Напоминания'}
+                                        onClick={this.handleItemClick}
+                                    />
+                                    <Menu.Item
+                                        name='Контроль'
+                                        active={this.state.activeItem === 'Контроль'}
+                                        onClick={this.handleItemClick}
+                                    />
+                                </Menu>
                             </Grid.Column>
+
                             <Grid.Column>
                                 <Segment>
-                                    <h2>Ульи</h2>
+                                    TODO
                                 </Segment>
                             </Grid.Column>
                         </Grid.Row>
