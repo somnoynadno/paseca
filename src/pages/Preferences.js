@@ -24,6 +24,12 @@ class Preferences extends React.Component {
         });
     };
 
+    logout() {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user_id');
+        window.location.href = '/login';
+    }
+
     render() {
         return <div>
             <Container>
@@ -42,6 +48,8 @@ class Preferences extends React.Component {
                                     <span>Подписка: {this.state.user["subscription_type"].name}</span><br />
                                     <span>Статус: {this.state.user["subscription_status"].status}</span><br />
                                     <span>Дата окончания: {this.state.user["subscription_end"]}</span><br />
+                                    <hr /><br />
+                                    <Button negative onClick={this.logout.bind(this)}>Выйти</Button>
                                 </div>
                             }
                         </Grid.Column>
