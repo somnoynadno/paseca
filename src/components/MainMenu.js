@@ -29,10 +29,11 @@ class MainMenu extends React.Component {
 
     redirectByName(name) {
         let r = null;
-        if (name === 'Мои пасеки') r = '/my_farms';
-        if (name === 'Медосбор')   r = '/honey_select';
-        if (name === 'Вики')       r = '/wiki';
-        if (name === 'Главная')    r = '/';
+        if (name === 'Мои пасеки')      r = '/my_farms';
+        if (name === 'Медосбор')        r = '/honey_select';
+        if (name === 'Вики')            r = '/wiki';
+        if (name === 'Личный кабинет')  r = '/preferences';
+        if (name === 'Главная')         r = '/';
 
         if (window.location.pathname !== r) {
             this.setState({
@@ -47,7 +48,7 @@ class MainMenu extends React.Component {
 
         if (referrer) return <Redirect to={referrer} />;
         else return (
-            <Menu size='huge' stackable fluid widths={4}>
+            <Menu size='huge' stackable fluid widths={5}>
                 <Menu.Item name='Главная' onClick={this.handleItemClick} >
                     <img src={bee} alt="..." />
                     &nbsp;PASECA
@@ -65,6 +66,11 @@ class MainMenu extends React.Component {
                 <Menu.Item
                     name='Вики'
                     active={activeItem === 'Вики'}
+                    onClick={this.handleItemClick}
+                />
+                <Menu.Item
+                    name='Личный кабинет'
+                    active={activeItem === 'Личный кабинет'}
                     onClick={this.handleItemClick}
                 />
             </Menu>

@@ -14,6 +14,7 @@ import Wiki from "./pages/Wiki";
 import MyFarms from "./pages/MyFarms";
 import BeeFarm from "./pages/BeeFarm";
 import Login from "./pages/Login";
+import Preferences from "./pages/Preferences";
 
 
 class App extends Component {
@@ -30,6 +31,7 @@ class App extends Component {
                     <Route history={history} exact path='/honey_sale' component={HoneySale} />
                     <Route history={history} exact path='/honey_select' component={HoneySelectPage} />
                     <Route history={history} exact path='/my_farms' component={MyFarms} />
+                    <Route history={history} exact path='/preferences' component={Preferences} />
                     <Route history={history} exact path='/wiki' component={Wiki} />
                 </Switch>
             </div>

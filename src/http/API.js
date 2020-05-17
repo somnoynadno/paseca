@@ -35,4 +35,16 @@ export class API {
             });
         })
     }
+
+    GetUserInfo() {
+        this.CheckToken();
+        return new Promise((resolve) => {
+            HTTP.axios.get(`/lk/user`)
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                console.log(error);
+            });
+        })
+    }
 }
