@@ -3,6 +3,7 @@ import MainMenu from "../components/MainMenu"
 import {Button, Card, Container, Grid, Icon, Modal, Segment} from "semantic-ui-react";
 import {Redirect} from "react-router-dom";
 import CreateBeeFarmForm from "../forms/CreateBeeFarmForm";
+import {API} from "../http/API";
 
 
 class MyFarms extends React.Component {
@@ -10,21 +11,31 @@ class MyFarms extends React.Component {
         super(props);
 
         this.state = {
-            referrer: null
-        }
+            referrer: null,
+            beeFarms: null
+        };
+
+        this.api = new API();
 
         this.handleItemClick = (e, { name }) => {
             this.setState({ activeItem: name });
+            console.log(name);
             this.redirectToFarm(name);
         }
     }
 
     redirectToFarm(name) {
-        console.log(name);
         this.setState({
             referrer: "bee_farm"
         })
     }
+
+    componentDidMount = async () => {
+        let farms = await this.api.GetBeeFarms();
+        this.setState({
+            beeFarms: farms
+        });
+    };
 
     render() {
         const { referrer } = this.state;
@@ -57,36 +68,33 @@ class MyFarms extends React.Component {
                         </Grid.Row>
                     </Grid>
                     <Card.Group>
-                        <Card onClick={this.handleItemClick.bind(this)}>
-                            <Card.Content>
-                                <Card.Header>Основная</Card.Header>
-                                <Card.Meta>
-                                    <span className='date'>Создана в 2007г</span>
-                                </Card.Meta>
-                                <Card.Description>
-                                    Расположена там-то
-                                </Card.Description>
-                            </Card.Content>
-                            <Card.Content extra>
-                                <Icon name='archive' />
-                                22 улья
-                            </Card.Content>
-                        </Card>
-                        <Card onClick={this.handleItemClick.bind(this)} >
-                            <Card.Content>
-                                <Card.Header>Кочевая</Card.Header>
-                                <Card.Meta>
-                                    <span className='date'>Создана в 2020г</span>
-                                </Card.Meta>
-                                <Card.Description>
-                                    Расположена в другом месте
-                                </Card.Description>
-                            </Card.Content>
-                            <Card.Content extra>
-                                <Icon name='archive' />
-                                12 ульев
-                            </Card.Content>
-                        </Card>
+                        {this.state.beeFarms === null ? <Segment style={{minHeight: "100px"}} loading /> :
+                            this.state.beeFarms.map((farm) => {
+                                return <Card name={farm.id} onClick={this.handleItemClick.bind(this)}>
+                                    <Card.Content>
+                                        <Card.Header>{farm.name}</Card.Header>
+                                        <Card.Meta>
+                                            <span className='date'>Создана: {
+                                                (new Date(farm["created_at"])).toLocaleString('ru', {
+                                                year: 'numeric',
+                                                month: 'long',
+                                                day: 'numeric',
+                                            })}</span>
+                                        </Card.Meta>
+                                        <Card.Description>
+                                            {farm.location}
+                                        </Card.Description>
+                                    </Card.Content>
+                                    <Card.Content extra>
+                                        <Icon name='archive' />
+                                        {farm["bee_farm_type"].name}
+                                        <br />
+                                        <Icon name='arrows alternate' />
+                                        {farm["bee_farm_size"].name}
+                                    </Card.Content>
+                                </Card>
+                            })
+                        }
                     </Card.Group>
                 </Segment>
             </Container>
