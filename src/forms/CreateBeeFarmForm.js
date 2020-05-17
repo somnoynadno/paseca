@@ -2,13 +2,13 @@ import {Button, Form, Input, Select} from "semantic-ui-react";
 import React from "react";
 
 const beeFarmTypeOptions = [
-    { key: 'f1', text: 'Основная', value: '1' },
-    { key: 'f2', text: 'Кочевая', value: '2' },
+    { text: 'Основная', value: '1' },
+    { text: 'Кочевая', value: '2' },
 ]
 
 const beeFarmSizeOptions = [
-    { key: 'h1', text: 'Большая', value: '1' },
-    { key: 'h2', text: 'Средняя', value: '2' },
+    { text: 'Большая', value: '1' },
+    { text: 'Средняя', value: '2' },
 ]
 
 class CreateBeeFarmForm extends React.Component {

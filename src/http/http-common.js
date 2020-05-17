@@ -3,7 +3,7 @@ import {apiAddress} from '../options'
 
 export let HTTP = {
     axios: null,
-    token:'',
+    token: localStorage.getItem('token'),
     Init: function(){
         this.axios = axios.create({
             baseURL: apiAddress,
@@ -14,7 +14,7 @@ export let HTTP = {
         });
     },
     InitToken: function () {
-        this.token = '';
+        this.token = localStorage.getItem('token');
         this.Init();
     }
 };

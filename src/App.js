@@ -13,6 +13,7 @@ import HoneySelectPage from "./pages/HoneySelectPage";
 import Wiki from "./pages/Wiki";
 import MyFarms from "./pages/MyFarms";
 import BeeFarm from "./pages/BeeFarm";
+import Login from "./pages/Login";
 
 
 class App extends Component {
@@ -23,6 +24,7 @@ class App extends Component {
             <div className="App">
                 <Switch>
                     <Route history={history} exact path='/' component={Index} />
+                    <Route history={history} exact path='/login' component={Login} />
                     <Route history={history} exact path='/bee_farm' component={BeeFarm} />
                     <Route history={history} exact path='/honey_harvest' component={HoneyHarvest} />
                     <Route history={history} exact path='/honey_sale' component={HoneySale} />

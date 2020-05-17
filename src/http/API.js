@@ -9,10 +9,10 @@ export class API {
     }
 
     // AUTH
-    LoginUser(username, password) {
+    LoginUser(email, password) {
         return new Promise((resolve) => {
-            axios.post(apiAddress + `/login`, {
-                username: username,
+            axios.post(apiAddress + `/auth/login`, {
+                email: email,
                 password: password
             })
             .then(response => {
@@ -24,10 +24,10 @@ export class API {
         })
     }
 
-    GetNews() {
+    GetLastNews() {
         this.CheckToken();
         return new Promise((resolve) => {
-            HTTP.axios.get(`/news?_end=10&_order=DESC&_sort=id&_start=0`)
+            HTTP.axios.get(`/lk/news`)
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {

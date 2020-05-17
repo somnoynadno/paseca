@@ -9,9 +9,16 @@ class MainMenu extends React.Component {
     constructor(props) {
         super(props);
 
+        let token = localStorage.getItem('token');
+        let r = null;
+
+        if (token === null || token === undefined) {
+            r = '/login'
+        }
+
         this.state = {
             activeItem: this.props.activeItem,
-            referrer: null
+            referrer: r
         }
 
         this.handleItemClick = (e, { name }) => {

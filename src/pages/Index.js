@@ -16,7 +16,7 @@ class Index extends React.Component {
     }
 
     componentDidMount = async () => {
-        let news = await this.api.GetNews();
+        let news = await this.api.GetLastNews();
         this.setState({
             news: news
         });
