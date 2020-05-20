@@ -21,11 +21,11 @@ class BeeFarmFamiliesTable extends React.Component {
                     <Table.Body>
                     {this.props.beeFarm["bee_families"].map((bf, i) => {
                         return <Table.Row key={i}>
-                                <Table.Cell>{bf["name"]}</Table.Cell>
-                                <Table.Cell>{bf["hive"]["name"]}</Table.Cell>
-                                <Table.Cell>{bf["bee_family_status"]["status"]}</Table.Cell>
-                                <Table.Cell><Button>Изменить</Button></Table.Cell>
-                            </Table.Row>
+                            <Table.Cell>{bf["name"]}</Table.Cell>
+                            <Table.Cell>{bf["hive"]["id"] !== 0 ? bf["hive"]["name"] : '-'}</Table.Cell>
+                            <Table.Cell>{bf["bee_family_status"]["status"]}</Table.Cell>
+                            <Table.Cell><Button>Просмотр</Button></Table.Cell>
+                        </Table.Row>
                     })}
                     </Table.Body>
                 </Table>

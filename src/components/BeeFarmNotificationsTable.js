@@ -22,11 +22,18 @@ class BeeFarmNotificationsTable extends React.Component {
                     {this.props.beeFarm["reminders"].map((r, i) => {
                         return <Table.Row key={i}>
                             <Table.Cell>{r["title"]}</Table.Cell>
-                            <Table.Cell>{r["text"]}</Table.Cell>
-                            <Table.Cell>{r["date"]}</Table.Cell>
+                            <Table.Cell>{r.text.split('\n').map((text) => {
+                                return <p>{text}</p>
+                            })}</Table.Cell>
+                            <Table.Cell>
+                                {(new Date(r["date"])).toLocaleString('ru', {
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric',})}
+                            </Table.Cell>
                             <Table.Cell>
                                 <ButtonGroup vertical>
-                                    <Button>Прочитано</Button>
+                                    <Button>Выполнено</Button>
                                     <Button>Удалить</Button>
                                 </ButtonGroup>
                             </Table.Cell>

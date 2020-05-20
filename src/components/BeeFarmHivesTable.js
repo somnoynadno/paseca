@@ -16,6 +16,7 @@ class BeeFarmHivesTable extends React.Component {
                         <Table.HeaderCell>Тип улья</Table.HeaderCell>
                         <Table.HeaderCell>Размер улья</Table.HeaderCell>
                         <Table.HeaderCell>Формат рамки</Table.HeaderCell>
+                        <Table.HeaderCell>Установлен?</Table.HeaderCell>
                         <Table.HeaderCell>Опции</Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
@@ -26,7 +27,10 @@ class BeeFarmHivesTable extends React.Component {
                             <Table.Cell>{hive["hive_format"]["name"]}</Table.Cell>
                             <Table.Cell>{hive["hive_format"]["size"]}</Table.Cell>
                             <Table.Cell>{hive["hive_frame_type"]["name"]}</Table.Cell>
-                            <Table.Cell><Button>Изменить</Button></Table.Cell>
+                            <Table.Cell>
+                                {hive["coord_x"] !== null && hive["coord_y"] !== null ? 'Да' : 'Нет'}
+                            </Table.Cell>
+                            <Table.Cell><Button>Удалить</Button></Table.Cell>
                         </Table.Row>
                     })}
                 </Table.Body>
