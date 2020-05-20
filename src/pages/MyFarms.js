@@ -12,7 +12,8 @@ class MyFarms extends React.Component {
 
         this.state = {
             referrer: null,
-            beeFarms: null
+            beeFarms: null,
+            farmID: null
         };
 
         this.api = new API();
@@ -26,7 +27,8 @@ class MyFarms extends React.Component {
 
     redirectToFarm(name) {
         this.setState({
-            referrer: "bee_farm"
+            referrer: "bee_farm",
+            farmID: name
         })
     }
 
@@ -38,9 +40,12 @@ class MyFarms extends React.Component {
     };
 
     render() {
-        const { referrer } = this.state;
+        const { referrer, farmID } = this.state;
 
-        if (referrer) return <Redirect to={referrer} />;
+        if (referrer && farmID) return <Redirect to={{
+            pathname: referrer,
+            state: { farmID: farmID }
+        }} />;
         else return <div>
             <Container>
                 <MainMenu activeItem={'Мои пасеки'} />

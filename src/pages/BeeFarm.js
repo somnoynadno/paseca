@@ -2,26 +2,44 @@ import React from "react";
 import MainMenu from "../components/MainMenu"
 import {Button, Container, Grid, Menu, Modal, Segment} from "semantic-ui-react";
 import PasecaModel from "../components/PasecaModel";
+import {API} from "../http/API";
 
 
 class BeeFarm extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = { activeItem: 'bio' }
+        if (this.props.location.state === undefined) {
+            window.location.href = '/my_farms';
+        } else this.farmID = this.props.location.state.farmID;
+
+        this.state = {
+            activeItem: null,
+            beeFarm: null
+        }
 
         this.handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+
+        this.api = new API();
     }
+
+    componentDidMount = async () => {
+        let farm = await this.api.GetBeeFarmByID(this.farmID);
+        this.setState({beeFarm: farm});
+        console.log(farm);
+    }
+
 
     render() {
         return <div>
             <Container>
                 <MainMenu activeItem={'Мои пасеки'} />
+                {this.state.beeFarm === null ? <Segment style={{minHeight: "100px"}} loading /> :
                 <Segment>
                     <Grid>
                         <Grid.Row columns={3} >
                             <Grid.Column>
-                                <h1 style={{textAlign: "center"}}>Название пасеки</h1>
+                                <h1 style={{textAlign: "center"}}>{this.state.beeFarm.name}</h1>
                             </Grid.Column>
                             <Grid.Column width={10}>
                                 <Modal trigger={<Button
@@ -66,7 +84,8 @@ class BeeFarm extends React.Component {
                             </Grid.Column>
                         </Grid.Row>
                         <Grid.Row style={{paddingLeft: "30px"}}>
-                            <PasecaModel maxX={70} maxY={20} />
+                            <PasecaModel maxX={this.state.beeFarm["bee_farm_size"]["max_x"]}
+                                         maxY={this.state.beeFarm["bee_farm_size"]["max_y"]} />
                         </Grid.Row>
                         <Grid.Row style={{paddingLeft: "30px"}}>
                             <Modal trigger={<Button
@@ -99,11 +118,6 @@ class BeeFarm extends React.Component {
                                         active={this.state.activeItem === 'Напоминания'}
                                         onClick={this.handleItemClick}
                                     />
-                                    <Menu.Item
-                                        name='Контроль'
-                                        active={this.state.activeItem === 'Контроль'}
-                                        onClick={this.handleItemClick}
-                                    />
                                 </Menu>
                             </Grid.Column>
 
@@ -115,6 +129,7 @@ class BeeFarm extends React.Component {
                         </Grid.Row>
                     </Grid>
                 </Segment>
+                }
             </Container>
         </div>
     }
