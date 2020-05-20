@@ -15,10 +15,10 @@ class PasecaModel extends React.Component {
         let rows = [];
         for (let i = 0; i < this.maxY; i++) {
             let columns = [];
-            for (let i = 0; i < this.maxX; i++) {
-                columns.push(<Popup content='Офигенный улей' basic trigger={<div className="block-style" />} />);
+            for (let j = 0; j < this.maxX; j++) {
+                columns.push(<Popup key={j} content='Офигенный улей' basic trigger={<div className="block-style" />} />);
             }
-            rows.push(<div className="row-style">{columns}</div>);
+            rows.push(<div key={i} className="row-style">{columns}</div>);
         }
 
         return <div style={{width: "auto", overflowX: "scroll", overflowY: "scroll", boxShadow: "2px 2px 2px gray"}}>
