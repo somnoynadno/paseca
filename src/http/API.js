@@ -273,10 +273,27 @@ export class API {
         this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.post(`/lk/reminder`, {
-                bee_farm_id: beeFarmID,
+                bee_farm_id: parseInt(beeFarmID),
                 date: date,
                 title: title,
                 text: text
+            })
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                console.log(error);
+            });
+        })
+    }
+
+    CreateHive(beeFarmID, name, hiveFormatID, hiveFrameTypeID) {
+        this.CheckToken();
+        return new Promise((resolve) => {
+            HTTP.axios.post(`/lk/hive`, {
+                name: name,
+                bee_farm_id: parseInt(beeFarmID),
+                hive_format_id: parseInt(hiveFormatID),
+                hive_frame_type_id: parseInt(hiveFrameTypeID)
             })
                 .then(response =>{
                     resolve(response.data);

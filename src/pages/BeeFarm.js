@@ -8,6 +8,7 @@ import BeeFarmHivesTable from "../components/BeeFarmHivesTable";
 import BeeFarmNotificationsTable from "../components/BeeFarmNotificationsTable";
 import CreateBeeFamilyForm from "../forms/CreateBeeFamilyForm";
 import CreateReminderForm from "../forms/CreateReminderForm";
+import CreateHiveForm from "../forms/CreateHiveForm";
 
 
 class BeeFarm extends React.Component {
@@ -57,7 +58,7 @@ class BeeFarm extends React.Component {
                                 />}>
                                     <Modal.Header>Новый улей</Modal.Header>
                                     <Modal.Content>
-                                        TODO
+                                        <CreateHiveForm beeFarmID={this.state.beeFarm.id} />
                                     </Modal.Content>
                                 </Modal>
                                 <Modal trigger={<Button
