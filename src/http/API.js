@@ -269,4 +269,21 @@ export class API {
         })
     }
 
+    CreateReminder(beeFarmID, title, text, date) {
+        this.CheckToken();
+        return new Promise((resolve) => {
+            HTTP.axios.post(`/lk/reminder`, {
+                bee_farm_id: beeFarmID,
+                date: date,
+                title: title,
+                text: text
+            })
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                console.log(error);
+            });
+        })
+    }
+
 }

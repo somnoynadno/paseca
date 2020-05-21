@@ -100,7 +100,7 @@ class CreateBeeFamilyForm extends React.Component {
                     placeholder='Укажите породу пчёл'
                     required
                     name='bee_breed_id'
-                    value={this.state.location}
+                    value={this.state.bee_breed_id}
                     onChange={this.handleChange}
                 />
             </Form.Group>
