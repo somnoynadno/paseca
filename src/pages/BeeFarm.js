@@ -6,6 +6,7 @@ import {API} from "../http/API";
 import BeeFarmFamiliesTable from "../components/BeeFarmFamiliesTable";
 import BeeFarmHivesTable from "../components/BeeFarmHivesTable";
 import BeeFarmNotificationsTable from "../components/BeeFarmNotificationsTable";
+import CreateBeeFamilyForm from "../forms/CreateBeeFamilyForm";
 
 
 class BeeFarm extends React.Component {
@@ -68,7 +69,7 @@ class BeeFarm extends React.Component {
                                 />}>
                                     <Modal.Header>Новая семья</Modal.Header>
                                     <Modal.Content>
-                                        TODO
+                                        <CreateBeeFamilyForm beeFarmID={this.state.beeFarm.id} />
                                     </Modal.Content>
                                 </Modal>
                                 <Modal trigger={<Button

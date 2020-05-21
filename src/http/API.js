@@ -125,6 +125,30 @@ export class API {
         })
     }
 
+    GetBeeBreeds() {
+        this.CheckToken();
+        return new Promise((resolve) => {
+            HTTP.axios.get(`/lk/bee_breeds`)
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                console.log(error);
+            });
+        })
+    }
+
+    GetBeeFamilyStatuses() {
+        this.CheckToken();
+        return new Promise((resolve) => {
+            HTTP.axios.get(`/lk/bee_family_statuses`)
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                console.log(error);
+            });
+        })
+    }
+
     GetUsersHoneyHarvests() {
         this.CheckToken();
         return new Promise((resolve) => {
@@ -192,6 +216,31 @@ export class API {
                     resolve(response.data);
                 }).catch(function(error) {
                 console.log(error);
+            });
+        })
+    }
+
+    CreateBeeFamily(beeFarmID, name, queenBeeBornDate,
+                    lastInspectionDate, beeBreedId,
+                    beeFamilyStatusID, parent1ID,
+                    parent2ID, isControl) {
+        this.CheckToken();
+        return new Promise((resolve) => {
+            HTTP.axios.post(`/lk/bee_family`, {
+                bee_farm_id: parseInt(beeFarmID),
+                bee_breed_id: parseInt(beeBreedId),
+                name: name,
+                queen_bee_born_date: queenBeeBornDate,
+                last_inspection_date: lastInspectionDate,
+                bee_family_status_id: parseInt(beeFamilyStatusID),
+                parent1_id: parseInt(parent1ID),
+                parent2_id: parseInt(parent2ID),
+                is_control: isControl
+            })
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                    console.log(error);
             });
         })
     }

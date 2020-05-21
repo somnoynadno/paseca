@@ -16,7 +16,8 @@ class PasecaModel extends React.Component {
         for (let i = 0; i < this.maxY; i++) {
             let columns = [];
             for (let j = 0; j < this.maxX; j++) {
-                columns.push(<Popup key={j} content='Офигенный улей' basic trigger={<div className="block-style" />} />);
+                columns.push(<Popup pinned basic ikey={j} content='Офигенный улей' on='click'
+                                    trigger={<div className="block-style" />} />);
             }
             rows.push(<div key={i} className="row-style">{columns}</div>);
         }
