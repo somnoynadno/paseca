@@ -173,6 +173,30 @@ export class API {
         })
     }
 
+    GetHiveFrameTypes() {
+        this.CheckToken();
+        return new Promise((resolve) => {
+            HTTP.axios.get(`/lk/hive_frame_types`)
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                console.log(error);
+            });
+        })
+    }
+
+    GetHiveFormats() {
+        this.CheckToken();
+        return new Promise((resolve) => {
+            HTTP.axios.get(`/lk/hive_formats`)
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                console.log(error);
+            });
+        })
+    }
+
     GetUsersBeeFamilies() {
         this.CheckToken();
         return new Promise((resolve) => {

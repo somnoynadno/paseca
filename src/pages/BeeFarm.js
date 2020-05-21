@@ -1,6 +1,6 @@
 import React from "react";
 import MainMenu from "../components/MainMenu"
-import {Button, Container, Grid, Loader, Menu, Modal, Segment, Table} from "semantic-ui-react";
+import {Button, Container, Grid, Menu, Modal, Segment} from "semantic-ui-react";
 import PasecaModel from "../components/PasecaModel";
 import {API} from "../http/API";
 import BeeFarmFamiliesTable from "../components/BeeFarmFamiliesTable";
