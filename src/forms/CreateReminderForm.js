@@ -1,6 +1,6 @@
 import * as React from "react";
 import {API} from "../http/API";
-import {Button, Form, Input, Select} from "semantic-ui-react";
+import {Button, Form, Input} from "semantic-ui-react";
 
 
 class CreateReminderForm extends React.Component {

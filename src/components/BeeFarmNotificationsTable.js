@@ -3,10 +3,6 @@ import {Button, ButtonGroup, Table} from "semantic-ui-react";
 
 
 class BeeFarmNotificationsTable extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return <div>
             <Table celled>

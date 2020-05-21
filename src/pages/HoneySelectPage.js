@@ -1,6 +1,6 @@
 import React from "react";
 import MainMenu from "../components/MainMenu"
-import {Button, ButtonGroup, Container, Divider, Grid, Segment} from "semantic-ui-react";
+import {Button, Container, Divider, Grid, Segment} from "semantic-ui-react";
 import {Redirect} from "react-router-dom";
 
 

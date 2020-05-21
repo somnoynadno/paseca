@@ -125,6 +125,30 @@ export class API {
         })
     }
 
+    GetUsersPollenHarvests() {
+        this.CheckToken();
+        return new Promise((resolve) => {
+            HTTP.axios.get(`/lk/pollen_harvests`)
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                console.log(error);
+            });
+        })
+    }
+
+    GetUsersControlHarvests() {
+        this.CheckToken();
+        return new Promise((resolve) => {
+            HTTP.axios.get(`/lk/control_harvests`)
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                console.log(error);
+            });
+        })
+    }
+
     GetBeeBreeds() {
         this.CheckToken();
         return new Promise((resolve) => {
@@ -235,6 +259,38 @@ export class API {
                 honey_type_id: parseInt(honeyTypeID),
                 bee_farm_id: parseInt(beeFarmID),
                 total_price: parseFloat(totalPrice)
+            })
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                console.log(error);
+            });
+        })
+    }
+
+    CreatePollenHarvest(amount, date, beeFarmID) {
+        this.CheckToken();
+        return new Promise((resolve) => {
+            HTTP.axios.post(`/lk/pollen_harvest`, {
+                date: date,
+                amount: parseFloat(amount),
+                bee_farm_id: parseInt(beeFarmID),
+            })
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                console.log(error);
+            });
+        })
+    }
+
+    CreateControlHarvest(amount, date, beeFamilyID) {
+        this.CheckToken();
+        return new Promise((resolve) => {
+            HTTP.axios.post(`/lk/control_harvest`, {
+                date: date,
+                amount: parseFloat(amount),
+                bee_family_id: parseInt(beeFamilyID),
             })
                 .then(response =>{
                     resolve(response.data);
