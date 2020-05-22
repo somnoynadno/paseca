@@ -3,9 +3,9 @@ import MainMenu from "../components/MainMenu"
 import {Button, Container, Grid, Menu, Modal, Segment} from "semantic-ui-react";
 import PasecaModel from "../components/PasecaModel";
 import {API} from "../http/API";
-import BeeFarmFamiliesTable from "../components/BeeFarmFamiliesTable";
-import BeeFarmHivesTable from "../components/BeeFarmHivesTable";
-import BeeFarmNotificationsTable from "../components/BeeFarmNotificationsTable";
+import BeeFarmFamiliesTable from "../tables/BeeFarmFamiliesTable";
+import BeeFarmHivesTable from "../tables/BeeFarmHivesTable";
+import BeeFarmNotificationsTable from "../tables/BeeFarmNotificationsTable";
 import CreateBeeFamilyForm from "../forms/CreateBeeFamilyForm";
 import CreateReminderForm from "../forms/CreateReminderForm";
 import CreateHiveForm from "../forms/CreateHiveForm";
