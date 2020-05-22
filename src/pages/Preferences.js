@@ -1,6 +1,6 @@
 import React from "react";
 import MainMenu from "../components/MainMenu"
-import {Button, Container, Grid, Image, Menu, Segment} from "semantic-ui-react";
+import {Button, Container, Grid, Image, Segment} from "semantic-ui-react";
 import {API} from "../http/API";
 
 import user from '../assets/user.png';

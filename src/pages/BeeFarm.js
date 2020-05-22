@@ -32,7 +32,6 @@ class BeeFarm extends React.Component {
     componentDidMount = async () => {
         let farm = await this.api.GetBeeFarmByID(this.farmID);
         this.setState({beeFarm: farm});
-        console.log(farm);
     }
 
 
@@ -91,7 +90,9 @@ class BeeFarm extends React.Component {
                         </Grid.Row>
                         <Grid.Row style={{paddingLeft: "30px"}}>
                             <PasecaModel maxX={this.state.beeFarm["bee_farm_size"]["max_x"]}
-                                         maxY={this.state.beeFarm["bee_farm_size"]["max_y"]} />
+                                         maxY={this.state.beeFarm["bee_farm_size"]["max_y"]}
+                                         beeFarm={this.state.beeFarm}
+                            />
                         </Grid.Row>
                         <Grid.Row style={{paddingLeft: "30px"}}>
                             <Modal trigger={<Button
