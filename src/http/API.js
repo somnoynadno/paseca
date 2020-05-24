@@ -233,6 +233,30 @@ export class API {
         })
     }
 
+    GetUsersBeeFamiliesWithoutHives() {
+        this.CheckToken();
+        return new Promise((resolve) => {
+            HTTP.axios.get(`/lk/bee_families_without_hives`)
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                console.log(error);
+            });
+        })
+    }
+
+    GetUsersFreeHives() {
+        this.CheckToken();
+        return new Promise((resolve) => {
+            HTTP.axios.get(`/lk/hives`)
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                console.log(error);
+            });
+        })
+    }
+
     CreateHoneyHarvest(amount, date, honeyTypeID, beeFamilyID) {
         this.CheckToken();
         return new Promise((resolve) => {
@@ -359,4 +383,34 @@ export class API {
         })
     }
 
+    SetHiveCoords(hiveID, coordX, coordY) {
+        this.CheckToken();
+        return new Promise((resolve) => {
+            HTTP.axios.post(`/lk/hive/set_coords`, {
+                hive_id: parseInt(hiveID),
+                coord_x: parseInt(coordX),
+                coord_y: parseInt(coordY),
+            })
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                console.log(error);
+            });
+        })
+    }
+
+    SetHiveBeeFamily(hiveID, beeFamilyID) {
+        this.CheckToken();
+        return new Promise((resolve) => {
+            HTTP.axios.post(`/lk/hive/set_hive_bee_family`, {
+                hive_id: parseInt(hiveID),
+                bee_family_id: parseInt(beeFamilyID),
+            })
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                console.log(error);
+            });
+        })
+    }
 }

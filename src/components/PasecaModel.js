@@ -2,6 +2,9 @@ import React from "react";
 
 import "./PasecaModel.css"
 import {Button, Popup} from "semantic-ui-react";
+import {API} from "../http/API";
+import ChooseBeeFamilyToHiveForm from "../forms/ChooseBeeFamilyToHiveForm";
+import ChooseHiveForm from "../forms/ChooseHiveForm";
 
 class PasecaModel extends React.Component {
     constructor(props) {
@@ -14,8 +17,30 @@ class PasecaModel extends React.Component {
             beeFarm: this.props.beeFarm
         }
 
+        this.api = new API();
+
         this.hives = this.state.beeFarm["hives"];
         this.beeFamilies = this.state.beeFarm["bee_families"];
+    }
+
+    async evictBeeFamily(hiveID) {
+        await this.api.SetHiveBeeFamily(hiveID, null)
+            .then((resp) => {
+                if (resp.constructor !== Error) {
+                    // everything is fine => reload page
+                    document.location.reload();
+                } else console.log(resp)
+            });
+    }
+
+    async removeHive(hiveID) {
+        await this.api.SetHiveCoords(hiveID, null, null)
+            .then((resp) => {
+                if (resp.constructor !== Error) {
+                    // everything is fine => reload page
+                    document.location.reload();
+                } else console.log(resp)
+            });
     }
 
     render() {
@@ -25,7 +50,7 @@ class PasecaModel extends React.Component {
             let columns = [];
             for (let j = 0; j < this.maxX; j++) {
                 let color = "white";
-                let action = <Button>Поставить улей</Button>;
+                let action = <ChooseHiveForm coordX={j} coordY={i} /> ;
 
                 // check for hive
                 for (let hive of this.hives) {
@@ -35,13 +60,17 @@ class PasecaModel extends React.Component {
                             <br />Формат: {hive["hive_format"].name + " (" + hive["hive_format"].size + ")"}
                             <br /><br /></span>;
                         if (hive["bee_family_id"]) {
-                            action = <Button>Выселить</Button>;
-                            let family = this.beeFamilies.find(item => item.id = hive["bee_family_id"]);
+                            action = <Button onClick={this.evictBeeFamily.bind(this, hive.id)}>
+                                            Выселить</Button>;
+                            let family = this.beeFamilies.find(family => family.id === hive["bee_family_id"]);
+                            console.log(hive)
+                            console.log(family)
                             color = family["bee_family_status"].color;
                             pre = <span>{pre}
                                 <strong>Семья: {family.name}</strong><br />
                                 <i>Последний осмотр: <br />
-                                {family["last_inspection_date"] ? (new Date(family["last_inspection_date"])).toLocaleString('ru', {
+                                {family["last_inspection_date"] ? (new Date(family["last_inspection_date"]))
+                                    .toLocaleString('ru', {
                                     year: 'numeric',
                                     month: 'long',
                                     day: 'numeric',}) : '[нет данных]'}</i>
@@ -50,15 +79,18 @@ class PasecaModel extends React.Component {
                         }
                          else {
                             color = "gray";
-                            action = <Button>Заселить</Button>;
+                            action = <div>
+                                        <ChooseBeeFamilyToHiveForm hiveID={hive.id} />
+                                        <Button onClick={this.removeHive.bind(this, hive.id)}>Убрать улей</Button>
+                                    </div>
                         }
-                        let post = <Button>Убрать улей</Button>;
-                        action = <div>{pre}<br /><Button.Group vertical>{action}{post}</Button.Group></div>;
+                        action = <div>{pre}<br /><Button.Group vertical>{action}</Button.Group></div>;
                         break;
                     }
                 }
                 columns.push(<Popup pinned basic key={j} content={action} on='click'
-                                    trigger={<div style={{backgroundColor: color}} className="block-style" />} />);
+                                    trigger={<div style={{backgroundColor: color}}
+                                                  className="block-style" />} />);
             }
             rows.push(<div key={i} className="row-style">{columns}</div>);
         }
