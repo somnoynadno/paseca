@@ -1,7 +1,7 @@
 import {Button, Form, Select} from "semantic-ui-react";
 import React from "react";
-import {GET_API} from "../http/GET_API";
-import {POST_API} from "../http/POST_API";
+import {GET_API} from "../../http/GET_API";
+import {POST_API} from "../../http/POST_API";
 
 
 class ChooseHiveForm extends React.Component {

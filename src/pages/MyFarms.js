@@ -2,7 +2,7 @@ import React from "react";
 import MainMenu from "../components/MainMenu"
 import {Button, Card, Container, Grid, Icon, Modal, Segment} from "semantic-ui-react";
 import {Redirect} from "react-router-dom";
-import CreateBeeFarmForm from "../forms/CreateBeeFarmForm";
+import CreateBeeFarmForm from "../forms/create/CreateBeeFarmForm";
 import {GET_API} from "../http/GET_API";
 
 

@@ -1,14 +1,15 @@
 import React from "react";
-import {Button, Form, Input, Label} from "semantic-ui-react";
-import {POST_API} from "../http/POST_API";
+import {Button, Form, Input} from "semantic-ui-react";
+import {POST_API} from "../../http/POST_API";
 
-class CreateCustomHiveFrameTypeForm extends React.Component {
+class CreateCustomBeeDiseaseForm extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
             name: '',
-            size: NaN,
+            description: '',
+            base_price: NaN,
             errorText: '',
         }
 
@@ -17,12 +18,12 @@ class CreateCustomHiveFrameTypeForm extends React.Component {
         this.handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
         this.handleSubmit = async () => {
-            if (isNaN(parseInt(this.state.size))) {
-                this.setState({errorText: "Размер должен быть целым числом"});
+            if (isNaN(parseInt(this.state.base_price))) {
+                this.setState({errorText: "Цена килограмма мёда должна быть целым числом"});
                 return
             }
             this.setState({errorText: ""});
-            await this.postAPI.CreateCustomHiveFormat(this.state.name, this.state.size)
+            await this.postAPI.CreateCustomHoneyType(this.state.name, this.state.description, this.state.base_price)
                 .then((resp) => {
                     if (resp.constructor !== Error) {
                         // everything is fine => reload page
@@ -31,34 +32,42 @@ class CreateCustomHiveFrameTypeForm extends React.Component {
                         this.setState({errorText: resp.message});
                     }
                 })
+
         }
     }
 
     render() {
         return <Form onSubmit={this.handleSubmit}>
             <Form.Group widths='equal'>
-                <Form.Field>
-                    <Label pointing='below'>Ваш формат улья (лежак, полулежак или другой)</Label>
+                <Form.Field
                     control={Input}
                     type='text'
                     label='Название'
-                    placeholder='Название формата улья'
+                    placeholder='Название сорта мёда'
                     required
                     name='name'
                     value={this.state.name}
                     onChange={this.handleChange}
-                </Form.Field>
-                <Form.Field>
-                    <Label pointing='below'>Количество рамок в улье (16, 32 или иное число)</Label>
+                />
+                <Form.Field
                     control={Input}
-                    type='text'
-                    label='Размерность'
-                    placeholder='Количество рамок'
+                    type='number'
+                    label='Цена за кг'
+                    placeholder='Стоимость мёда'
                     required
-                    name='size'
-                    value={this.state.size}
+                    name='base_price'
+                    value={this.state.base_price}
                     onChange={this.handleChange}
-                </Form.Field>
+                />
+            </Form.Group>
+            <Form.Group widths='equal'>
+                <Form.TextArea
+                    label='Описание'
+                    placeholder='Краткое описание сорта мёда (опционально)'
+                    name='description'
+                    value={this.state.description}
+                    onChange={this.handleChange}
+                />
             </Form.Group>
             <Form.Field control={Button}>Создать</Form.Field>
             <strong style={{color: "red"}}>{this.state.errorText}</strong>
@@ -66,4 +75,4 @@ class CreateCustomHiveFrameTypeForm extends React.Component {
     }
 }
 
-export default CreateCustomHiveFrameTypeForm;
+export default CreateCustomBeeDiseaseForm;

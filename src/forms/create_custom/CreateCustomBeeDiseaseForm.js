@@ -1,7 +1,8 @@
 import React from "react";
 import {Button, Form, Input} from "semantic-ui-react";
-import {POST_API} from "../http/POST_API";
+import {POST_API} from "../../http/POST_API";
 
+// не используется
 class CreateCustomBeeDiseaseForm extends React.Component {
     constructor(props) {
         super(props);
@@ -9,7 +10,6 @@ class CreateCustomBeeDiseaseForm extends React.Component {
         this.state = {
             name: '',
             description: '',
-            base_price: NaN,
             errorText: '',
         }
 
@@ -18,12 +18,8 @@ class CreateCustomBeeDiseaseForm extends React.Component {
         this.handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
         this.handleSubmit = async () => {
-            if (isNaN(parseInt(this.state.base_price))) {
-                this.setState({errorText: "Цена килограмма мёда должна быть целым числом"});
-                return
-            }
-            this.setState({errorText: ""});
-            await this.postAPI.CreateCustomHoneyType(this.state.name, this.state.description, this.state.base_price)
+            this.setState({errorText: ""})
+            await this.postAPI.CreateCustomBeeDisease(this.state.name, this.state.description)
                 .then((resp) => {
                     if (resp.constructor !== Error) {
                         // everything is fine => reload page
@@ -43,27 +39,17 @@ class CreateCustomBeeDiseaseForm extends React.Component {
                     control={Input}
                     type='text'
                     label='Название'
-                    placeholder='Название сорта мёда'
+                    placeholder='Название болезни'
                     required
-                    name='name'
-                    value={this.state.name}
-                    onChange={this.handleChange}
-                />
-                <Form.Field
-                    control={Input}
-                    type='number'
-                    label='Цена за кг'
-                    placeholder='Стоимость мёда'
-                    required
-                    name='base_price'
-                    value={this.state.base_price}
+                    name='title'
+                    value={this.state.title}
                     onChange={this.handleChange}
                 />
             </Form.Group>
             <Form.Group widths='equal'>
                 <Form.TextArea
                     label='Описание'
-                    placeholder='Краткое описание сорта мёда (опционально)'
+                    placeholder='Краткое описание породы болезни (опционально)'
                     name='description'
                     value={this.state.description}
                     onChange={this.handleChange}

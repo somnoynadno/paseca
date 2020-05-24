@@ -2,8 +2,8 @@ import React from "react";
 
 import "./PasecaModel.css"
 import {Button, Popup} from "semantic-ui-react";
-import ChooseBeeFamilyToHiveForm from "../forms/ChooseBeeFamilyToHiveForm";
-import ChooseHiveForm from "../forms/ChooseHiveForm";
+import ChooseBeeFamilyToHiveForm from "../forms/choose/ChooseBeeFamilyToHiveForm";
+import ChooseHiveForm from "../forms/choose/ChooseHiveForm";
 import {POST_API} from "../http/POST_API";
 
 class PasecaModel extends React.Component {

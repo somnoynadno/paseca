@@ -5,9 +5,9 @@ import PasecaModel from "../components/PasecaModel";
 import BeeFarmFamiliesTable from "../tables/BeeFarmFamiliesTable";
 import BeeFarmHivesTable from "../tables/BeeFarmHivesTable";
 import BeeFarmNotificationsTable from "../tables/BeeFarmNotificationsTable";
-import CreateBeeFamilyForm from "../forms/CreateBeeFamilyForm";
-import CreateReminderForm from "../forms/CreateReminderForm";
-import CreateHiveForm from "../forms/CreateHiveForm";
+import CreateBeeFamilyForm from "../forms/create/CreateBeeFamilyForm";
+import CreateReminderForm from "../forms/create/CreateReminderForm";
+import CreateHiveForm from "../forms/create/CreateHiveForm";
 import {GET_API} from "../http/GET_API";
 
 

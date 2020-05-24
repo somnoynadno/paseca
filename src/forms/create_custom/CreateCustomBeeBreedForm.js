@@ -1,6 +1,6 @@
 import React from "react";
 import {Button, Form, Input} from "semantic-ui-react";
-import {POST_API} from "../http/POST_API";
+import {POST_API} from "../../http/POST_API";
 
 
 class CreateCustomBeeBreedForm extends React.Component {

@@ -1,17 +1,16 @@
-import {Button, Form, Input, Select} from "semantic-ui-react";
+import {Button, Form, Select} from "semantic-ui-react";
 import React from "react";
-import {GET_API} from "../http/GET_API";
-import {POST_API} from "../http/POST_API";
+import {GET_API} from "../../http/GET_API";
+import {POST_API} from "../../http/POST_API";
 
 
-class CreateControlHarvestForm extends React.Component {
+class ChooseBeeFamilyToHiveForm extends React.Component {
     constructor(props) {
-        super(props);
+        super(props)
 
         this.state = {
-            bee_family_id: '',
-            amount: '',
-            date: '',
+            hive_id: this.props.hiveID,
+            bee_family_id: null,
             errorText: '',
             beeFamilies: []
         }
@@ -26,11 +25,8 @@ class CreateControlHarvestForm extends React.Component {
                 this.setState({errorText: "Вы заполнили не все поля"})
             } else {
                 this.setState({errorText: ""})
-                await this.postAPI.CreateControlHarvest(
-                    this.state.amount,
-                    this.state.date,
-                    this.state.bee_family_id
-                ).then((resp) => {
+                await this.postAPI.SetHiveBeeFamily(this.state.hive_id, this.state.bee_family_id)
+                    .then((resp) => {
                     if (resp.constructor !== Error) {
                         // everything is fine => reload page
                         document.location.reload();
@@ -43,7 +39,7 @@ class CreateControlHarvestForm extends React.Component {
     }
 
     componentDidMount = async () => {
-        await this.getAPI.GetUsersBeeFamilies().then((resp) => {
+        await this.getAPI.GetUsersBeeFamiliesWithoutHives().then((resp) => {
                 let options = [];
                 for (let r of resp) {
                     options.push({text: r.name + " (" + r["bee_farm_name"] + ")", value: r.id.toString()})
@@ -58,39 +54,19 @@ class CreateControlHarvestForm extends React.Component {
             <Form.Group widths='equal'>
                 <Form.Field
                     control={Select}
-                    label='Семья'
+                    label='Пчелосемья'
                     options={this.state.beeFamilies}
-                    placeholder='Выберите имя семьи'
+                    placeholder='Выберите пчелиную семью'
                     required
                     name='bee_family_id'
                     value={this.state.bee_family_id}
                     onChange={this.handleChange}
                 />
-                <Form.Field
-                    control={Input}
-                    type='number'
-                    label='Количество (кг)'
-                    placeholder='Укажите количество'
-                    required
-                    name='amount'
-                    value={this.state.amount}
-                    onChange={this.handleChange}
-                />
-                <Form.Field
-                    control={Input}
-                    type='date'
-                    label='Дата'
-                    placeholder='Укажите дату'
-                    required
-                    name='date'
-                    value={this.state.date}
-                    onChange={this.handleChange}
-                />
             </Form.Group>
-            <Form.Field control={Button}>Создать</Form.Field>
+            <Form.Field control={Button}>Заселить</Form.Field>
             <strong style={{color: "red"}}>{this.state.errorText}</strong>
         </Form>
     }
 }
 
-export default CreateControlHarvestForm;
+export default ChooseBeeFamilyToHiveForm;

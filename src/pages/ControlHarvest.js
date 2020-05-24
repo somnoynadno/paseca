@@ -1,7 +1,7 @@
 import React from "react";
 import MainMenu from "../components/MainMenu"
 import {Button, Container, Grid, Loader, Modal, Segment, Table} from "semantic-ui-react";
-import CreateControlHarvestForm from "../forms/CreateControlHarvestForm";
+import CreateControlHarvestForm from "../forms/create/CreateControlHarvestForm";
 import {GET_API} from "../http/GET_API";
 
 
