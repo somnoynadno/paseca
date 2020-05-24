@@ -160,4 +160,79 @@ export class POST_API extends API {
             });
         })
     }
+
+    CreateCustomBeeBreed(name, description) {
+        this.CheckToken();
+        return new Promise((resolve) => {
+            HTTP.axios.post(`/lk/bee_breed`, {
+                name: name,
+                description: description
+            })
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                console.log(error);
+            });
+        })
+    }
+
+    CreateCustomBeeDisease(name, description) {
+        this.CheckToken();
+        return new Promise((resolve) => {
+            HTTP.axios.post(`/lk/bee_disease`, {
+                name: name,
+                description: description
+            })
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                console.log(error);
+            });
+        })
+    }
+
+    CreateCustomHiveFormat(name, size) {
+        this.CheckToken();
+        return new Promise((resolve) => {
+            HTTP.axios.post(`/lk/hive_format`, {
+                name: name,
+                size: parseInt(size)
+            })
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                console.log(error);
+            });
+        })
+    }
+
+    CreateCustomHiveFrameType(name) {
+        this.CheckToken();
+        return new Promise((resolve) => {
+            HTTP.axios.post(`/lk/hive_frame_type`, {
+                name: name,
+            })
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                console.log(error);
+            });
+        })
+    }
+
+    CreateCustomHoneyType(name, description, basePrice) {
+        this.CheckToken();
+        return new Promise((resolve) => {
+            HTTP.axios.post(`/lk/bee_disease`, {
+                name: name,
+                description: description,
+                base_price: parseInt(basePrice)
+            })
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                console.log(error);
+            });
+        })
+    }
 }
