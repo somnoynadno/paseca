@@ -41,8 +41,8 @@ class CreateCustomBeeBreedForm extends React.Component {
                     label='Название'
                     placeholder='Название породы'
                     required
-                    name='title'
-                    value={this.state.title}
+                    name='name'
+                    value={this.state.name}
                     onChange={this.handleChange}
                 />
             </Form.Group>

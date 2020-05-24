@@ -37,7 +37,9 @@ class Index extends React.Component {
                                     day: 'numeric',
                                 })}</p>
                                 <p>
-                                    {n.text}
+                                    {n.text.split('\n').map((text) => {
+                                        return <p>{text}</p>
+                                    })}
                                 </p>
                             </Message>
                         })}

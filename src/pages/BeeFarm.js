@@ -103,7 +103,7 @@ class BeeFarm extends React.Component {
                             />}>
                                 <Modal.Header>Изменение пасеки</Modal.Header>
                                 <Modal.Content>
-                                    TODO
+                                    Скоро будет доступно
                                 </Modal.Content>
                             </Modal>
                         </Grid.Row>

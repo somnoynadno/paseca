@@ -41,8 +41,8 @@ class CreateCustomBeeDiseaseForm extends React.Component {
                     label='Название'
                     placeholder='Название болезни'
                     required
-                    name='title'
-                    value={this.state.title}
+                    name='name'
+                    value={this.state.name}
                     onChange={this.handleChange}
                 />
             </Form.Group>

@@ -33,8 +33,7 @@ class CreateCustomHiveFrameTypeForm extends React.Component {
     render() {
         return <Form onSubmit={this.handleSubmit}>
             <Form.Group widths='equal'>
-                <Form.Field>
-                <Label pointing='below'>Ваш тип рамки (дадан, рута или другое)</Label>
+                <Form.Field
                     control={Input}
                     type='text'
                     label='Название'
@@ -43,7 +42,8 @@ class CreateCustomHiveFrameTypeForm extends React.Component {
                     name='name'
                     value={this.state.name}
                     onChange={this.handleChange}
-                </Form.Field>
+                />
+                <Label pointing='left'>Ваш тип рамки (дадан, рута или другое)</Label>
             </Form.Group>
             <Form.Field control={Button}>Создать</Form.Field>
             <strong style={{color: "red"}}>{this.state.errorText}</strong>

@@ -223,7 +223,7 @@ export class POST_API extends API {
     CreateCustomHoneyType(name, description, basePrice) {
         this.CheckToken();
         return new Promise((resolve) => {
-            HTTP.axios.post(`/lk/bee_disease`, {
+            HTTP.axios.post(`/lk/honey_type`, {
                 name: name,
                 description: description,
                 base_price: parseInt(basePrice)

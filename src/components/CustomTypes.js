@@ -1,5 +1,9 @@
 import  React from "react";
 import {Grid, Menu, Segment} from "semantic-ui-react";
+import BeeBreedsTable from "../tables/BeeBreedsTable";
+import HoneyTypesTable from "../tables/HoneyTypesTable";
+import HiveFormatsTable from "../tables/HiveFormatsTable";
+import HiveFrameTypesTable from "../tables/HiveFrameTypesTable";
 
 
 class CustomTypes extends React.Component {
@@ -48,7 +52,12 @@ class CustomTypes extends React.Component {
 
                     <Grid.Column>
                         <Segment>
-                            {/* TODO: render tables */}
+                            {this.state.activeItem === 'Породы пчёл' ?
+                                <BeeBreedsTable /> : this.state.activeItem === 'Сорта мёда' ?
+                                    <HoneyTypesTable /> : this.state.activeItem === 'Форматы ульев' ?
+                                        <HiveFormatsTable /> : this.state.activeItem === 'Рамки ульев' ?
+                                            <HiveFrameTypesTable /> : ''
+                            }
                         </Segment>
                     </Grid.Column>
                 </Grid.Row>

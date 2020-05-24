@@ -2,14 +2,14 @@ import React from "react";
 import {Button, Form, Input} from "semantic-ui-react";
 import {POST_API} from "../../http/POST_API";
 
-class CreateCustomBeeDiseaseForm extends React.Component {
+class CreateCustomHoneyTypeForm extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
             name: '',
             description: '',
-            base_price: NaN,
+            base_price: '',
             errorText: '',
         }
 
@@ -75,4 +75,4 @@ class CreateCustomBeeDiseaseForm extends React.Component {
     }
 }
 
-export default CreateCustomBeeDiseaseForm;
+export default CreateCustomHoneyTypeForm;

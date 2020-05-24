@@ -2,13 +2,13 @@ import React from "react";
 import {Button, Form, Input, Label} from "semantic-ui-react";
 import {POST_API} from "../../http/POST_API";
 
-class CreateCustomHiveFrameTypeForm extends React.Component {
+class CreateCustomHiveFormatForm extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
             name: '',
-            size: NaN,
+            size: '',
             errorText: '',
         }
 
@@ -37,8 +37,7 @@ class CreateCustomHiveFrameTypeForm extends React.Component {
     render() {
         return <Form onSubmit={this.handleSubmit}>
             <Form.Group widths='equal'>
-                <Form.Field>
-                    <Label pointing='below'>Ваш формат улья (лежак, полулежак или другой)</Label>
+                <Form.Field
                     control={Input}
                     type='text'
                     label='Название'
@@ -47,18 +46,21 @@ class CreateCustomHiveFrameTypeForm extends React.Component {
                     name='name'
                     value={this.state.name}
                     onChange={this.handleChange}
-                </Form.Field>
-                <Form.Field>
-                    <Label pointing='below'>Количество рамок в улье (16, 32 или иное число)</Label>
+                />
+                <Label pointing='left'>Ваш формат улья (лежак, полулежак или другой)</Label>
+            </Form.Group>
+            <Form.Group>
+                <Form.Field
                     control={Input}
-                    type='text'
+                    type='number'
                     label='Размерность'
                     placeholder='Количество рамок'
                     required
                     name='size'
                     value={this.state.size}
                     onChange={this.handleChange}
-                </Form.Field>
+                />
+                <Label pointing='left'>Количество рамок в улье (16, 32 или иное число)</Label>
             </Form.Group>
             <Form.Field control={Button}>Создать</Form.Field>
             <strong style={{color: "red"}}>{this.state.errorText}</strong>
@@ -66,4 +68,4 @@ class CreateCustomHiveFrameTypeForm extends React.Component {
     }
 }
 
-export default CreateCustomHiveFrameTypeForm;
+export default CreateCustomHiveFormatForm;
