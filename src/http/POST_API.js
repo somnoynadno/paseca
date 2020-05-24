@@ -1,0 +1,163 @@
+import {API} from "./API";
+import {HTTP} from "./http-common";
+
+
+// API file to send POST requests
+export class POST_API extends API {
+    CreateHoneyHarvest(amount, date, honeyTypeID, beeFamilyID) {
+        this.CheckToken();
+        return new Promise((resolve) => {
+            HTTP.axios.post(`/lk/honey_harvest`, {
+                amount: parseFloat(amount),
+                date: date,
+                honey_type_id: parseInt(honeyTypeID),
+                bee_family_id: parseInt(beeFamilyID)
+            })
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                console.log(error);
+            });
+        })
+    }
+
+    CreateHoneySale(amount, date, honeyTypeID, beeFarmID, totalPrice) {
+        this.CheckToken();
+        return new Promise((resolve) => {
+            HTTP.axios.post(`/lk/honey_sale`, {
+                amount: parseFloat(amount),
+                date: date,
+                honey_type_id: parseInt(honeyTypeID),
+                bee_farm_id: parseInt(beeFarmID),
+                total_price: parseFloat(totalPrice)
+            })
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                console.log(error);
+            });
+        })
+    }
+
+    CreatePollenHarvest(amount, date, beeFarmID) {
+        this.CheckToken();
+        return new Promise((resolve) => {
+            HTTP.axios.post(`/lk/pollen_harvest`, {
+                date: date,
+                amount: parseFloat(amount),
+                bee_farm_id: parseInt(beeFarmID),
+            })
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                console.log(error);
+            });
+        })
+    }
+
+    CreateControlHarvest(amount, date, beeFamilyID) {
+        this.CheckToken();
+        return new Promise((resolve) => {
+            HTTP.axios.post(`/lk/control_harvest`, {
+                date: date,
+                amount: parseFloat(amount),
+                bee_family_id: parseInt(beeFamilyID),
+            })
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                console.log(error);
+            });
+        })
+    }
+
+    CreateBeeFamily(beeFarmID, name, queenBeeBornDate,
+                    lastInspectionDate, beeBreedId,
+                    beeFamilyStatusID, parent1ID,
+                    parent2ID, isControl) {
+        this.CheckToken();
+        return new Promise((resolve) => {
+            HTTP.axios.post(`/lk/bee_family`, {
+                bee_farm_id: parseInt(beeFarmID),
+                bee_breed_id: parseInt(beeBreedId),
+                name: name,
+                queen_bee_born_date: queenBeeBornDate,
+                last_inspection_date: lastInspectionDate,
+                bee_family_status_id: parseInt(beeFamilyStatusID),
+                parent1_id: parseInt(parent1ID),
+                parent2_id: parseInt(parent2ID),
+                is_control: isControl
+            })
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                console.log(error);
+            });
+        })
+    }
+
+    CreateReminder(beeFarmID, title, text, date) {
+        this.CheckToken();
+        return new Promise((resolve) => {
+            HTTP.axios.post(`/lk/reminder`, {
+                bee_farm_id: parseInt(beeFarmID),
+                date: date,
+                title: title,
+                text: text
+            })
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                console.log(error);
+            });
+        })
+    }
+
+    CreateHive(beeFarmID, name, hiveFormatID, hiveFrameTypeID) {
+        this.CheckToken();
+        return new Promise((resolve) => {
+            HTTP.axios.post(`/lk/hive`, {
+                name: name,
+                bee_farm_id: parseInt(beeFarmID),
+                hive_format_id: parseInt(hiveFormatID),
+                hive_frame_type_id: parseInt(hiveFrameTypeID)
+            })
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                console.log(error);
+            });
+        })
+    }
+
+    SetHiveCoords(hiveID, coordX, coordY) {
+        this.CheckToken();
+        return new Promise((resolve) => {
+            HTTP.axios.post(`/lk/hive/set_coords`, {
+                hive_id: parseInt(hiveID),
+                coord_x: parseInt(coordX),
+                coord_y: parseInt(coordY),
+            })
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                console.log(error);
+            });
+        })
+    }
+
+    SetHiveBeeFamily(hiveID, beeFamilyID) {
+        this.CheckToken();
+        return new Promise((resolve) => {
+            HTTP.axios.post(`/lk/hive/set_hive_bee_family`, {
+                hive_id: parseInt(hiveID),
+                bee_family_id: parseInt(beeFamilyID),
+            })
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                console.log(error);
+            });
+        })
+    }
+}

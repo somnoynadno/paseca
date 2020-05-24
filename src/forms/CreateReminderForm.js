@@ -1,6 +1,7 @@
 import * as React from "react";
-import {API} from "../http/API";
 import {Button, Form, Input} from "semantic-ui-react";
+import {GET_API} from "../http/GET_API";
+import {POST_API} from "../http/POST_API";
 
 
 class CreateReminderForm extends React.Component {
@@ -14,13 +15,14 @@ class CreateReminderForm extends React.Component {
             errorText: '',
         }
 
-        this.api = new API();
+        this.getAPI = new GET_API();
+        this.postAPI = new POST_API();
 
         this.handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
         this.handleSubmit = async () => {
             this.setState({errorText: ""})
-            await this.api.CreateReminder(this.props.beeFarmID, this.state.title, this.state.text, this.state.date).then((resp) => {
+            await this.postAPI.CreateReminder(this.props.beeFarmID, this.state.title, this.state.text, this.state.date).then((resp) => {
                 if (resp.constructor !== Error) {
                     // everything is fine => reload page
                     document.location.reload();

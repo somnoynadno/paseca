@@ -1,6 +1,7 @@
 import {Button, Form, Select} from "semantic-ui-react";
 import React from "react";
-import {API} from "../http/API";
+import {GET_API} from "../http/GET_API";
+import {POST_API} from "../http/POST_API";
 
 
 class ChooseBeeFamilyToHiveForm extends React.Component {
@@ -14,7 +15,8 @@ class ChooseBeeFamilyToHiveForm extends React.Component {
             beeFamilies: []
         }
 
-        this.api = new API();
+        this.getAPI = new GET_API();
+        this.postAPI = new POST_API();
 
         this.handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
@@ -23,7 +25,7 @@ class ChooseBeeFamilyToHiveForm extends React.Component {
                 this.setState({errorText: "Вы заполнили не все поля"})
             } else {
                 this.setState({errorText: ""})
-                await this.api.SetHiveBeeFamily(this.state.hive_id, this.state.bee_family_id)
+                await this.postAPI.SetHiveBeeFamily(this.state.hive_id, this.state.bee_family_id)
                     .then((resp) => {
                     if (resp.constructor !== Error) {
                         // everything is fine => reload page
@@ -37,7 +39,7 @@ class ChooseBeeFamilyToHiveForm extends React.Component {
     }
 
     componentDidMount = async () => {
-        await this.api.GetUsersBeeFamiliesWithoutHives().then((resp) => {
+        await this.getAPI.GetUsersBeeFamiliesWithoutHives().then((resp) => {
                 let options = [];
                 for (let r of resp) {
                     options.push({text: r.name + " (" + r["bee_farm_name"] + ")", value: r.id.toString()})

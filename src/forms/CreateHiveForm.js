@@ -1,6 +1,7 @@
 import React from "react";
-import {API} from "../http/API";
 import {Button, Form, Input, Select} from "semantic-ui-react";
+import {GET_API} from "../http/GET_API";
+import {POST_API} from "../http/POST_API";
 
 
 class CreateHiveForm extends React.Component {
@@ -16,7 +17,8 @@ class CreateHiveForm extends React.Component {
             hiveFormats: []
         }
 
-        this.api = new API();
+        this.getAPI = new GET_API();
+        this.postAPI = new POST_API();
 
         this.handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
@@ -25,7 +27,7 @@ class CreateHiveForm extends React.Component {
                 this.setState({errorText: "Вы заполнили не все поля"})
             } else {
                 this.setState({errorText: ""})
-                await this.api.CreateHive(this.props.beeFarmID, this.state.name,
+                await this.postAPI.CreateHive(this.props.beeFarmID, this.state.name,
                     this.state.hive_format_id, this.state.hive_frame_type_id
                 ).then((resp) => {
                     if (resp.constructor !== Error) {
@@ -40,7 +42,7 @@ class CreateHiveForm extends React.Component {
     }
 
     componentDidMount = async () => {
-        await this.api.GetHiveFormats().then((resp) => {
+        await this.getAPI.GetHiveFormats().then((resp) => {
                 let options = [];
                 for (let r of resp) {
                     options.push({text: r.name + " (" + r.size + ")", value: r.id.toString()})
@@ -48,7 +50,7 @@ class CreateHiveForm extends React.Component {
                 this.setState({hiveFormats: options})
             }
         );
-        await this.api.GetHiveFrameTypes().then((resp) => {
+        await this.getAPI.GetHiveFrameTypes().then((resp) => {
                 let options = [];
                 for (let r of resp) {
                     options.push({text: r.name, value: r.id.toString()})

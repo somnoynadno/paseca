@@ -1,6 +1,7 @@
 import {Button, Form, Select} from "semantic-ui-react";
 import React from "react";
-import {API} from "../http/API";
+import {GET_API} from "../http/GET_API";
+import {POST_API} from "../http/POST_API";
 
 
 class ChooseHiveForm extends React.Component {
@@ -17,14 +18,15 @@ class ChooseHiveForm extends React.Component {
 
         this.handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
-        this.api = new API();
+        this.getAPI = new GET_API();
+        this.postAPI = new POST_API();
 
         this.handleSubmit = async () => {
             if (!this.state.hive_id) {
                 this.setState({errorText: "Вы заполнили не все поля"})
             } else {
                 this.setState({errorText: ""})
-                await this.api.SetHiveCoords(this.state.hive_id, this.state.coord_x, this.state.coord_y)
+                await this.postAPI.SetHiveCoords(this.state.hive_id, this.state.coord_x, this.state.coord_y)
                     .then((resp) => {
                         if (resp.constructor !== Error) {
                             // everything is fine => reload page
@@ -38,7 +40,7 @@ class ChooseHiveForm extends React.Component {
     }
 
     componentDidMount = async () => {
-        await this.api.GetUsersFreeHives().then((resp) => {
+        await this.getAPI.GetUsersFreeHives().then((resp) => {
                 let options = [];
                 for (let r of resp) {
                     options.push({text: r.name + " (" + r["bee_farm_name"] + ")", value: r.id.toString()})

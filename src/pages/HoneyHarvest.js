@@ -2,7 +2,7 @@ import React from "react";
 import MainMenu from "../components/MainMenu"
 import {Button, Container, Grid, Loader, Modal, Segment, Table} from "semantic-ui-react";
 import CreateHoneyHarvestForm from "../forms/CreateHoneyHarvestForm";
-import {API} from "../http/API";
+import {GET_API} from "../http/GET_API";
 
 
 class HoneyHarvest extends React.Component {
@@ -14,7 +14,7 @@ class HoneyHarvest extends React.Component {
             harvestsNum: ''
         }
 
-        this.api = new API();
+        this.api = new GET_API();
     }
 
     componentDidMount = async () => {

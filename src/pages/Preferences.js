@@ -1,11 +1,10 @@
 import React from "react";
 import MainMenu from "../components/MainMenu"
 import {Button, Container, Grid, Image, Modal, Segment} from "semantic-ui-react";
-import {API} from "../http/API";
 
 import user from '../assets/user.png';
 import CustomTypes from "../components/CustomTypes";
-import CreateHoneySaleForm from "../forms/CreateHoneySaleForm";
+import {GET_API} from "../http/GET_API";
 
 class Preferences extends React.Component {
     constructor(props) {
@@ -15,7 +14,7 @@ class Preferences extends React.Component {
             user: null,
         };
 
-        this.api = new API();
+        this.api = new GET_API();
     }
 
     componentDidMount = async () => {

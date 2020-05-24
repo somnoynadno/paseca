@@ -2,13 +2,13 @@ import React from "react";
 import MainMenu from "../components/MainMenu"
 import {Button, Container, Grid, Menu, Modal, Segment} from "semantic-ui-react";
 import PasecaModel from "../components/PasecaModel";
-import {API} from "../http/API";
 import BeeFarmFamiliesTable from "../tables/BeeFarmFamiliesTable";
 import BeeFarmHivesTable from "../tables/BeeFarmHivesTable";
 import BeeFarmNotificationsTable from "../tables/BeeFarmNotificationsTable";
 import CreateBeeFamilyForm from "../forms/CreateBeeFamilyForm";
 import CreateReminderForm from "../forms/CreateReminderForm";
 import CreateHiveForm from "../forms/CreateHiveForm";
+import {GET_API} from "../http/GET_API";
 
 
 class BeeFarm extends React.Component {
@@ -26,7 +26,7 @@ class BeeFarm extends React.Component {
 
         this.handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
-        this.api = new API();
+        this.api = new GET_API();
     }
 
     componentDidMount = async () => {

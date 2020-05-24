@@ -3,7 +3,7 @@ import MainMenu from "../components/MainMenu"
 import {Button, Card, Container, Grid, Icon, Modal, Segment} from "semantic-ui-react";
 import {Redirect} from "react-router-dom";
 import CreateBeeFarmForm from "../forms/CreateBeeFarmForm";
-import {API} from "../http/API";
+import {GET_API} from "../http/GET_API";
 
 
 class MyFarms extends React.Component {
@@ -16,7 +16,7 @@ class MyFarms extends React.Component {
             farmID: null
         };
 
-        this.api = new API();
+        this.api = new GET_API();
 
         this.handleItemClick = (e, { name }) => {
             this.setState({ activeItem: name });

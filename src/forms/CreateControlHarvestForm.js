@@ -1,6 +1,7 @@
 import {Button, Form, Input, Select} from "semantic-ui-react";
 import React from "react";
-import {API} from "../http/API";
+import {GET_API} from "../http/GET_API";
+import {POST_API} from "../http/POST_API";
 
 
 class CreateControlHarvestForm extends React.Component {
@@ -15,7 +16,8 @@ class CreateControlHarvestForm extends React.Component {
             beeFamilies: []
         }
 
-        this.api = new API();
+        this.getAPI = new GET_API();
+        this.postAPI = new POST_API();
 
         this.handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
@@ -24,7 +26,7 @@ class CreateControlHarvestForm extends React.Component {
                 this.setState({errorText: "Вы заполнили не все поля"})
             } else {
                 this.setState({errorText: ""})
-                await this.api.CreateControlHarvest(
+                await this.postAPI.CreateControlHarvest(
                     this.state.amount,
                     this.state.date,
                     this.state.bee_family_id
@@ -41,7 +43,7 @@ class CreateControlHarvestForm extends React.Component {
     }
 
     componentDidMount = async () => {
-        await this.api.GetUsersBeeFamilies().then((resp) => {
+        await this.getAPI.GetUsersBeeFamilies().then((resp) => {
                 let options = [];
                 for (let r of resp) {
                     options.push({text: r.name + " (" + r["bee_farm_name"] + ")", value: r.id.toString()})

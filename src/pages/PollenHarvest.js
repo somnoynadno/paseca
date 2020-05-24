@@ -1,8 +1,8 @@
 import React from "react";
 import MainMenu from "../components/MainMenu"
 import {Button, Container, Grid, Loader, Modal, Segment, Table} from "semantic-ui-react";
-import {API} from "../http/API";
 import CreatePollenHarvestForm from "../forms/CreatePollenHarvestForm";
+import {GET_API} from "../http/GET_API";
 
 
 class PollenHarvest extends React.Component {
@@ -14,7 +14,7 @@ class PollenHarvest extends React.Component {
             harvestsNum: ''
         }
 
-        this.api = new API();
+        this.api = new GET_API();
     }
 
     componentDidMount = async () => {

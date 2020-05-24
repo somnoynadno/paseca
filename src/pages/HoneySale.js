@@ -2,7 +2,7 @@ import React from "react";
 import MainMenu from "../components/MainMenu"
 import {Button, Container, Grid, Loader, Modal, Segment, Table} from "semantic-ui-react";
 import CreateHoneySaleForm from "../forms/CreateHoneySaleForm";
-import {API} from "../http/API";
+import {GET_API} from "../http/GET_API";
 
 class HoneySale extends React.Component {
     constructor(props) {
@@ -13,7 +13,7 @@ class HoneySale extends React.Component {
             salesNum: ''
         }
 
-        this.api = new API();
+        this.api = new GET_API();
     }
 
     componentDidMount = async () => {

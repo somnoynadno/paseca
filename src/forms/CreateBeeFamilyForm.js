@@ -1,6 +1,7 @@
 import * as React from "react";
-import {API} from "../http/API";
 import {Button, Form, Input, Select} from "semantic-ui-react";
+import {GET_API} from "../http/GET_API";
+import {POST_API} from "../http/POST_API";
 
 
 class CreateBeeFamilyForm extends React.Component {
@@ -22,7 +23,8 @@ class CreateBeeFamilyForm extends React.Component {
             errorText: '',
         }
 
-        this.api = new API();
+        this.getAPI = new GET_API();
+        this.postAPI = new POST_API();
 
         this.handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
@@ -32,7 +34,7 @@ class CreateBeeFamilyForm extends React.Component {
             } else {
                 this.setState({errorText: ""})
                 // пиздец убейте меня
-                await this.api.CreateBeeFamily(
+                await this.postAPI.CreateBeeFamily(
                     this.props.beeFarmID,
                     this.state.name,
                     this.state.queen_bee_born_date,
@@ -54,7 +56,7 @@ class CreateBeeFamilyForm extends React.Component {
     }
 
     componentDidMount = async () => {
-        await this.api.GetBeeBreeds().then((resp) => {
+        await this.getAPI.GetBeeBreeds().then((resp) => {
                 let options = [];
                 for (let r of resp) {
                     options.push({text: r.name, value: r.id.toString()})
@@ -62,7 +64,7 @@ class CreateBeeFamilyForm extends React.Component {
                 this.setState({beeBreeds: options})
             }
         );
-        await this.api.GetUsersBeeFamilies().then((resp) => {
+        await this.getAPI.GetUsersBeeFamilies().then((resp) => {
                 let options = [];
                 for (let r of resp) {
                     options.push({text: r.name + " (" + r["bee_farm_name"] + ")", value: r.id.toString()})
@@ -70,7 +72,7 @@ class CreateBeeFamilyForm extends React.Component {
                 this.setState({beeFamilies: options})
             }
         );
-        await this.api.GetBeeFamilyStatuses().then((resp) => {
+        await this.getAPI.GetBeeFamilyStatuses().then((resp) => {
                 let options = [];
                 for (let r of resp) {
                     options.push({text: r.status, value: r.id.toString()})

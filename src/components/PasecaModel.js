@@ -2,9 +2,9 @@ import React from "react";
 
 import "./PasecaModel.css"
 import {Button, Popup} from "semantic-ui-react";
-import {API} from "../http/API";
 import ChooseBeeFamilyToHiveForm from "../forms/ChooseBeeFamilyToHiveForm";
 import ChooseHiveForm from "../forms/ChooseHiveForm";
+import {POST_API} from "../http/POST_API";
 
 class PasecaModel extends React.Component {
     constructor(props) {
@@ -17,7 +17,7 @@ class PasecaModel extends React.Component {
             beeFarm: this.props.beeFarm
         }
 
-        this.api = new API();
+        this.api = new POST_API();
 
         this.hives = this.state.beeFarm["hives"];
         this.beeFamilies = this.state.beeFarm["bee_families"];
