@@ -34,11 +34,6 @@ class CustomTypes extends React.Component {
                                 onClick={this.handleItemClick}
                             />
                             <Menu.Item
-                                name='Болезни пчёл'
-                                active={this.state.activeItem === 'Болезни пчёл'}
-                                onClick={this.handleItemClick}
-                            />
-                            <Menu.Item
                                 name='Форматы ульев'
                                 active={this.state.activeItem === 'Форматы ульев'}
                                 onClick={this.handleItemClick}
