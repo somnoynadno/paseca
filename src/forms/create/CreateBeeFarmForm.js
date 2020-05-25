@@ -1,6 +1,7 @@
 import {Button, Form, Input, Select} from "semantic-ui-react";
 import React from "react";
-import {API} from "../http/API";
+import {GET_API} from "../../http/GET_API";
+import {POST_API} from "../../http/POST_API";
 
 
 class CreateBeeFarmForm extends React.Component {
@@ -17,12 +18,13 @@ class CreateBeeFarmForm extends React.Component {
             beeFarmTypes: null
         }
 
-        this.api = new API();
+        this.getAPI = new GET_API();
+        this.postAPI = new POST_API();
 
         this.handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
         this.handleSubmit = async () => {
-            await this.api.CreateBeeFarm(this.state.name, this.state.location,
+            await this.postAPI.CreateBeeFarm(this.state.name, this.state.location,
                 this.state.bee_farm_size_id, this.state.bee_farm_type_id
             ).then((resp) => {
                 if (resp.constructor !== Error) {
@@ -36,7 +38,7 @@ class CreateBeeFarmForm extends React.Component {
     }
 
     componentDidMount = async () => {
-        await this.api.GetBeeFarmSizes().then((resp) => {
+        await this.getAPI.GetBeeFarmSizes().then((resp) => {
                 let options = [];
                 for (let r of resp) {
                     options.push({text: r.name, value: r.id.toString()})
@@ -44,7 +46,7 @@ class CreateBeeFarmForm extends React.Component {
                 this.setState({beeFarmSizes: options})
             }
         );
-        await this.api.GetBeeFarmTypes().then((resp) => {
+        await this.getAPI.GetBeeFarmTypes().then((resp) => {
                 let options = [];
                 for (let r of resp) {
                     options.push({text: r.name, value: r.id.toString()})

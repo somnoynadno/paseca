@@ -2,13 +2,13 @@ import React from "react";
 import MainMenu from "../components/MainMenu"
 import {Button, Container, Grid, Menu, Modal, Segment} from "semantic-ui-react";
 import PasecaModel from "../components/PasecaModel";
-import {API} from "../http/API";
-import BeeFarmFamiliesTable from "../components/BeeFarmFamiliesTable";
-import BeeFarmHivesTable from "../components/BeeFarmHivesTable";
-import BeeFarmNotificationsTable from "../components/BeeFarmNotificationsTable";
-import CreateBeeFamilyForm from "../forms/CreateBeeFamilyForm";
-import CreateReminderForm from "../forms/CreateReminderForm";
-import CreateHiveForm from "../forms/CreateHiveForm";
+import BeeFarmBeeFamiliesTable from "../tables/BeeFarmBeeFamiliesTable";
+import BeeFarmHivesTable from "../tables/BeeFarmHivesTable";
+import BeeFarmRemindersTable from "../tables/BeeFarmRemindersTable";
+import CreateBeeFamilyForm from "../forms/create/CreateBeeFamilyForm";
+import CreateReminderForm from "../forms/create/CreateReminderForm";
+import CreateHiveForm from "../forms/create/CreateHiveForm";
+import {GET_API} from "../http/GET_API";
 
 
 class BeeFarm extends React.Component {
@@ -26,13 +26,12 @@ class BeeFarm extends React.Component {
 
         this.handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
-        this.api = new API();
+        this.api = new GET_API();
     }
 
     componentDidMount = async () => {
         let farm = await this.api.GetBeeFarmByID(this.farmID);
         this.setState({beeFarm: farm});
-        console.log(farm);
     }
 
 
@@ -49,19 +48,6 @@ class BeeFarm extends React.Component {
                             </Grid.Column>
                             <Grid.Column width={10}>
                                 <Modal trigger={<Button
-                                    color='orange'
-                                    content='Добавить улей'
-                                    size='medium'
-                                    icon='archive'
-                                    floated='right'
-                                    style={{margin: "0 10px"}}
-                                />}>
-                                    <Modal.Header>Новый улей</Modal.Header>
-                                    <Modal.Content>
-                                        <CreateHiveForm beeFarmID={this.state.beeFarm.id} />
-                                    </Modal.Content>
-                                </Modal>
-                                <Modal trigger={<Button
                                     color='yellow'
                                     content='Создать семью'
                                     size='medium'
@@ -72,6 +58,19 @@ class BeeFarm extends React.Component {
                                     <Modal.Header>Новая семья</Modal.Header>
                                     <Modal.Content>
                                         <CreateBeeFamilyForm beeFarmID={this.state.beeFarm.id} />
+                                    </Modal.Content>
+                                </Modal>
+                                <Modal trigger={<Button
+                                    color='orange'
+                                    content='Добавить улей'
+                                    size='medium'
+                                    icon='archive'
+                                    floated='right'
+                                    style={{margin: "0 10px"}}
+                                />}>
+                                    <Modal.Header>Новый улей</Modal.Header>
+                                    <Modal.Content>
+                                        <CreateHiveForm beeFarmID={this.state.beeFarm.id} />
                                     </Modal.Content>
                                 </Modal>
                                 <Modal trigger={<Button
@@ -91,7 +90,9 @@ class BeeFarm extends React.Component {
                         </Grid.Row>
                         <Grid.Row style={{paddingLeft: "30px"}}>
                             <PasecaModel maxX={this.state.beeFarm["bee_farm_size"]["max_x"]}
-                                         maxY={this.state.beeFarm["bee_farm_size"]["max_y"]} />
+                                         maxY={this.state.beeFarm["bee_farm_size"]["max_y"]}
+                                         beeFarm={this.state.beeFarm}
+                            />
                         </Grid.Row>
                         <Grid.Row style={{paddingLeft: "30px"}}>
                             <Modal trigger={<Button
@@ -102,7 +103,7 @@ class BeeFarm extends React.Component {
                             />}>
                                 <Modal.Header>Изменение пасеки</Modal.Header>
                                 <Modal.Content>
-                                    TODO
+                                    Скоро будет доступно
                                 </Modal.Content>
                             </Modal>
                         </Grid.Row>
@@ -130,11 +131,11 @@ class BeeFarm extends React.Component {
                             <Grid.Column>
                                 <Segment>
                                     {this.state.activeItem === 'Семьи' ?
-                                        <BeeFarmFamiliesTable beeFarm={this.state.beeFarm} />
+                                        <BeeFarmBeeFamiliesTable beeFarm={this.state.beeFarm} />
                                         : this.state.activeItem === 'Ульи' ?
                                             <BeeFarmHivesTable beeFarm={this.state.beeFarm} />
                                             : this.state.activeItem === 'Напоминания' ?
-                                                <BeeFarmNotificationsTable beeFarm={this.state.beeFarm} />
+                                                <BeeFarmRemindersTable beeFarm={this.state.beeFarm} />
                                                 : ''
                                     }
                                 </Segment>

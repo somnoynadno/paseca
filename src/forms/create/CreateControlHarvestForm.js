@@ -1,33 +1,35 @@
 import {Button, Form, Input, Select} from "semantic-ui-react";
 import React from "react";
-import {API} from "../http/API";
+import {GET_API} from "../../http/GET_API";
+import {POST_API} from "../../http/POST_API";
 
 
-class CreateHoneyHarvestForm extends React.Component {
+class CreateControlHarvestForm extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            honey_type_id: '',
             bee_family_id: '',
             amount: '',
             date: '',
             errorText: '',
-            honeyTypes: [],
             beeFamilies: []
         }
 
-        this.api = new API();
+        this.getAPI = new GET_API();
+        this.postAPI = new POST_API();
 
         this.handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
         this.handleSubmit = async () => {
-            if (!this.state.honey_type_id || !this.state.bee_family_id) {
+            if (!this.state.bee_family_id) {
                 this.setState({errorText: "Вы заполнили не все поля"})
             } else {
                 this.setState({errorText: ""})
-                await this.api.CreateHoneyHarvest(this.state.amount, this.state.date,
-                    this.state.honey_type_id, this.state.bee_family_id
+                await this.postAPI.CreateControlHarvest(
+                    this.state.amount,
+                    this.state.date,
+                    this.state.bee_family_id
                 ).then((resp) => {
                     if (resp.constructor !== Error) {
                         // everything is fine => reload page
@@ -41,15 +43,7 @@ class CreateHoneyHarvestForm extends React.Component {
     }
 
     componentDidMount = async () => {
-        await this.api.GetHoneyTypes().then((resp) => {
-                let options = [];
-                for (let r of resp) {
-                    options.push({text: r.name, value: r.id.toString()})
-                }
-                this.setState({honeyTypes: options})
-            }
-        );
-        await this.api.GetUsersBeeFamilies().then((resp) => {
+        await this.getAPI.GetUsersBeeFamilies().then((resp) => {
                 let options = [];
                 for (let r of resp) {
                     options.push({text: r.name + " (" + r["bee_farm_name"] + ")", value: r.id.toString()})
@@ -72,18 +66,6 @@ class CreateHoneyHarvestForm extends React.Component {
                     value={this.state.bee_family_id}
                     onChange={this.handleChange}
                 />
-                <Form.Field
-                    control={Select}
-                    label='Мёд'
-                    options={this.state.honeyTypes}
-                    placeholder='Выберите вид мёда'
-                    required
-                    name='honey_type_id'
-                    value={this.state.honey_type_id}
-                    onChange={this.handleChange}
-                />
-            </Form.Group>
-            <Form.Group widths='equal'>
                 <Form.Field
                     control={Input}
                     type='number'
@@ -111,4 +93,4 @@ class CreateHoneyHarvestForm extends React.Component {
     }
 }
 
-export default CreateHoneyHarvestForm
+export default CreateControlHarvestForm;

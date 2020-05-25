@@ -1,8 +1,10 @@
 import React from "react";
 import MainMenu from "../components/MainMenu"
 import {Button, Container, Grid, Loader, Modal, Segment, Table} from "semantic-ui-react";
-import CreateHoneySaleForm from "../forms/CreateHoneySaleForm";
-import {API} from "../http/API";
+import CreateHoneySaleForm from "../forms/create/CreateHoneySaleForm";
+import {GET_API} from "../http/GET_API";
+import {DELETE_API} from "../http/DELETE_API";
+import DeleteModal from "../modal/DeleteModal";
 
 class HoneySale extends React.Component {
     constructor(props) {
@@ -13,15 +15,29 @@ class HoneySale extends React.Component {
             salesNum: ''
         }
 
-        this.api = new API();
+        this.getAPI = new GET_API();
+        this.deleteAPI = new DELETE_API();
     }
 
     componentDidMount = async () => {
-        let sales = await this.api.GetUsersHoneySales();
+        let sales = await this.getAPI.GetUsersHoneySales();
         this.setState({
             honeySales: sales,
             salesNum: sales.length
         });
+    }
+
+    deleteHoneySale = async (id) => {
+        await this.deleteAPI.DeleteHoneySaleByID(id)
+            .then((resp) => {
+                if (resp.constructor !== Error) {
+                    // everything is fine => remove delete button
+                    document.getElementById("delete-cell-" + id).innerHTML = 'успешно удалено';
+                    document.getElementById("delete-cell-" + id).style.color = 'green';
+                } else {
+                    console.log(resp.message);
+                }
+            })
     }
 
     render() {
@@ -60,6 +76,7 @@ class HoneySale extends React.Component {
                                 <Table.HeaderCell>Количество</Table.HeaderCell>
                                 <Table.HeaderCell>Тип мёда</Table.HeaderCell>
                                 <Table.HeaderCell>Стоимость</Table.HeaderCell>
+                                <Table.HeaderCell>Опции</Table.HeaderCell>
                             </Table.Row>
                         </Table.Header>
 
@@ -79,6 +96,9 @@ class HoneySale extends React.Component {
                                         <Table.Cell>{s["amount"]}</Table.Cell>
                                         <Table.Cell>{s["honey_type"].name}</Table.Cell>
                                         <Table.Cell>{s["total_price"]}</Table.Cell>
+                                        <Table.Cell id={"delete-cell-" + s.id}>
+                                            <DeleteModal deleteCallback={this.deleteHoneySale.bind(this, s.id)} />
+                                        </Table.Cell>
                                     </Table.Row>
                                 })
                             }

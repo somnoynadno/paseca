@@ -1,8 +1,10 @@
 import React from "react";
 import MainMenu from "../components/MainMenu"
 import {Button, Container, Grid, Loader, Modal, Segment, Table} from "semantic-ui-react";
-import {API} from "../http/API";
-import CreateControlHarvestForm from "../forms/CreateControlHarvestForm";
+import CreateControlHarvestForm from "../forms/create/CreateControlHarvestForm";
+import {GET_API} from "../http/GET_API";
+import DeleteModal from "../modal/DeleteModal";
+import {DELETE_API} from "../http/DELETE_API";
 
 
 class ControlHarvest extends React.Component {
@@ -14,11 +16,25 @@ class ControlHarvest extends React.Component {
             harvestsNum: ''
         }
 
-        this.api = new API();
+        this.getAPI = new GET_API();
+        this.deleteAPI = new DELETE_API();
+    }
+
+    deleteControlHarvest = async (id) => {
+        await this.deleteAPI.DeleteControlHarvestByID(id)
+            .then((resp) => {
+                if (resp.constructor !== Error) {
+                    // everything is fine => remove delete button
+                    document.getElementById("delete-cell-" + id).innerHTML = 'успешно удалено';
+                    document.getElementById("delete-cell-" + id).style.color = 'green';
+                } else {
+                    console.log(resp.message);
+                }
+            })
     }
 
     componentDidMount = async () => {
-        let harvests = await this.api.GetUsersControlHarvests();
+        let harvests = await this.getAPI.GetUsersControlHarvests();
         this.setState({
             controlHarvests: harvests,
             harvestsNum: harvests.length
@@ -59,6 +75,7 @@ class ControlHarvest extends React.Component {
                                 <Table.HeaderCell>Семья</Table.HeaderCell>
                                 <Table.HeaderCell>Дата</Table.HeaderCell>
                                 <Table.HeaderCell>Количество (кг)</Table.HeaderCell>
+                                <Table.HeaderCell>Опции</Table.HeaderCell>
                             </Table.Row>
                         </Table.Header>
 
@@ -76,6 +93,9 @@ class ControlHarvest extends React.Component {
                                             }
                                         </Table.Cell>
                                         <Table.Cell>{s["amount"]}</Table.Cell>
+                                        <Table.Cell id={"delete-cell-" + s.id}>
+                                            <DeleteModal deleteCallback={this.deleteControlHarvest.bind(this, s.id)} />
+                                        </Table.Cell>
                                     </Table.Row>
                                 })
                             }

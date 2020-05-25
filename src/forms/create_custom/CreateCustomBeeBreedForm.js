@@ -1,26 +1,26 @@
-import * as React from "react";
-import {API} from "../http/API";
+import React from "react";
 import {Button, Form, Input} from "semantic-ui-react";
+import {POST_API} from "../../http/POST_API";
 
 
-class CreateReminderForm extends React.Component {
+class CreateCustomBeeBreedForm extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            title: '',
-            text: '',
-            date: null,
+            name: '',
+            description: '',
             errorText: '',
         }
 
-        this.api = new API();
+        this.postAPI = new POST_API();
 
         this.handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
         this.handleSubmit = async () => {
             this.setState({errorText: ""})
-            await this.api.CreateReminder(this.props.beeFarmID, this.state.title, this.state.text, this.state.date).then((resp) => {
+            await this.postAPI.CreateCustomBeeBreed(this.state.name, this.state.description)
+                .then((resp) => {
                 if (resp.constructor !== Error) {
                     // everything is fine => reload page
                     document.location.reload();
@@ -38,33 +38,20 @@ class CreateReminderForm extends React.Component {
                 <Form.Field
                     control={Input}
                     type='text'
-                    label='Заголовок'
-                    placeholder='Краткий и ёмкий'
+                    label='Название'
+                    placeholder='Название породы'
                     required
-                    name='title'
-                    value={this.state.title}
+                    name='name'
+                    value={this.state.name}
                     onChange={this.handleChange}
                 />
             </Form.Group>
             <Form.Group widths='equal'>
                 <Form.TextArea
                     label='Описание'
-                    placeholder='О чём вы хотите себе напомнить?'
-                    required
-                    name='text'
-                    value={this.state.text}
-                    onChange={this.handleChange}
-                />
-            </Form.Group>
-            <Form.Group widths='equal'>
-                <Form.Field
-                    control={Input}
-                    type='date'
-                    label='Когда нужно напомнить?'
-                    placeholder='Укажите дату'
-                    name='date'
-                    required
-                    value={this.state.date}
+                    placeholder='Краткое описание породы пчёл (опционально)'
+                    name='description'
+                    value={this.state.description}
                     onChange={this.handleChange}
                 />
             </Form.Group>
@@ -74,4 +61,4 @@ class CreateReminderForm extends React.Component {
     }
 }
 
-export default CreateReminderForm;
+export default CreateCustomBeeBreedForm;

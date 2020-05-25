@@ -1,7 +1,7 @@
 import React from "react";
 import MainMenu from "../components/MainMenu"
 import {Container, Message, Segment} from "semantic-ui-react";
-import {API} from "../http/API";
+import {GET_API} from "../http/GET_API";
 
 
 class Index extends React.Component {
@@ -12,7 +12,7 @@ class Index extends React.Component {
             news: null
         }
 
-        this.api = new API();
+        this.api = new GET_API();
     }
 
     componentDidMount = async () => {
@@ -37,7 +37,9 @@ class Index extends React.Component {
                                     day: 'numeric',
                                 })}</p>
                                 <p>
-                                    {n.text}
+                                    {n.text.split('\n').map((text) => {
+                                        return <p>{text}</p>
+                                    })}
                                 </p>
                             </Message>
                         })}
