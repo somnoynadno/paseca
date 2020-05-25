@@ -20,6 +20,9 @@ class DeleteModal extends React.Component {
                 <p>
                     Вы действительно хотите удалить этот элемент?
                 </p>
+                <p>
+                    Это действие <u>необратимо</u>
+                </p>
             </Modal.Content>
             <Modal.Actions>
                 <Button onClick={this.handleClose} >

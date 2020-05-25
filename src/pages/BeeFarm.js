@@ -48,19 +48,6 @@ class BeeFarm extends React.Component {
                             </Grid.Column>
                             <Grid.Column width={10}>
                                 <Modal trigger={<Button
-                                    color='orange'
-                                    content='Добавить улей'
-                                    size='medium'
-                                    icon='archive'
-                                    floated='right'
-                                    style={{margin: "0 10px"}}
-                                />}>
-                                    <Modal.Header>Новый улей</Modal.Header>
-                                    <Modal.Content>
-                                        <CreateHiveForm beeFarmID={this.state.beeFarm.id} />
-                                    </Modal.Content>
-                                </Modal>
-                                <Modal trigger={<Button
                                     color='yellow'
                                     content='Создать семью'
                                     size='medium'
@@ -71,6 +58,19 @@ class BeeFarm extends React.Component {
                                     <Modal.Header>Новая семья</Modal.Header>
                                     <Modal.Content>
                                         <CreateBeeFamilyForm beeFarmID={this.state.beeFarm.id} />
+                                    </Modal.Content>
+                                </Modal>
+                                <Modal trigger={<Button
+                                    color='orange'
+                                    content='Добавить улей'
+                                    size='medium'
+                                    icon='archive'
+                                    floated='right'
+                                    style={{margin: "0 10px"}}
+                                />}>
+                                    <Modal.Header>Новый улей</Modal.Header>
+                                    <Modal.Content>
+                                        <CreateHiveForm beeFarmID={this.state.beeFarm.id} />
                                     </Modal.Content>
                                 </Modal>
                                 <Modal trigger={<Button
