@@ -51,23 +51,6 @@ export class GET_API extends API {
         })
     }
 
-    CreateBeeFarm(name, location, beeFarmSizeID, beeFarmTypeID) {
-        this.CheckToken();
-        return new Promise((resolve) => {
-            HTTP.axios.post(`/lk/bee_farm`, {
-                name: name,
-                location: location,
-                bee_farm_size_id: parseInt(beeFarmSizeID),
-                bee_farm_type_id: parseInt(beeFarmTypeID)
-            })
-                .then(response =>{
-                    resolve(response.data);
-                }).catch(function(error) {
-                console.log(error);
-            });
-        })
-    }
-
     GetBeeFarmTypes() {
         this.CheckToken();
         return new Promise((resolve) => {

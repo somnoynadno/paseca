@@ -16,11 +16,11 @@ class MyFarms extends React.Component {
             farmID: null
         };
 
-        this.api = new GET_API();
+        this.getAPI = new GET_API();
+        this.postAPI = new GET_API();
 
         this.handleItemClick = (e, { name }) => {
             this.setState({ activeItem: name });
-            console.log(name);
             this.redirectToFarm(name);
         }
     }
@@ -33,7 +33,7 @@ class MyFarms extends React.Component {
     }
 
     componentDidMount = async () => {
-        let farms = await this.api.GetBeeFarms();
+        let farms = await this.getAPI.GetBeeFarms();
         this.setState({
             beeFarms: farms
         });
