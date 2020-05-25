@@ -178,6 +178,18 @@ export class POST_API extends API {
         })
     }
 
+    CheckReminderByID(id) {
+        this.CheckToken();
+        return new Promise((resolve) => {
+            HTTP.axios.post(`/lk/check_reminder/` + id)
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                console.log(error);
+            });
+        })
+    }
+
     CreateCustomBeeBreed(name, description) {
         this.CheckToken();
         return new Promise((resolve) => {

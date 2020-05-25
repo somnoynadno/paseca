@@ -2,6 +2,7 @@ import React from "react";
 import {Button, ButtonGroup, Table} from "semantic-ui-react";
 import {DELETE_API} from "../http/DELETE_API";
 import DeleteModal from "../modal/DeleteModal";
+import {POST_API} from "../http/POST_API";
 
 
 class BeeFarmRemindersTable extends React.Component {
@@ -9,6 +10,7 @@ class BeeFarmRemindersTable extends React.Component {
         super(props);
 
         this.deleteAPI = new DELETE_API();
+        this.postAPI = new POST_API();
     }
 
     deleteReminder = async (id) => {
@@ -18,6 +20,18 @@ class BeeFarmRemindersTable extends React.Component {
                     // everything is fine => remove delete button
                     document.getElementById("delete-cell-" + id).innerHTML = 'успешно удалено';
                     document.getElementById("delete-cell-" + id).style.color = 'green';
+                } else {
+                    console.log(resp.message);
+                }
+            })
+    }
+
+    checkReminder = async (id) => {
+        await this.postAPI.CheckReminderByID(id)
+            .then((resp) => {
+                if (resp.constructor !== Error) {
+                    // everything is fine => disable check button
+                    document.getElementById("check-" + id).disabled = true;
                 } else {
                     console.log(resp.message);
                 }
@@ -50,7 +64,9 @@ class BeeFarmRemindersTable extends React.Component {
                             </Table.Cell>
                             <Table.Cell id={"delete-cell-" + r.id}>
                                 <ButtonGroup>
-                                    <Button color="green" icon="check" />
+                                    <Button id={"check-" + r.id} color="green" icon="check"
+                                            disabled={r["is_checked"]}
+                                            onClick={this.checkReminder.bind(this, r.id)} />
                                     <DeleteModal deleteCallback={this.deleteReminder.bind(this, r.id)} />
                                 </ButtonGroup>
                             </Table.Cell>
