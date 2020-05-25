@@ -2,9 +2,9 @@ import React from "react";
 import MainMenu from "../components/MainMenu"
 import {Button, Container, Grid, Menu, Modal, Segment} from "semantic-ui-react";
 import PasecaModel from "../components/PasecaModel";
-import BeeFarmFamiliesTable from "../tables/BeeFarmFamiliesTable";
+import BeeFarmBeeFamiliesTable from "../tables/BeeFarmBeeFamiliesTable";
 import BeeFarmHivesTable from "../tables/BeeFarmHivesTable";
-import BeeFarmNotificationsTable from "../tables/BeeFarmNotificationsTable";
+import BeeFarmRemindersTable from "../tables/BeeFarmRemindersTable";
 import CreateBeeFamilyForm from "../forms/create/CreateBeeFamilyForm";
 import CreateReminderForm from "../forms/create/CreateReminderForm";
 import CreateHiveForm from "../forms/create/CreateHiveForm";
@@ -131,11 +131,11 @@ class BeeFarm extends React.Component {
                             <Grid.Column>
                                 <Segment>
                                     {this.state.activeItem === 'Семьи' ?
-                                        <BeeFarmFamiliesTable beeFarm={this.state.beeFarm} />
+                                        <BeeFarmBeeFamiliesTable beeFarm={this.state.beeFarm} />
                                         : this.state.activeItem === 'Ульи' ?
                                             <BeeFarmHivesTable beeFarm={this.state.beeFarm} />
                                             : this.state.activeItem === 'Напоминания' ?
-                                                <BeeFarmNotificationsTable beeFarm={this.state.beeFarm} />
+                                                <BeeFarmRemindersTable beeFarm={this.state.beeFarm} />
                                                 : ''
                                     }
                                 </Segment>

@@ -2,7 +2,6 @@ import React from "react";
 import {Button, Modal, Segment, Table} from "semantic-ui-react";
 import DeleteModal from "../modal/DeleteModal";
 import {DELETE_API} from "../http/DELETE_API";
-import CreateCustomBeeBreedForm from "../forms/create_custom/CreateCustomBeeBreedForm";
 import {GET_API} from "../http/GET_API";
 import CreateCustomHoneyTypeForm from "../forms/create_custom/CreateCustomHoneyTypeForm";
 
@@ -20,7 +19,7 @@ class HoneyTypesTable extends React.Component {
     }
 
     deleteHoneyType = async (id) => {
-        this.deleteAPI.DeleteHoneyTypeByID(id)
+        await this.deleteAPI.DeleteHoneyTypeByID(id)
             .then((resp) => {
                 if (resp.constructor !== Error) {
                     // everything is fine => reload page

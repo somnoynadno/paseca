@@ -19,7 +19,7 @@ class BeeBreedsTable extends React.Component {
     }
 
     deleteBeeBreed = async (id) => {
-        this.deleteAPI.DeleteBeeBreedByID(id)
+        await this.deleteAPI.DeleteBeeBreedByID(id)
             .then((resp) => {
                 if (resp.constructor !== Error) {
                     // everything is fine => reload page

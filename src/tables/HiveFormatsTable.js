@@ -20,7 +20,7 @@ class HiveFormatsTable extends React.Component {
     }
 
     deleteHiveFormat = async (id) => {
-        this.deleteAPI.DeleteHiveFormatByID(id)
+        await this.deleteAPI.DeleteHiveFormatByID(id)
             .then((resp) => {
                 if (resp.constructor !== Error) {
                     // everything is fine => reload page

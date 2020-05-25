@@ -20,7 +20,7 @@ class HiveFrameTypesTable extends React.Component {
     }
 
     deleteHiveFrameType = async (id) => {
-        this.deleteAPI.DeleteHiveFrameTypeByID(id)
+        await this.deleteAPI.DeleteHiveFrameTypeByID(id)
             .then((resp) => {
                 if (resp.constructor !== Error) {
                     // everything is fine => reload page

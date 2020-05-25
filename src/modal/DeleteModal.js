@@ -9,6 +9,11 @@ class DeleteModal extends React.Component {
 
     handleClose = () => this.setState({ modalOpen: false })
 
+    handleConfirmed = () => {
+        this.props.deleteCallback();
+        this.handleClose();
+    }
+
     render() {
         return <Modal
             trigger={<Button color='red' icon='trash' onClick={this.handleOpen} />}
@@ -28,7 +33,7 @@ class DeleteModal extends React.Component {
                 <Button onClick={this.handleClose} >
                     <Icon name='remove' /> Нет
                 </Button>
-                <Button onClick={this.props.deleteCallback} color='red'>
+                <Button onClick={this.handleConfirmed} color='red'>
                     <Icon name='checkmark' /> Да
                 </Button>
             </Modal.Actions>

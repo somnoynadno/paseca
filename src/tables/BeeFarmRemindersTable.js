@@ -1,8 +1,29 @@
 import React from "react";
 import {Button, ButtonGroup, Table} from "semantic-ui-react";
+import {DELETE_API} from "../http/DELETE_API";
+import DeleteModal from "../modal/DeleteModal";
 
 
-class BeeFarmNotificationsTable extends React.Component {
+class BeeFarmRemindersTable extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.deleteAPI = new DELETE_API();
+    }
+
+    deleteReminder = async (id) => {
+        await this.deleteAPI.DeleteReminderByID(id)
+            .then((resp) => {
+                if (resp.constructor !== Error) {
+                    // everything is fine => remove delete button
+                    document.getElementById("delete-cell-" + id).innerHTML = 'успешно удалено';
+                    document.getElementById("delete-cell-" + id).style.color = 'green';
+                } else {
+                    console.log(resp.message);
+                }
+            })
+    }
+
     render() {
         return <div>
             <Table celled>
@@ -27,10 +48,10 @@ class BeeFarmNotificationsTable extends React.Component {
                                 month: 'long',
                                 day: 'numeric',})}
                             </Table.Cell>
-                            <Table.Cell>
-                                <ButtonGroup vertical>
-                                    <Button>Выполнено</Button>
-                                    <Button>Удалить</Button>
+                            <Table.Cell id={"delete-cell-" + r.id}>
+                                <ButtonGroup>
+                                    <Button color="green" icon="check" />
+                                    <DeleteModal deleteCallback={this.deleteReminder.bind(this, r.id)} />
                                 </ButtonGroup>
                             </Table.Cell>
                         </Table.Row>
@@ -41,4 +62,4 @@ class BeeFarmNotificationsTable extends React.Component {
     }
 }
 
-export default BeeFarmNotificationsTable;
+export default BeeFarmRemindersTable;

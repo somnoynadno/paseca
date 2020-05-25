@@ -3,6 +3,8 @@ import MainMenu from "../components/MainMenu"
 import {Button, Container, Grid, Loader, Modal, Segment, Table} from "semantic-ui-react";
 import CreatePollenHarvestForm from "../forms/create/CreatePollenHarvestForm";
 import {GET_API} from "../http/GET_API";
+import DeleteModal from "../modal/DeleteModal";
+import {DELETE_API} from "../http/DELETE_API";
 
 
 class PollenHarvest extends React.Component {
@@ -14,11 +16,25 @@ class PollenHarvest extends React.Component {
             harvestsNum: ''
         }
 
-        this.api = new GET_API();
+        this.getAPI = new GET_API();
+        this.deleteAPI = new DELETE_API();
+    }
+
+    deletePollenHarvest = async (id) => {
+        await this.deleteAPI.DeletePollenHarvestByID(id)
+            .then((resp) => {
+                if (resp.constructor !== Error) {
+                    // everything is fine => remove delete button
+                    document.getElementById("delete-cell-" + id).innerHTML = 'успешно удалено';
+                    document.getElementById("delete-cell-" + id).style.color = 'green';
+                } else {
+                    console.log(resp.message);
+                }
+            })
     }
 
     componentDidMount = async () => {
-        let harvests = await this.api.GetUsersPollenHarvests();
+        let harvests = await this.getAPI.GetUsersPollenHarvests();
         this.setState({
             pollenHarvests: harvests,
             harvestsNum: harvests.length
@@ -59,6 +75,7 @@ class PollenHarvest extends React.Component {
                                 <Table.HeaderCell>Пасека</Table.HeaderCell>
                                 <Table.HeaderCell>Дата</Table.HeaderCell>
                                 <Table.HeaderCell>Количество (кг)</Table.HeaderCell>
+                                <Table.HeaderCell>Опции</Table.HeaderCell>
                             </Table.Row>
                         </Table.Header>
 
@@ -76,6 +93,9 @@ class PollenHarvest extends React.Component {
                                             }
                                         </Table.Cell>
                                         <Table.Cell>{s["amount"]}</Table.Cell>
+                                        <Table.Cell id={"delete-cell-" + s.id}>
+                                            <DeleteModal deleteCallback={this.deletePollenHarvest.bind(this, s.id)} />
+                                        </Table.Cell>
                                     </Table.Row>
                                 })
                             }
