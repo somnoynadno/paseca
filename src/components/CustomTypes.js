@@ -5,7 +5,10 @@ import HoneyTypesTable from "../tables/HoneyTypesTable";
 import HiveFormatsTable from "../tables/HiveFormatsTable";
 import HiveFrameTypesTable from "../tables/HiveFrameTypesTable";
 
-
+/*
+ Embedded компонент для личного кабинета.
+ Предоставляет менюшку для пользовательских типов.
+ */
 class CustomTypes extends React.Component {
     constructor(props) {
         super(props);

@@ -1,44 +1,17 @@
 import React from "react";
 import MainMenu from "../components/MainMenu"
-import {Button, Container, Grid, Loader, Modal, Segment, Table} from "semantic-ui-react";
+import {Button, Container, Grid, Icon, Loader, Modal, Pagination, Segment, Table} from "semantic-ui-react";
 import CreateControlHarvestForm from "../forms/create/CreateControlHarvestForm";
-import {GET_API} from "../http/GET_API";
 import DeleteModal from "../modal/DeleteModal";
-import {DELETE_API} from "../http/DELETE_API";
+import TablePaginatorComponent from "../components/TablePaginatorComponent";
 
 
-class ControlHarvest extends React.Component {
+class ControlHarvest extends TablePaginatorComponent {
     constructor(props) {
         super(props);
 
-        this.state = {
-            controlHarvests: null,
-            harvestsNum: ''
-        }
-
-        this.getAPI = new GET_API();
-        this.deleteAPI = new DELETE_API();
-    }
-
-    deleteControlHarvest = async (id) => {
-        await this.deleteAPI.DeleteControlHarvestByID(id)
-            .then((resp) => {
-                if (resp.constructor !== Error) {
-                    // everything is fine => remove delete button
-                    document.getElementById("delete-cell-" + id).innerHTML = 'успешно удалено';
-                    document.getElementById("delete-cell-" + id).style.color = 'green';
-                } else {
-                    console.log(resp.message);
-                }
-            })
-    }
-
-    componentDidMount = async () => {
-        let harvests = await this.getAPI.GetUsersControlHarvests();
-        this.setState({
-            controlHarvests: harvests,
-            harvestsNum: harvests.length
-        });
+        this.getItemsCallback = this.getAPI.GetUsersControlHarvests;
+        this.deleteItemCallback = this.deleteAPI.DeleteControlHarvestByID;
     }
 
     render() {
@@ -58,7 +31,7 @@ class ControlHarvest extends React.Component {
                                     size='medium'
                                     icon='pencil'
                                     floated='right'
-                                    label={{ basic: true, color: 'green', pointing: 'left', content: this.state.harvestsNum }}
+                                    label={{ basic: true, color: 'green', pointing: 'left', content: this.state.itemsCount }}
                                     style={{marginRight: "30px"}}
                                 />}>
                                     <Modal.Header>Новый сбор</Modal.Header>
@@ -72,35 +45,47 @@ class ControlHarvest extends React.Component {
                     <Table celled>
                         <Table.Header>
                             <Table.Row>
-                                <Table.HeaderCell>Семья</Table.HeaderCell>
-                                <Table.HeaderCell>Дата</Table.HeaderCell>
-                                <Table.HeaderCell>Количество (кг)</Table.HeaderCell>
+                                <Table.HeaderCell>Семья&nbsp;
+                                    <Icon link name='arrow down' onClick={this.reorder.bind(this, "bee_family_id")} />
+                                </Table.HeaderCell>
+                                <Table.HeaderCell>Дата&nbsp;
+                                    <Icon link name='arrow down' onClick={this.reorder.bind(this, "date")} />
+                                </Table.HeaderCell>
+                                <Table.HeaderCell>Количество (кг)&nbsp;
+                                    <Icon link name='arrow down' onClick={this.reorder.bind(this, "amount")} />
+                                </Table.HeaderCell>
                                 <Table.HeaderCell>Опции</Table.HeaderCell>
                             </Table.Row>
                         </Table.Header>
 
                         <Table.Body>
-                            {this.state.controlHarvests === null ? <Table.Row><Loader active inline /></Table.Row> :
-                                this.state.controlHarvests.map((s) => {
+                            {this.state.items === null ? <Table.Row><Loader active inline /></Table.Row> :
+                                this.state.items.map((item) => {
                                     return <Table.Row>
-                                        <Table.Cell>{s["bee_family"].name}</Table.Cell>
+                                        <Table.Cell>{item["bee_family"].name}</Table.Cell>
                                         <Table.Cell>
-                                            {s["date"] === null ? '' :
-                                                (new Date(s["date"])).toLocaleString('ru', {
+                                            {item["date"] === null ? '' :
+                                                (new Date(item["date"])).toLocaleString('ru', {
                                                     year: 'numeric',
                                                     month: 'long',
                                                     day: 'numeric',})
                                             }
                                         </Table.Cell>
-                                        <Table.Cell>{s["amount"]}</Table.Cell>
-                                        <Table.Cell id={"delete-cell-" + s.id}>
-                                            <DeleteModal deleteCallback={this.deleteControlHarvest.bind(this, s.id)} />
+                                        <Table.Cell>{item["amount"]}</Table.Cell>
+                                        <Table.Cell id={"delete-cell-" + item.id}>
+                                            <DeleteModal deleteCallback={this.deleteItem.bind(this, item.id)} />
                                         </Table.Cell>
                                     </Table.Row>
                                 })
                             }
                         </Table.Body>
                     </Table>
+                    <Pagination style={{float: "right"}}
+                                activePage={this.state.activePage}
+                                onPageChange={this.handlePaginationChange}
+                                size='mini'
+                                totalPages={this.state.totalPages}
+                    /><div style={{clear: "both"}} />
                 </Segment>
             </Container>
         </div>

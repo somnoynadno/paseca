@@ -4,7 +4,6 @@ import {HTTP} from "./http-common";
 // API file to send DELETE requests
 export class DELETE_API extends API {
     DeleteBeeBreedByID(id) {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.delete(`/lk/bee_breed/` + id)
                 .then(response =>{
@@ -16,7 +15,6 @@ export class DELETE_API extends API {
     }
 
     DeleteHiveFormatByID(id) {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.delete(`/lk/hive_format/` + id)
                 .then(response =>{
@@ -28,7 +26,6 @@ export class DELETE_API extends API {
     }
 
     DeleteHiveFrameTypeByID(id) {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.delete(`/lk/hive_frame_type/` + id)
                 .then(response =>{
@@ -40,7 +37,6 @@ export class DELETE_API extends API {
     }
 
     DeleteHoneyTypeByID(id) {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.delete(`/lk/honey_type/` + id)
                 .then(response =>{
@@ -52,7 +48,6 @@ export class DELETE_API extends API {
     }
 
     DeleteHiveByID(id) {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.delete(`/lk/hive/` + id)
                 .then(response =>{
@@ -64,7 +59,6 @@ export class DELETE_API extends API {
     }
 
     DeleteBeeFarmByID(id) {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.delete(`/lk/bee_farm/` + id)
                 .then(response =>{
@@ -76,7 +70,6 @@ export class DELETE_API extends API {
     }
 
     DeleteBeeFamilyByID(id) {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.delete(`/lk/bee_family/` + id)
                 .then(response =>{
@@ -88,7 +81,6 @@ export class DELETE_API extends API {
     }
 
     DeleteReminderByID(id) {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.delete(`/lk/reminder/` + id)
                 .then(response =>{
@@ -100,7 +92,6 @@ export class DELETE_API extends API {
     }
 
     DeleteHoneySaleByID(id) {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.delete(`/lk/honey_sale/` + id)
                 .then(response =>{
@@ -112,7 +103,6 @@ export class DELETE_API extends API {
     }
 
     DeleteHoneyHarvestByID(id) {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.delete(`/lk/honey_harvest/` + id)
                 .then(response =>{
@@ -124,7 +114,6 @@ export class DELETE_API extends API {
     }
 
     DeleteControlHarvestByID(id) {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.delete(`/lk/control_harvest/` + id)
                 .then(response =>{
@@ -136,7 +125,6 @@ export class DELETE_API extends API {
     }
 
     DeletePollenHarvestByID(id) {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.delete(`/lk/pollen_harvest/` + id)
                 .then(response =>{

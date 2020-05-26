@@ -4,7 +4,10 @@ import {Redirect} from "react-router-dom";
 
 import bee from '../assets/bee.png'
 
-
+/*
+ Главное меню. Рендерится на каждой странице.
+ В props принимается активный элемент.
+ */
 class MainMenu extends React.Component {
     constructor(props) {
         super(props);

@@ -6,6 +6,11 @@ import user from '../assets/user.png';
 import CustomTypes from "../components/CustomTypes";
 import {GET_API} from "../http/GET_API";
 
+/*
+ Страница личного кабинета пользователя.
+ Предоставляет меню для настроек аккаунта и
+ создания пользовательских типов данных.
+ */
 class Preferences extends React.Component {
     constructor(props) {
         super(props);

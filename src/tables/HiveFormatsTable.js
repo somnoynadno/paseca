@@ -2,7 +2,6 @@ import React from "react";
 import {Button, Modal, Segment, Table} from "semantic-ui-react";
 import DeleteModal from "../modal/DeleteModal";
 import {DELETE_API} from "../http/DELETE_API";
-import CreateCustomBeeBreedForm from "../forms/create_custom/CreateCustomBeeBreedForm";
 import {GET_API} from "../http/GET_API";
 import CreateCustomHiveFormatForm from "../forms/create_custom/CreateCustomHiveFormatForm";
 

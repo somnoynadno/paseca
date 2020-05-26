@@ -4,7 +4,9 @@ import '../index.css';
 import {API} from '../http/API';
 import {Button, Container, Form, Grid, Input, Segment} from "semantic-ui-react";
 
-
+/*
+ Компонент, который всегда рендерится при отсутствии токена.
+ */
 class Login extends React.Component {
     constructor(props) {
         super(props);

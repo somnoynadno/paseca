@@ -1,20 +1,17 @@
 import axios from 'axios'
 import {apiAddress} from '../options'
 
+let token = localStorage.getItem('token');
+
 export let HTTP = {
-    axios: null,
-    token: localStorage.getItem('token'),
-    Init: function(){
-        this.axios = axios.create({
+    axios: axios.create({
             baseURL: apiAddress,
             headers:{
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ` + this.token
+                'Authorization': `Bearer ` + token
             }
-        });
-    },
-    InitToken: function () {
-        this.token = localStorage.getItem('token');
-        this.Init();
+        }),
+    handleError: function (error) {
+        console.log(error);
     }
 };

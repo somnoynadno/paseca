@@ -1,43 +1,16 @@
 import React from "react";
 import MainMenu from "../components/MainMenu"
-import {Button, Container, Grid, Loader, Modal, Segment, Table} from "semantic-ui-react";
+import {Button, Container, Grid, Icon, Loader, Modal, Pagination, Segment, Table} from "semantic-ui-react";
 import CreateHoneySaleForm from "../forms/create/CreateHoneySaleForm";
-import {GET_API} from "../http/GET_API";
-import {DELETE_API} from "../http/DELETE_API";
 import DeleteModal from "../modal/DeleteModal";
+import TablePaginatorComponent from "../components/TablePaginatorComponent";
 
-class HoneySale extends React.Component {
+class HoneySale extends TablePaginatorComponent {
     constructor(props) {
         super(props);
 
-        this.state = {
-            honeySales: null,
-            salesNum: ''
-        }
-
-        this.getAPI = new GET_API();
-        this.deleteAPI = new DELETE_API();
-    }
-
-    componentDidMount = async () => {
-        let sales = await this.getAPI.GetUsersHoneySales();
-        this.setState({
-            honeySales: sales,
-            salesNum: sales.length
-        });
-    }
-
-    deleteHoneySale = async (id) => {
-        await this.deleteAPI.DeleteHoneySaleByID(id)
-            .then((resp) => {
-                if (resp.constructor !== Error) {
-                    // everything is fine => remove delete button
-                    document.getElementById("delete-cell-" + id).innerHTML = 'успешно удалено';
-                    document.getElementById("delete-cell-" + id).style.color = 'green';
-                } else {
-                    console.log(resp.message);
-                }
-            })
+        this.getItemsCallback = this.getAPI.GetUsersHoneySales;
+        this.deleteItemCallback = this.deleteAPI.DeleteHoneySaleByID;
     }
 
     render() {
@@ -57,7 +30,7 @@ class HoneySale extends React.Component {
                                     size='medium'
                                     icon='shop'
                                     floated='right'
-                                    label={{ basic: true, color: 'green', pointing: 'left', content: this.state.salesNum }}
+                                    label={{ basic: true, color: 'green', pointing: 'left', content: this.state.itemsCount }}
                                     style={{marginRight: "30px"}}
                                 />}>
                                     <Modal.Header>Новая продажа</Modal.Header>
@@ -71,39 +44,55 @@ class HoneySale extends React.Component {
                     <Table celled>
                         <Table.Header>
                             <Table.Row>
-                                <Table.HeaderCell>Пасека</Table.HeaderCell>
-                                <Table.HeaderCell>Дата</Table.HeaderCell>
-                                <Table.HeaderCell>Количество</Table.HeaderCell>
-                                <Table.HeaderCell>Тип мёда</Table.HeaderCell>
-                                <Table.HeaderCell>Стоимость</Table.HeaderCell>
+                                <Table.HeaderCell>Пасека&nbsp;
+                                    <Icon link name='arrow down' onClick={this.reorder.bind(this, "bee_farm_id")} />
+                                </Table.HeaderCell>
+                                <Table.HeaderCell>Дата&nbsp;
+                                    <Icon link name='arrow down' onClick={this.reorder.bind(this, "date")} />
+                                </Table.HeaderCell>
+                                <Table.HeaderCell>Количество&nbsp;
+                                    <Icon link name='arrow down' onClick={this.reorder.bind(this, "amount")} />
+                                </Table.HeaderCell>
+                                <Table.HeaderCell>Тип мёда&nbsp;
+                                    <Icon link name='arrow down' onClick={this.reorder.bind(this, "honey_type_id")} />
+                                </Table.HeaderCell>
+                                <Table.HeaderCell>Стоимость&nbsp;
+                                    <Icon link name='arrow down' onClick={this.reorder.bind(this, "total_price")} />
+                                </Table.HeaderCell>
                                 <Table.HeaderCell>Опции</Table.HeaderCell>
                             </Table.Row>
                         </Table.Header>
 
                         <Table.Body>
-                            {this.state.honeySales === null ? <Table.Row><Loader active inline /></Table.Row> :
-                                this.state.honeySales.map((s) => {
+                            {this.state.items === null ? <Table.Row><Loader active inline /></Table.Row> :
+                                this.state.items.map((item) => {
                                     return <Table.Row>
-                                        <Table.Cell>{s["bee_farm"].name}</Table.Cell>
+                                        <Table.Cell>{item["bee_farm"].name}</Table.Cell>
                                         <Table.Cell>
-                                            {s["date"] === null ? '' :
-                                            (new Date(s["date"])).toLocaleString('ru', {
+                                            {item["date"] === null ? '' :
+                                            (new Date(item["date"])).toLocaleString('ru', {
                                                 year: 'numeric',
                                                 month: 'long',
                                                 day: 'numeric',})
                                             }
                                         </Table.Cell>
-                                        <Table.Cell>{s["amount"]}</Table.Cell>
-                                        <Table.Cell>{s["honey_type"].name}</Table.Cell>
-                                        <Table.Cell>{s["total_price"]}</Table.Cell>
-                                        <Table.Cell id={"delete-cell-" + s.id}>
-                                            <DeleteModal deleteCallback={this.deleteHoneySale.bind(this, s.id)} />
+                                        <Table.Cell>{item["amount"]}</Table.Cell>
+                                        <Table.Cell>{item["honey_type"].name}</Table.Cell>
+                                        <Table.Cell>{item["total_price"]}</Table.Cell>
+                                        <Table.Cell id={"delete-cell-" + item.id}>
+                                            <DeleteModal deleteCallback={this.deleteItem.bind(this, item.id)} />
                                         </Table.Cell>
                                     </Table.Row>
                                 })
                             }
                         </Table.Body>
                     </Table>
+                    <Pagination style={{float: "right"}}
+                                activePage={this.state.activePage}
+                                onPageChange={this.handlePaginationChange}
+                                size='mini'
+                                totalPages={this.state.totalPages}
+                    /><div style={{clear: "both"}} />
                 </Segment>
             </Container>
         </div>

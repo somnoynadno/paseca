@@ -5,7 +5,6 @@ import {HTTP} from "./http-common";
 // API file to send POST requests
 export class POST_API extends API {
     CreateBeeFarm(name, location, beeFarmSizeID, beeFarmTypeID) {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.post(`/lk/bee_farm`, {
                 name: name,
@@ -22,7 +21,6 @@ export class POST_API extends API {
     }
 
     CreateHoneyHarvest(amount, date, honeyTypeID, beeFamilyID) {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.post(`/lk/honey_harvest`, {
                 amount: parseFloat(amount),
@@ -39,7 +37,6 @@ export class POST_API extends API {
     }
 
     CreateHoneySale(amount, date, honeyTypeID, beeFarmID, totalPrice) {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.post(`/lk/honey_sale`, {
                 amount: parseFloat(amount),
@@ -57,7 +54,6 @@ export class POST_API extends API {
     }
 
     CreatePollenHarvest(amount, date, beeFarmID) {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.post(`/lk/pollen_harvest`, {
                 date: date,
@@ -73,7 +69,6 @@ export class POST_API extends API {
     }
 
     CreateControlHarvest(amount, date, beeFamilyID) {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.post(`/lk/control_harvest`, {
                 date: date,
@@ -92,7 +87,6 @@ export class POST_API extends API {
                     lastInspectionDate, beeBreedId,
                     beeFamilyStatusID, parent1ID,
                     parent2ID, isControl) {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.post(`/lk/bee_family`, {
                 bee_farm_id: parseInt(beeFarmID),
@@ -114,7 +108,6 @@ export class POST_API extends API {
     }
 
     CreateReminder(beeFarmID, title, text, date) {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.post(`/lk/reminder`, {
                 bee_farm_id: parseInt(beeFarmID),
@@ -131,7 +124,6 @@ export class POST_API extends API {
     }
 
     CreateHive(beeFarmID, name, hiveFormatID, hiveFrameTypeID) {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.post(`/lk/hive`, {
                 name: name,
@@ -148,7 +140,6 @@ export class POST_API extends API {
     }
 
     SetHiveCoords(hiveID, coordX, coordY) {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.post(`/lk/hive/set_coords`, {
                 hive_id: parseInt(hiveID),
@@ -164,7 +155,6 @@ export class POST_API extends API {
     }
 
     SetHiveBeeFamily(hiveID, beeFamilyID) {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.post(`/lk/hive/set_hive_bee_family`, {
                 hive_id: parseInt(hiveID),
@@ -179,7 +169,6 @@ export class POST_API extends API {
     }
 
     CheckReminderByID(id) {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.post(`/lk/check_reminder/` + id)
                 .then(response =>{
@@ -191,7 +180,6 @@ export class POST_API extends API {
     }
 
     CreateCustomBeeBreed(name, description) {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.post(`/lk/bee_breed`, {
                 name: name,
@@ -206,7 +194,6 @@ export class POST_API extends API {
     }
 
     CreateCustomBeeDisease(name, description) {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.post(`/lk/bee_disease`, {
                 name: name,
@@ -221,7 +208,6 @@ export class POST_API extends API {
     }
 
     CreateCustomHiveFormat(name, size) {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.post(`/lk/hive_format`, {
                 name: name,
@@ -236,7 +222,6 @@ export class POST_API extends API {
     }
 
     CreateCustomHiveFrameType(name) {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.post(`/lk/hive_frame_type`, {
                 name: name,
@@ -250,7 +235,6 @@ export class POST_API extends API {
     }
 
     CreateCustomHoneyType(name, description, basePrice) {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.post(`/lk/honey_type`, {
                 name: name,

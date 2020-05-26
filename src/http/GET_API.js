@@ -4,7 +4,6 @@ import {API} from "./API";
 // API file to send GET requests
 export class GET_API extends API {
     GetLastNews() {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.get(`/lk/news`)
                 .then(response =>{
@@ -16,7 +15,6 @@ export class GET_API extends API {
     }
 
     GetUserInfo() {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.get(`/lk/user`)
                 .then(response =>{
@@ -28,7 +26,6 @@ export class GET_API extends API {
     }
 
     GetBeeFarms() {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.get(`/lk/bee_farms`)
                 .then(response =>{
@@ -40,7 +37,6 @@ export class GET_API extends API {
     }
 
     GetBeeFarmByID(id) {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.get(`/lk/bee_farm/` + id)
                 .then(response =>{
@@ -52,7 +48,6 @@ export class GET_API extends API {
     }
 
     GetBeeFarmTypes() {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.get(`/lk/bee_farm_types`)
                 .then(response =>{
@@ -64,7 +59,6 @@ export class GET_API extends API {
     }
 
     GetBeeFarmSizes() {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.get(`/lk/bee_farm_sizes`)
                 .then(response =>{
@@ -75,11 +69,11 @@ export class GET_API extends API {
         })
     }
 
-    GetUsersHoneySales() {
-        this.CheckToken();
+    GetUsersHoneySales(sort, order, start, end) {
         return new Promise((resolve) => {
-            HTTP.axios.get(`/lk/honey_sales`)
+            HTTP.axios.get(`/lk/honey_sales?_sort=${sort}&_order=${order}&_start=${start}&_end=${end}`)
                 .then(response =>{
+                    response.data.count = parseInt(response.headers["x-total-count"]);
                     resolve(response.data);
                 }).catch(function(error) {
                 console.log(error);
@@ -87,11 +81,11 @@ export class GET_API extends API {
         })
     }
 
-    GetUsersPollenHarvests() {
-        this.CheckToken();
+    GetUsersPollenHarvests(sort, order, start, end) {
         return new Promise((resolve) => {
-            HTTP.axios.get(`/lk/pollen_harvests`)
+            HTTP.axios.get(`/lk/pollen_harvests?_sort=${sort}&_order=${order}&_start=${start}&_end=${end}`)
                 .then(response =>{
+                    response.data.count = parseInt(response.headers["x-total-count"]);
                     resolve(response.data);
                 }).catch(function(error) {
                 console.log(error);
@@ -99,11 +93,11 @@ export class GET_API extends API {
         })
     }
 
-    GetUsersControlHarvests() {
-        this.CheckToken();
+    GetUsersControlHarvests(sort, order, start, end) {
         return new Promise((resolve) => {
-            HTTP.axios.get(`/lk/control_harvests`)
+            HTTP.axios.get(`/lk/control_harvests?_sort=${sort}&_order=${order}&_start=${start}&_end=${end}`)
                 .then(response =>{
+                    response.data.count = parseInt(response.headers["x-total-count"]);
                     resolve(response.data);
                 }).catch(function(error) {
                 console.log(error);
@@ -112,7 +106,6 @@ export class GET_API extends API {
     }
 
     GetBeeBreeds() {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.get(`/lk/bee_breeds`)
                 .then(response =>{
@@ -124,7 +117,6 @@ export class GET_API extends API {
     }
 
     GetBeeFamilyStatuses() {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.get(`/lk/bee_family_statuses`)
                 .then(response =>{
@@ -135,11 +127,11 @@ export class GET_API extends API {
         })
     }
 
-    GetUsersHoneyHarvests() {
-        this.CheckToken();
+    GetUsersHoneyHarvests(sort, order, start, end) {
         return new Promise((resolve) => {
-            HTTP.axios.get(`/lk/honey_harvests`)
+            HTTP.axios.get(`/lk/honey_harvests?_sort=${sort}&_order=${order}&_start=${start}&_end=${end}`)
                 .then(response =>{
+                    response.data.count = parseInt(response.headers["x-total-count"]);
                     resolve(response.data);
                 }).catch(function(error) {
                 console.log(error);
@@ -148,7 +140,6 @@ export class GET_API extends API {
     }
 
     GetHoneyTypes() {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.get(`/lk/honey_types`)
                 .then(response =>{
@@ -160,7 +151,6 @@ export class GET_API extends API {
     }
 
     GetHiveFrameTypes() {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.get(`/lk/hive_frame_types`)
                 .then(response =>{
@@ -172,7 +162,6 @@ export class GET_API extends API {
     }
 
     GetHiveFormats() {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.get(`/lk/hive_formats`)
                 .then(response =>{
@@ -184,7 +173,6 @@ export class GET_API extends API {
     }
 
     GetUsersBeeFamilies() {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.get(`/lk/bee_families`)
                 .then(response =>{
@@ -196,7 +184,6 @@ export class GET_API extends API {
     }
 
     GetUsersBeeFamiliesWithoutHives() {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.get(`/lk/bee_families_without_hives`)
                 .then(response =>{
@@ -208,7 +195,6 @@ export class GET_API extends API {
     }
 
     GetUsersFreeHives() {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.get(`/lk/hives`)
                 .then(response =>{

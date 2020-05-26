@@ -5,10 +5,6 @@ import {apiAddress} from '../options'
 // base API class
 // TODO: add better error handler
 export class API {
-    CheckToken() {
-        HTTP.InitToken();
-    }
-
     // AUTH
     LoginUser(email, password) {
         return new Promise((resolve) => {
