@@ -11,7 +11,7 @@ import {GET_API} from "../http/GET_API";
  Предоставляет меню для настроек аккаунта и
  создания пользовательских типов данных.
  */
-class Preferences extends React.Component {
+class PreferencesPage extends React.Component {
     constructor(props) {
         super(props);
 
@@ -83,4 +83,4 @@ class Preferences extends React.Component {
     }
 }
 
-export default Preferences;
+export default PreferencesPage;

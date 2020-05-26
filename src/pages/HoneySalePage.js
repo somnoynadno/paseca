@@ -5,7 +5,10 @@ import CreateHoneySaleForm from "../forms/create/CreateHoneySaleForm";
 import DeleteModal from "../modal/DeleteModal";
 import TablePaginatorComponent from "../components/TablePaginatorComponent";
 
-class HoneySale extends TablePaginatorComponent {
+/*
+ Страница продаж мёда
+ */
+class HoneySalePage extends TablePaginatorComponent {
     constructor(props) {
         super(props);
 
@@ -99,4 +102,4 @@ class HoneySale extends TablePaginatorComponent {
     }
 }
 
-export default HoneySale;
+export default HoneySalePage;

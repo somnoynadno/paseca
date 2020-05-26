@@ -5,8 +5,10 @@ import CreateControlHarvestForm from "../forms/create/CreateControlHarvestForm";
 import DeleteModal from "../modal/DeleteModal";
 import TablePaginatorComponent from "../components/TablePaginatorComponent";
 
-
-class ControlHarvest extends TablePaginatorComponent {
+/*
+ Страница котрольных сборов
+ */
+class ControlHarvestPage extends TablePaginatorComponent {
     constructor(props) {
         super(props);
 
@@ -92,4 +94,4 @@ class ControlHarvest extends TablePaginatorComponent {
     }
 }
 
-export default ControlHarvest;
+export default ControlHarvestPage;

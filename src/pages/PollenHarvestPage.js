@@ -1,17 +1,19 @@
 import React from "react";
 import MainMenu from "../components/MainMenu"
 import {Button, Container, Grid, Icon, Loader, Modal, Pagination, Segment, Table} from "semantic-ui-react";
-import CreateHoneyHarvestForm from "../forms/create/CreateHoneyHarvestForm";
+import CreatePollenHarvestForm from "../forms/create/CreatePollenHarvestForm";
 import DeleteModal from "../modal/DeleteModal";
 import TablePaginatorComponent from "../components/TablePaginatorComponent";
 
-
-class HoneyHarvest extends TablePaginatorComponent {
+/*
+ Страница сборов пыльцы
+ */
+class PollenHarvestPage extends TablePaginatorComponent {
     constructor(props) {
         super(props);
 
-        this.getItemsCallback = this.getAPI.GetUsersHoneyHarvests;
-        this.deleteItemCallback = this.deleteAPI.DeleteHoneyHarvestByID;
+        this.getItemsCallback = this.getAPI.GetUsersPollenHarvests;
+        this.deleteItemCallback = this.deleteAPI.DeletePollenHarvestByID;
     }
 
     render() {
@@ -22,7 +24,7 @@ class HoneyHarvest extends TablePaginatorComponent {
                     <Grid>
                         <Grid.Row columns={2} relaxed='very'>
                             <Grid.Column>
-                                <h1 style={{textAlign: "center"}}>Учёт сбора мёда</h1>
+                                <h1 style={{textAlign: "center"}}>Сборы пыльцы</h1>
                             </Grid.Column>
                             <Grid.Column>
                                 <Modal trigger={<Button
@@ -34,9 +36,9 @@ class HoneyHarvest extends TablePaginatorComponent {
                                     label={{ basic: true, color: 'green', pointing: 'left', content: this.state.itemsCount }}
                                     style={{marginRight: "30px"}}
                                 />}>
-                                    <Modal.Header>Новый медосбор</Modal.Header>
+                                    <Modal.Header>Добавить сбор</Modal.Header>
                                     <Modal.Content>
-                                        <CreateHoneyHarvestForm />
+                                        <CreatePollenHarvestForm />
                                     </Modal.Content>
                                 </Modal>
                             </Grid.Column>
@@ -45,17 +47,14 @@ class HoneyHarvest extends TablePaginatorComponent {
                     <Table celled>
                         <Table.Header>
                             <Table.Row>
-                                <Table.HeaderCell>Семья&nbsp;
-                                    <Icon link name='arrow down' onClick={this.reorder.bind(this, "bee_family_id")} />
+                                <Table.HeaderCell>Пасека&nbsp;
+                                    <Icon link name='arrow down' onClick={this.reorder.bind(this, "bee_farm_id")} />
                                 </Table.HeaderCell>
                                 <Table.HeaderCell>Дата&nbsp;
                                     <Icon link name='arrow down' onClick={this.reorder.bind(this, "date")} />
                                 </Table.HeaderCell>
                                 <Table.HeaderCell>Количество (кг)&nbsp;
                                     <Icon link name='arrow down' onClick={this.reorder.bind(this, "amount")} />
-                                </Table.HeaderCell>
-                                <Table.HeaderCell>Сорт мёда&nbsp;
-                                    <Icon link name='arrow down' onClick={this.reorder.bind(this, "honey_type_id")} />
                                 </Table.HeaderCell>
                                 <Table.HeaderCell>Опции</Table.HeaderCell>
                             </Table.Row>
@@ -65,7 +64,7 @@ class HoneyHarvest extends TablePaginatorComponent {
                             {this.state.items === null ? <Table.Row><Loader active inline /></Table.Row> :
                                 this.state.items.map((item) => {
                                     return <Table.Row>
-                                        <Table.Cell>{item["bee_family"].name}</Table.Cell>
+                                        <Table.Cell>{item["bee_farm"].name}</Table.Cell>
                                         <Table.Cell>
                                             {item["date"] === null ? '' :
                                                 (new Date(item["date"])).toLocaleString('ru', {
@@ -75,7 +74,6 @@ class HoneyHarvest extends TablePaginatorComponent {
                                             }
                                         </Table.Cell>
                                         <Table.Cell>{item["amount"]}</Table.Cell>
-                                        <Table.Cell>{item["honey_type"].name}</Table.Cell>
                                         <Table.Cell id={"delete-cell-" + item.id}>
                                             <DeleteModal deleteCallback={this.deleteItem.bind(this, item.id)} />
                                         </Table.Cell>
@@ -85,10 +83,10 @@ class HoneyHarvest extends TablePaginatorComponent {
                         </Table.Body>
                     </Table>
                     <Pagination style={{float: "right"}}
-                        activePage={this.state.activePage}
-                        onPageChange={this.handlePaginationChange}
-                        size='mini'
-                        totalPages={this.state.totalPages}
+                                activePage={this.state.activePage}
+                                onPageChange={this.handlePaginationChange}
+                                size='mini'
+                                totalPages={this.state.totalPages}
                     /><div style={{clear: "both"}} />
                 </Segment>
             </Container>
@@ -96,4 +94,4 @@ class HoneyHarvest extends TablePaginatorComponent {
     }
 }
 
-export default HoneyHarvest;
+export default PollenHarvestPage;

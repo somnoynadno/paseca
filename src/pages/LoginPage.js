@@ -7,7 +7,7 @@ import {Button, Container, Form, Grid, Input, Segment} from "semantic-ui-react";
 /*
  Компонент, который всегда рендерится при отсутствии токена.
  */
-class Login extends React.Component {
+class LoginPage extends React.Component {
     constructor(props) {
         super(props);
 
@@ -78,4 +78,4 @@ class Login extends React.Component {
     }
 }
 
-export default Login;
+export default LoginPage;

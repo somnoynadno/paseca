@@ -6,7 +6,7 @@ import {GET_API} from "../http/GET_API";
 /*
  Стартовая страница с новостями платформы.
  */
-class Index extends React.Component {
+class IndexPage extends React.Component {
     constructor(props) {
         super(props);
 
@@ -51,4 +51,4 @@ class Index extends React.Component {
     }
 }
 
-export default Index;
+export default IndexPage;

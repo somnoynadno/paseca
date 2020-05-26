@@ -9,6 +9,9 @@ const ITEMS_PER_PAGE = 5;
  Для использования необходимо унаследоваться
  и переопредлить коллбэки для запроса всех элементов
  и удаление одного из них.
+
+ Используется в ControlHarvestPage, HoneySalePage,
+ HoneyHarvestPage и PollenHarvestPage.
  */
 class TablePaginatorComponent extends React.Component {
     constructor(props) {

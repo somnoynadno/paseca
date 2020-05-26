@@ -6,17 +6,17 @@ import {
     withRouter
 } from "react-router-dom"
 
-import Index from "./pages/Index";
-import HoneyHarvest from "./pages/HoneyHarvest";
-import HoneySale from "./pages/HoneySale";
-import HoneySelectPage from "./pages/HoneySelectPage";
-import Wiki from "./pages/Wiki";
-import MyFarms from "./pages/MyFarms";
-import BeeFarm from "./pages/BeeFarm";
-import Login from "./pages/Login";
-import Preferences from "./pages/Preferences";
-import PollenHarvest from "./pages/PollenHarvest";
-import ControlHarvest from "./pages/ControlHarvest";
+import IndexPage from "./pages/IndexPage";
+import HoneyHarvestPage from "./pages/HoneyHarvestPage";
+import HoneySalePage from "./pages/HoneySalePage";
+import HoneySelectPagePage from "./pages/HoneySelectPagePage";
+import WikiIndexPage from "./pages/WikiIndexPage";
+import MyFarmsPage from "./pages/MyFarmsPage";
+import BeeFarmPage from "./pages/BeeFarmPage";
+import LoginPage from "./pages/LoginPage";
+import PreferencesPage from "./pages/PreferencesPage";
+import PollenHarvestPage from "./pages/PollenHarvestPage";
+import ControlHarvestPage from "./pages/ControlHarvestPage";
 
 
 class App extends Component {
@@ -26,17 +26,17 @@ class App extends Component {
         return (
             <div className="App">
                 <Switch>
-                    <Route history={history} exact path='/' component={Index} />
-                    <Route history={history} exact path='/login' component={Login} />
-                    <Route history={history} exact path='/bee_farm' component={BeeFarm} />
-                    <Route history={history} exact path='/honey_harvest' component={HoneyHarvest} />
-                    <Route history={history} exact path='/honey_sale' component={HoneySale} />
-                    <Route history={history} exact path='/control_harvest' component={ControlHarvest} />
-                    <Route history={history} exact path='/pollen_harvest' component={PollenHarvest} />
-                    <Route history={history} exact path='/honey_select' component={HoneySelectPage} />
-                    <Route history={history} exact path='/my_farms' component={MyFarms} />
-                    <Route history={history} exact path='/preferences' component={Preferences} />
-                    <Route history={history} exact path='/wiki' component={Wiki} />
+                    <Route history={history} exact path='/' component={IndexPage} />
+                    <Route history={history} exact path='/login' component={LoginPage} />
+                    <Route history={history} exact path='/bee_farm' component={BeeFarmPage} />
+                    <Route history={history} exact path='/honey_harvest' component={HoneyHarvestPage} />
+                    <Route history={history} exact path='/honey_sale' component={HoneySalePage} />
+                    <Route history={history} exact path='/control_harvest' component={ControlHarvestPage} />
+                    <Route history={history} exact path='/pollen_harvest' component={PollenHarvestPage} />
+                    <Route history={history} exact path='/honey_select' component={HoneySelectPagePage} />
+                    <Route history={history} exact path='/my_farms' component={MyFarmsPage} />
+                    <Route history={history} exact path='/preferences' component={PreferencesPage} />
+                    <Route history={history} exact path='/wiki' component={WikiIndexPage} />
                 </Switch>
             </div>
         );

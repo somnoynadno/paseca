@@ -5,8 +5,11 @@ import {Redirect} from "react-router-dom";
 import CreateBeeFarmForm from "../forms/create/CreateBeeFarmForm";
 import {GET_API} from "../http/GET_API";
 
-
-class MyFarms extends React.Component {
+/*
+ Страница выбора пользователем пасеки.
+ Переадресует на BeeFarmPage.
+ */
+class MyFarmsPage extends React.Component {
     constructor(props) {
         super(props);
 
@@ -107,4 +110,4 @@ class MyFarms extends React.Component {
     }
 }
 
-export default MyFarms;
+export default MyFarmsPage;

@@ -10,8 +10,12 @@ import CreateReminderForm from "../forms/create/CreateReminderForm";
 import CreateHiveForm from "../forms/create/CreateHiveForm";
 import {GET_API} from "../http/GET_API";
 
-
-class BeeFarm extends React.Component {
+/*
+ Страница с выбраной пользователем пасекой.
+ Принимает пасеку в location.props при переходе
+ с компонента MyFarmsPage.
+ */
+class BeeFarmPage extends React.Component {
     constructor(props) {
         super(props);
 
@@ -149,4 +153,4 @@ class BeeFarm extends React.Component {
     }
 }
 
-export default BeeFarm;
+export default BeeFarmPage;
