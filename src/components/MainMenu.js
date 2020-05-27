@@ -54,7 +54,7 @@ class MainMenu extends React.Component {
             <Menu size='huge' stackable fluid widths={5}>
                 <Menu.Item name='Главная' onClick={this.handleItemClick} >
                     <img src={bee} alt="..." />
-                    &nbsp;PASECA&nbsp;<i style={{fontSize: "8pt"}}>(v0.8)</i>
+                    &nbsp;PASECA&nbsp;<i style={{fontSize: "8pt"}}>(v0.9)</i>
                 </Menu.Item>
                 <Menu.Item
                     name='Мои пасеки'

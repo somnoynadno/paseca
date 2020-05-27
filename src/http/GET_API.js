@@ -9,7 +9,7 @@ export class GET_API extends API {
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
@@ -20,7 +20,7 @@ export class GET_API extends API {
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
@@ -31,7 +31,7 @@ export class GET_API extends API {
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
@@ -42,7 +42,7 @@ export class GET_API extends API {
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
@@ -53,7 +53,7 @@ export class GET_API extends API {
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
@@ -64,7 +64,7 @@ export class GET_API extends API {
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
@@ -76,7 +76,7 @@ export class GET_API extends API {
                     response.data.count = parseInt(response.headers["x-total-count"]);
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
@@ -88,7 +88,7 @@ export class GET_API extends API {
                     response.data.count = parseInt(response.headers["x-total-count"]);
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
@@ -100,7 +100,7 @@ export class GET_API extends API {
                     response.data.count = parseInt(response.headers["x-total-count"]);
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
@@ -111,7 +111,7 @@ export class GET_API extends API {
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
@@ -122,7 +122,7 @@ export class GET_API extends API {
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
@@ -134,7 +134,7 @@ export class GET_API extends API {
                     response.data.count = parseInt(response.headers["x-total-count"]);
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
@@ -145,7 +145,7 @@ export class GET_API extends API {
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
@@ -156,7 +156,7 @@ export class GET_API extends API {
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
@@ -167,7 +167,7 @@ export class GET_API extends API {
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
@@ -178,7 +178,7 @@ export class GET_API extends API {
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
@@ -189,7 +189,7 @@ export class GET_API extends API {
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
@@ -200,7 +200,7 @@ export class GET_API extends API {
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }

@@ -2,7 +2,7 @@ import React from "react";
 import {GET_API} from "../http/GET_API";
 import {DELETE_API} from "../http/DELETE_API";
 
-const ITEMS_PER_PAGE = 5;
+const ITEMS_PER_PAGE = 20;
 
 /*
  Базовый компонент для таблицы с пагинацией.

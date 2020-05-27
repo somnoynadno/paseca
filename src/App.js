@@ -17,6 +17,7 @@ import LoginPage from "./pages/LoginPage";
 import PreferencesPage from "./pages/PreferencesPage";
 import PollenHarvestPage from "./pages/PollenHarvestPage";
 import ControlHarvestPage from "./pages/ControlHarvestPage";
+import ErrorPage from "./helpers/ErrorPage";
 
 
 class App extends Component {
@@ -37,6 +38,7 @@ class App extends Component {
                     <Route history={history} exact path='/my_farms' component={MyFarmsPage} />
                     <Route history={history} exact path='/preferences' component={PreferencesPage} />
                     <Route history={history} exact path='/wiki' component={WikiIndexPage} />
+                    <Route history={history} exact path='/error' component={ErrorPage} />
                 </Switch>
             </div>
         );

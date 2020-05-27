@@ -15,7 +15,7 @@ export class POST_API extends API {
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
@@ -31,7 +31,7 @@ export class POST_API extends API {
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
@@ -48,7 +48,7 @@ export class POST_API extends API {
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
@@ -63,7 +63,7 @@ export class POST_API extends API {
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
@@ -78,7 +78,7 @@ export class POST_API extends API {
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
@@ -102,7 +102,7 @@ export class POST_API extends API {
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
@@ -118,7 +118,7 @@ export class POST_API extends API {
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
@@ -134,7 +134,7 @@ export class POST_API extends API {
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
@@ -149,7 +149,7 @@ export class POST_API extends API {
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
@@ -163,7 +163,7 @@ export class POST_API extends API {
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
@@ -174,7 +174,7 @@ export class POST_API extends API {
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
@@ -188,7 +188,7 @@ export class POST_API extends API {
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
@@ -202,7 +202,7 @@ export class POST_API extends API {
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
@@ -216,7 +216,7 @@ export class POST_API extends API {
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
@@ -229,7 +229,7 @@ export class POST_API extends API {
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
@@ -244,7 +244,7 @@ export class POST_API extends API {
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
