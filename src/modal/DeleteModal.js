@@ -1,7 +1,11 @@
 import {Button, Header, Icon, Modal} from "semantic-ui-react";
 import React from "react"
 
-
+/*
+ Модальное окно для удаление одного элемента.
+ В props принимается коллбэк для удаление,
+ вызываемый в случае подтверждения.
+ */
 class DeleteModal extends React.Component {
     state = { modalOpen: false }
 

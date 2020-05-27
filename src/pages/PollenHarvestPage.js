@@ -1,44 +1,19 @@
 import React from "react";
 import MainMenu from "../components/MainMenu"
-import {Button, Container, Grid, Loader, Modal, Segment, Table} from "semantic-ui-react";
+import {Button, Container, Grid, Icon, Loader, Modal, Pagination, Segment, Table} from "semantic-ui-react";
 import CreatePollenHarvestForm from "../forms/create/CreatePollenHarvestForm";
-import {GET_API} from "../http/GET_API";
 import DeleteModal from "../modal/DeleteModal";
-import {DELETE_API} from "../http/DELETE_API";
+import TablePaginatorComponent from "../components/TablePaginatorComponent";
 
-
-class PollenHarvest extends React.Component {
+/*
+ Страница сборов пыльцы
+ */
+class PollenHarvestPage extends TablePaginatorComponent {
     constructor(props) {
         super(props);
 
-        this.state = {
-            pollenHarvests: null,
-            harvestsNum: ''
-        }
-
-        this.getAPI = new GET_API();
-        this.deleteAPI = new DELETE_API();
-    }
-
-    deletePollenHarvest = async (id) => {
-        await this.deleteAPI.DeletePollenHarvestByID(id)
-            .then((resp) => {
-                if (resp.constructor !== Error) {
-                    // everything is fine => remove delete button
-                    document.getElementById("delete-cell-" + id).innerHTML = 'успешно удалено';
-                    document.getElementById("delete-cell-" + id).style.color = 'green';
-                } else {
-                    console.log(resp.message);
-                }
-            })
-    }
-
-    componentDidMount = async () => {
-        let harvests = await this.getAPI.GetUsersPollenHarvests();
-        this.setState({
-            pollenHarvests: harvests,
-            harvestsNum: harvests.length
-        });
+        this.getItemsCallback = this.getAPI.GetUsersPollenHarvests;
+        this.deleteItemCallback = this.deleteAPI.DeletePollenHarvestByID;
     }
 
     render() {
@@ -58,7 +33,7 @@ class PollenHarvest extends React.Component {
                                     size='medium'
                                     icon='pencil'
                                     floated='right'
-                                    label={{ basic: true, color: 'green', pointing: 'left', content: this.state.harvestsNum }}
+                                    label={{ basic: true, color: 'green', pointing: 'left', content: this.state.itemsCount }}
                                     style={{marginRight: "30px"}}
                                 />}>
                                     <Modal.Header>Добавить сбор</Modal.Header>
@@ -72,39 +47,51 @@ class PollenHarvest extends React.Component {
                     <Table celled>
                         <Table.Header>
                             <Table.Row>
-                                <Table.HeaderCell>Пасека</Table.HeaderCell>
-                                <Table.HeaderCell>Дата</Table.HeaderCell>
-                                <Table.HeaderCell>Количество (кг)</Table.HeaderCell>
+                                <Table.HeaderCell>Пасека&nbsp;
+                                    <Icon link name='arrow down' onClick={this.reorder.bind(this, "bee_farm_id")} />
+                                </Table.HeaderCell>
+                                <Table.HeaderCell>Дата&nbsp;
+                                    <Icon link name='arrow down' onClick={this.reorder.bind(this, "date")} />
+                                </Table.HeaderCell>
+                                <Table.HeaderCell>Количество (кг)&nbsp;
+                                    <Icon link name='arrow down' onClick={this.reorder.bind(this, "amount")} />
+                                </Table.HeaderCell>
                                 <Table.HeaderCell>Опции</Table.HeaderCell>
                             </Table.Row>
                         </Table.Header>
 
                         <Table.Body>
-                            {this.state.pollenHarvests === null ? <Table.Row><Loader active inline /></Table.Row> :
-                                this.state.pollenHarvests.map((s) => {
+                            {this.state.items === null ? <Table.Row><Loader active inline /></Table.Row> :
+                                this.state.items.map((item) => {
                                     return <Table.Row>
-                                        <Table.Cell>{s["bee_farm"].name}</Table.Cell>
+                                        <Table.Cell>{item["bee_farm"].name}</Table.Cell>
                                         <Table.Cell>
-                                            {s["date"] === null ? '' :
-                                                (new Date(s["date"])).toLocaleString('ru', {
+                                            {item["date"] === null ? '' :
+                                                (new Date(item["date"])).toLocaleString('ru', {
                                                     year: 'numeric',
                                                     month: 'long',
                                                     day: 'numeric',})
                                             }
                                         </Table.Cell>
-                                        <Table.Cell>{s["amount"]}</Table.Cell>
-                                        <Table.Cell id={"delete-cell-" + s.id}>
-                                            <DeleteModal deleteCallback={this.deletePollenHarvest.bind(this, s.id)} />
+                                        <Table.Cell>{item["amount"]}</Table.Cell>
+                                        <Table.Cell id={"delete-cell-" + item.id}>
+                                            <DeleteModal deleteCallback={this.deleteItem.bind(this, item.id)} />
                                         </Table.Cell>
                                     </Table.Row>
                                 })
                             }
                         </Table.Body>
                     </Table>
+                    <Pagination style={{float: "right"}}
+                                activePage={this.state.activePage}
+                                onPageChange={this.handlePaginationChange}
+                                size='mini'
+                                totalPages={this.state.totalPages}
+                    /><div style={{clear: "both"}} />
                 </Segment>
             </Container>
         </div>
     }
 }
 
-export default PollenHarvest;
+export default PollenHarvestPage;

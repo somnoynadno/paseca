@@ -3,8 +3,10 @@ import MainMenu from "../components/MainMenu"
 import {Container, Message, Segment} from "semantic-ui-react";
 import {GET_API} from "../http/GET_API";
 
-
-class Index extends React.Component {
+/*
+ Стартовая страница с новостями платформы.
+ */
+class IndexPage extends React.Component {
     constructor(props) {
         super(props);
 
@@ -49,4 +51,4 @@ class Index extends React.Component {
     }
 }
 
-export default Index;
+export default IndexPage;

@@ -3,7 +3,10 @@ import MainMenu from "../components/MainMenu"
 import {Container, Message, Grid} from "semantic-ui-react";
 
 
-class Wiki extends React.Component {
+/*
+ Главная страница вики
+ */
+class WikiIndexPage extends React.Component {
     // constructor(props) {
     //     super(props);
     // }
@@ -28,4 +31,4 @@ class Wiki extends React.Component {
     }
 }
 
-export default Wiki;
+export default WikiIndexPage;

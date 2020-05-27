@@ -4,217 +4,203 @@ import {API} from "./API";
 // API file to send GET requests
 export class GET_API extends API {
     GetLastNews() {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.get(`/lk/news`)
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
 
     GetUserInfo() {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.get(`/lk/user`)
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
 
     GetBeeFarms() {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.get(`/lk/bee_farms`)
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
 
     GetBeeFarmByID(id) {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.get(`/lk/bee_farm/` + id)
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
 
     GetBeeFarmTypes() {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.get(`/lk/bee_farm_types`)
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
 
     GetBeeFarmSizes() {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.get(`/lk/bee_farm_sizes`)
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
 
-    GetUsersHoneySales() {
-        this.CheckToken();
+    GetUsersHoneySales(sort, order, start, end) {
         return new Promise((resolve) => {
-            HTTP.axios.get(`/lk/honey_sales`)
+            HTTP.axios.get(`/lk/honey_sales?_sort=${sort}&_order=${order}&_start=${start}&_end=${end}`)
                 .then(response =>{
+                    response.data.count = parseInt(response.headers["x-total-count"]);
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
 
-    GetUsersPollenHarvests() {
-        this.CheckToken();
+    GetUsersPollenHarvests(sort, order, start, end) {
         return new Promise((resolve) => {
-            HTTP.axios.get(`/lk/pollen_harvests`)
+            HTTP.axios.get(`/lk/pollen_harvests?_sort=${sort}&_order=${order}&_start=${start}&_end=${end}`)
                 .then(response =>{
+                    response.data.count = parseInt(response.headers["x-total-count"]);
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
 
-    GetUsersControlHarvests() {
-        this.CheckToken();
+    GetUsersControlHarvests(sort, order, start, end) {
         return new Promise((resolve) => {
-            HTTP.axios.get(`/lk/control_harvests`)
+            HTTP.axios.get(`/lk/control_harvests?_sort=${sort}&_order=${order}&_start=${start}&_end=${end}`)
                 .then(response =>{
+                    response.data.count = parseInt(response.headers["x-total-count"]);
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
 
     GetBeeBreeds() {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.get(`/lk/bee_breeds`)
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
 
     GetBeeFamilyStatuses() {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.get(`/lk/bee_family_statuses`)
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
 
-    GetUsersHoneyHarvests() {
-        this.CheckToken();
+    GetUsersHoneyHarvests(sort, order, start, end) {
         return new Promise((resolve) => {
-            HTTP.axios.get(`/lk/honey_harvests`)
+            HTTP.axios.get(`/lk/honey_harvests?_sort=${sort}&_order=${order}&_start=${start}&_end=${end}`)
                 .then(response =>{
+                    response.data.count = parseInt(response.headers["x-total-count"]);
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
 
     GetHoneyTypes() {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.get(`/lk/honey_types`)
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
 
     GetHiveFrameTypes() {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.get(`/lk/hive_frame_types`)
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
 
     GetHiveFormats() {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.get(`/lk/hive_formats`)
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
 
     GetUsersBeeFamilies() {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.get(`/lk/bee_families`)
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
 
     GetUsersBeeFamiliesWithoutHives() {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.get(`/lk/bee_families_without_hives`)
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
 
     GetUsersFreeHives() {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.get(`/lk/hives`)
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }

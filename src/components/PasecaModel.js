@@ -6,6 +6,11 @@ import ChooseBeeFamilyToHiveForm from "../forms/choose/ChooseBeeFamilyToHiveForm
 import ChooseHiveForm from "../forms/choose/ChooseHiveForm";
 import {POST_API} from "../http/POST_API";
 
+/*
+ Компонент схемы пасеки. Принимает в props
+ размер схемы и пасеку с подгруженными
+ ульями и пчелосемьями.
+ */
 class PasecaModel extends React.Component {
     constructor(props) {
         super(props);

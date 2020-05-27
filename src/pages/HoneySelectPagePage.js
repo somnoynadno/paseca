@@ -3,8 +3,11 @@ import MainMenu from "../components/MainMenu"
 import {Button, Container, Divider, Grid, Segment} from "semantic-ui-react";
 import {Redirect} from "react-router-dom";
 
-
-class HoneySelectPage extends React.Component {
+/*
+ Компонент, представляющий подменю для
+ выбора следующей страницы
+ */
+class HoneySelectPagePage extends React.Component {
     constructor(props) {
         super(props);
 
@@ -76,4 +79,4 @@ class HoneySelectPage extends React.Component {
     }
 }
 
-export default HoneySelectPage;
+export default HoneySelectPagePage;

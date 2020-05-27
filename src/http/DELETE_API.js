@@ -4,145 +4,133 @@ import {HTTP} from "./http-common";
 // API file to send DELETE requests
 export class DELETE_API extends API {
     DeleteBeeBreedByID(id) {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.delete(`/lk/bee_breed/` + id)
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
 
     DeleteHiveFormatByID(id) {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.delete(`/lk/hive_format/` + id)
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
 
     DeleteHiveFrameTypeByID(id) {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.delete(`/lk/hive_frame_type/` + id)
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
 
     DeleteHoneyTypeByID(id) {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.delete(`/lk/honey_type/` + id)
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
 
     DeleteHiveByID(id) {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.delete(`/lk/hive/` + id)
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
 
     DeleteBeeFarmByID(id) {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.delete(`/lk/bee_farm/` + id)
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
 
     DeleteBeeFamilyByID(id) {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.delete(`/lk/bee_family/` + id)
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
 
     DeleteReminderByID(id) {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.delete(`/lk/reminder/` + id)
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
 
     DeleteHoneySaleByID(id) {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.delete(`/lk/honey_sale/` + id)
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
 
     DeleteHoneyHarvestByID(id) {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.delete(`/lk/honey_harvest/` + id)
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
 
     DeleteControlHarvestByID(id) {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.delete(`/lk/control_harvest/` + id)
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }
 
     DeletePollenHarvestByID(id) {
-        this.CheckToken();
         return new Promise((resolve) => {
             HTTP.axios.delete(`/lk/pollen_harvest/` + id)
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {
-                console.log(error);
+                HTTP.handleError(error);
             });
         })
     }

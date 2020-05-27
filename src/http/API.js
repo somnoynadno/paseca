@@ -1,14 +1,9 @@
 import axios from 'axios'
-import {HTTP} from './http-common';
 import {apiAddress} from '../options'
 
-// base API class
-// TODO: add better error handler
+// Базовый класс API. Использует HTTP из http-common.
+// Большинство ошибок передаётся в обработчик этой же структуры.
 export class API {
-    CheckToken() {
-        HTTP.InitToken();
-    }
-
     // AUTH
     LoginUser(email, password) {
         return new Promise((resolve) => {
