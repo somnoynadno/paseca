@@ -26,7 +26,8 @@ class ChooseHiveForm extends React.Component {
                 this.setState({errorText: "Вы заполнили не все поля"})
             } else {
                 this.setState({errorText: ""})
-                await this.postAPI.SetHiveCoords(this.state.hive_id, this.state.coord_x, this.state.coord_y)
+                await this.postAPI.SetHiveCoords(this.state.hive_id,
+                    this.state.coord_x, this.state.coord_y, this.props.beeFarmID)
                     .then((resp) => {
                         if (resp.constructor !== Error) {
                             // everything is fine => reload page

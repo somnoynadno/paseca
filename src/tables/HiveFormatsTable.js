@@ -40,7 +40,7 @@ class HiveFormatsTable extends React.Component {
         else return <div>
             <Modal trigger={<Button
                 color='green'
-                content='Новая формат улья'
+                content='Новый формат улья'
                 size='medium'
                 icon='add'
                 floated='right'

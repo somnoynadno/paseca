@@ -24,11 +24,14 @@ class BeeFarmPage extends React.Component {
         } else this.farmID = this.props.location.state.farmID;
 
         this.state = {
-            activeItem: null,
+            activeItem: (localStorage.getItem( 'bee_farm_active_item' ) || null),
             beeFarm: null
         }
 
-        this.handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+        this.handleItemClick = (e, { name }) => {
+            this.setState({ activeItem: name })
+            localStorage.setItem("bee_farm_active_item", name)
+        }
 
         this.api = new GET_API();
     }

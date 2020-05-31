@@ -139,12 +139,13 @@ export class POST_API extends API {
         })
     }
 
-    SetHiveCoords(hiveID, coordX, coordY) {
+    SetHiveCoords(hiveID, coordX, coordY, beeFarmID) {
         return new Promise((resolve) => {
             HTTP.axios.post(`/lk/hive/set_coords`, {
                 hive_id: parseInt(hiveID),
                 coord_x: parseInt(coordX),
                 coord_y: parseInt(coordY),
+                bee_farm_id: parseInt(beeFarmID)
             })
                 .then(response =>{
                     resolve(response.data);

@@ -14,10 +14,13 @@ class CustomTypes extends React.Component {
         super(props);
 
         this.state = {
-            activeItem: null
+            activeItem: (localStorage.getItem('custom_types_active_item' ) || null)
         }
 
-        this.handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+        this.handleItemClick = (e, { name }) => {
+            this.setState({ activeItem: name })
+            localStorage.setItem('custom_types_active_item', name)
+        }
     }
 
     render() {
