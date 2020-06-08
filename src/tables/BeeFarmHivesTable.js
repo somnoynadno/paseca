@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, Table} from "semantic-ui-react";
+import {Table} from "semantic-ui-react";
 import DeleteModal from "../modal/DeleteModal";
 import {DELETE_API} from "../http/DELETE_API";
 
@@ -48,7 +48,6 @@ class BeeFarmHivesTable extends React.Component {
                                 {hive["coord_x"] !== null && hive["coord_y"] !== null ? 'Да' : 'Нет'}
                             </Table.Cell>
                             <Table.Cell id={"delete-cell-" + hive.id}>
-                                <Button>Просмотр</Button>
                                 <DeleteModal deleteCallback={this.deleteHive.bind(this, hive.id)} />
                             </Table.Cell>
                         </Table.Row>

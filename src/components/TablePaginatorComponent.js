@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import {GET_API} from "../http/GET_API";
 import {DELETE_API} from "../http/DELETE_API";
 
@@ -13,7 +14,13 @@ const ITEMS_PER_PAGE = 20;
  Используется в ControlHarvestPage, HoneySalePage,
  HoneyHarvestPage и PollenHarvestPage.
  */
+
 class TablePaginatorComponent extends React.Component {
+    propTypes = {
+        getItemsCallback : PropTypes.func.isRequired,
+        deleteItemCallback: PropTypes.func.isRequired
+    }
+
     constructor(props) {
         super(props);
 

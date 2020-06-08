@@ -180,6 +180,17 @@ export class POST_API extends API {
         })
     }
 
+    DoInspectionByID(id) {
+        return new Promise((resolve) => {
+            HTTP.axios.post(`/lk/do_bee_family_inspection/` + id)
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                HTTP.handleError(error);
+            });
+        })
+    }
+
     CreateCustomBeeBreed(name, description) {
         return new Promise((resolve) => {
             HTTP.axios.post(`/lk/bee_breed`, {
