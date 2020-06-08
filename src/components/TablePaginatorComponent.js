@@ -16,9 +16,9 @@ const ITEMS_PER_PAGE = 20;
  */
 
 class TablePaginatorComponent extends React.Component {
-    propTypes = {
-        getItemsCallback : PropTypes.func.isRequired,
-        deleteItemCallback: PropTypes.func.isRequired
+    static propTypes = {
+        getItemsCallback : PropTypes.func,
+        deleteItemCallback: PropTypes.func
     }
 
     constructor(props) {

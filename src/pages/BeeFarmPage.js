@@ -41,58 +41,16 @@ class BeeFarmPage extends React.Component {
         this.setState({beeFarm: farm});
     }
 
-
     render() {
         return <div>
             <Container>
                 <MainMenu activeItem={'Мои пасеки'} />
                 {this.state.beeFarm === null ? <Segment style={{minHeight: "100px"}} loading /> :
                 <Segment>
-                    <Grid>
+                    <Grid stackable>
                         <Grid.Row columns={3} >
                             <Grid.Column>
                                 <h1 style={{textAlign: "center"}}>{this.state.beeFarm.name}</h1>
-                            </Grid.Column>
-                            <Grid.Column width={10}>
-                                <Modal trigger={<Button
-                                    color='yellow'
-                                    content='Создать семью'
-                                    size='medium'
-                                    icon='add'
-                                    floated='right'
-                                    style={{margin: "0 10px"}}
-                                />}>
-                                    <Modal.Header>Новая семья</Modal.Header>
-                                    <Modal.Content>
-                                        <CreateBeeFamilyForm beeFarmID={this.state.beeFarm.id} />
-                                    </Modal.Content>
-                                </Modal>
-                                <Modal trigger={<Button
-                                    color='orange'
-                                    content='Добавить улей'
-                                    size='medium'
-                                    icon='archive'
-                                    floated='right'
-                                    style={{margin: "0 10px"}}
-                                />}>
-                                    <Modal.Header>Новый улей</Modal.Header>
-                                    <Modal.Content>
-                                        <CreateHiveForm beeFarmID={this.state.beeFarm.id} />
-                                    </Modal.Content>
-                                </Modal>
-                                <Modal trigger={<Button
-                                    color='red'
-                                    content='Создать напоминание'
-                                    size='medium'
-                                    icon='attention'
-                                    floated='right'
-                                    style={{margin: "0 10px"}}
-                                />}>
-                                    <Modal.Header>Новое напоминание</Modal.Header>
-                                    <Modal.Content>
-                                        <CreateReminderForm beeFarmID={this.state.beeFarm.id} />
-                                    </Modal.Content>
-                                </Modal>
                             </Grid.Column>
                         </Grid.Row>
                         <Grid.Row style={{paddingLeft: "30px"}}>
@@ -100,6 +58,55 @@ class BeeFarmPage extends React.Component {
                                          maxY={this.state.beeFarm["bee_farm_size"]["max_y"]}
                                          beeFarm={this.state.beeFarm}
                             />
+                            <Grid.Column floated='right' width={5} style={{marginTop: "20px"}}>
+                                <Button.Group vertical>
+                                    <Modal trigger={<Button
+                                        color='green'
+                                        content='Создать напоминание'
+                                        size='medium'
+                                        icon='attention'
+                                    />}>
+                                        <Modal.Header>Новое напоминание</Modal.Header>
+                                        <Modal.Content>
+                                            <CreateReminderForm beeFarmID={this.state.beeFarm.id} />
+                                        </Modal.Content>
+                                    </Modal>
+                                    <Modal trigger={<Button
+                                        color='olive'
+                                        content='Добавить семью'
+                                        size='medium'
+                                        icon='add'
+                                    />}>
+                                        <Modal.Header>Новая семья</Modal.Header>
+                                        <Modal.Content>
+                                            <CreateBeeFamilyForm beeFarmID={this.state.beeFarm.id} />
+                                        </Modal.Content>
+                                    </Modal>
+                                    <Modal trigger={<Button
+                                        color='yellow'
+                                        content='Добавить улей'
+                                        size='medium'
+                                        icon='archive'
+                                    />}>
+                                        <Modal.Header>Новый улей</Modal.Header>
+                                        <Modal.Content>
+                                            <CreateHiveForm beeFarmID={this.state.beeFarm.id} />
+                                        </Modal.Content>
+                                    </Modal>
+                                    <Button
+                                        color='orange'
+                                        content='Создать роение'
+                                        size='medium'
+                                        icon='sun outline'
+                                    />
+                                    <Button
+                                        color='red'
+                                        content='Новая болезнь'
+                                        size='medium'
+                                        icon='stethoscope'
+                                    />
+                                </Button.Group>
+                            </Grid.Column>
                         </Grid.Row>
                         <Grid.Row style={{paddingLeft: "30px"}}>
                             <Modal trigger={<Button
@@ -143,7 +150,11 @@ class BeeFarmPage extends React.Component {
                                             <BeeFarmHivesTable beeFarm={this.state.beeFarm} />
                                             : this.state.activeItem === 'Напоминания' ?
                                                 <BeeFarmRemindersTable beeFarm={this.state.beeFarm} />
-                                                : ''
+                                                // : this.state.activeItem === 'Роения' ?
+                                                //     <BeeFarmSwarmsTable beeFarm={this.state.beeFarm} />
+                                                //     : this.state.activeItem === 'Болезни' ?
+                                                //         <BeeFarmBeeDiseasesTable beeFarm={this.state.beeFarm} />
+                                                        : ''
                                     }
                                 </Segment>
                             </Grid.Column>

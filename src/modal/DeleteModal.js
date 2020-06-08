@@ -10,7 +10,7 @@ import PropTypes from "prop-types";
 class DeleteModal extends React.Component {
     state = { modalOpen: false }
 
-    propTypes = {
+    static propTypes = {
         deleteCallback : PropTypes.func.isRequired
     }
 
