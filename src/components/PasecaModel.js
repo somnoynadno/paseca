@@ -39,7 +39,7 @@ class PasecaModel extends React.Component {
     }
 
     async removeHive(hiveID) {
-        await this.api.SetHiveCoords(hiveID, null, null)
+        await this.api.SetHiveCoords(hiveID, null, null, this.state.beeFarm.id)
             .then((resp) => {
                 if (resp.constructor !== Error) {
                     // everything is fine => reload page
@@ -55,7 +55,7 @@ class PasecaModel extends React.Component {
             let columns = [];
             for (let j = 0; j < this.maxX; j++) {
                 let color = "white";
-                let action = <ChooseHiveForm coordX={j} coordY={i} /> ;
+                let action = <ChooseHiveForm coordX={j} coordY={i} beeFarmID={this.state.beeFarm.id} /> ;
 
                 // check for hive
                 for (let hive of this.hives) {

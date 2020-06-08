@@ -139,12 +139,13 @@ export class POST_API extends API {
         })
     }
 
-    SetHiveCoords(hiveID, coordX, coordY) {
+    SetHiveCoords(hiveID, coordX, coordY, beeFarmID) {
         return new Promise((resolve) => {
             HTTP.axios.post(`/lk/hive/set_coords`, {
                 hive_id: parseInt(hiveID),
                 coord_x: parseInt(coordX),
                 coord_y: parseInt(coordY),
+                bee_farm_id: parseInt(beeFarmID)
             })
                 .then(response =>{
                     resolve(response.data);
@@ -171,6 +172,17 @@ export class POST_API extends API {
     CheckReminderByID(id) {
         return new Promise((resolve) => {
             HTTP.axios.post(`/lk/check_reminder/` + id)
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                HTTP.handleError(error);
+            });
+        })
+    }
+
+    DoInspectionByID(id) {
+        return new Promise((resolve) => {
+            HTTP.axios.post(`/lk/do_bee_family_inspection/` + id)
                 .then(response =>{
                     resolve(response.data);
                 }).catch(function(error) {

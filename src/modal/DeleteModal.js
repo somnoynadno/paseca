@@ -1,5 +1,6 @@
 import {Button, Header, Icon, Modal} from "semantic-ui-react";
 import React from "react"
+import PropTypes from "prop-types";
 
 /*
  Модальное окно для удаление одного элемента.
@@ -8,6 +9,10 @@ import React from "react"
  */
 class DeleteModal extends React.Component {
     state = { modalOpen: false }
+
+    static propTypes = {
+        deleteCallback : PropTypes.func.isRequired
+    }
 
     handleOpen = () => this.setState({ modalOpen: true })
 
