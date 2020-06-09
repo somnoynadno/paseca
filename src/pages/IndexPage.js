@@ -27,11 +27,11 @@ class IndexPage extends React.Component {
     render() {
         return <div>
             <Container>
-                <MainMenu activeItem={null} />
+                <MainMenu activeItem={"Главная"} />
                     <Segment><h1 style={{textAlign: "center"}}>Новости платформы</h1>
                         {this.state.news === null ? <Segment style={{minHeight: "100px"}} loading /> :
                             this.state.news.map((n) => {
-                            return <Message size="large">
+                            return <Message key={n.id} size="large">
                                 <Message.Header>{n.title}</Message.Header>
                                 <p>{(new Date(n["updated_at"])).toLocaleString('ru', {
                                     year: 'numeric',
@@ -39,8 +39,8 @@ class IndexPage extends React.Component {
                                     day: 'numeric',
                                 })}</p>
                                 <p>
-                                    {n.text.split('\n').map((text) => {
-                                        return <p>{text}</p>
+                                    {n.text.split('\n').map((text, index) => {
+                                        return <span key={index}>{text}<br /></span>
                                     })}
                                 </p>
                             </Message>

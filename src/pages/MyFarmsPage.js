@@ -1,7 +1,6 @@
 import React from "react";
 import MainMenu from "../components/menu/MainMenu"
 import {Button, Card, Container, Grid, Icon, Modal, Segment} from "semantic-ui-react";
-import {Redirect} from "react-router-dom";
 import CreateBeeFarmForm from "../components/forms/bee_farm/create/CreateBeeFarmForm";
 import {GET_API} from "../http/GET_API";
 
@@ -45,11 +44,14 @@ class MyFarmsPage extends React.Component {
     render() {
         const { referrer, farmID } = this.state;
 
-        if (referrer && farmID) return <Redirect to={{
-            pathname: referrer,
-            state: { farmID: farmID }
-        }} />;
-        else return <div>
+        if (referrer && farmID) {
+            this.props.history.push({
+                pathname: referrer,
+                state: { farmID: farmID }
+            });
+        }
+
+        return <div>
             <Container>
                 <MainMenu activeItem={'Мои пасеки'} />
                 <Segment>
@@ -78,7 +80,7 @@ class MyFarmsPage extends React.Component {
                     <Card.Group>
                         {this.state.beeFarms === null ? <Segment style={{minHeight: "100px", width: "100%"}} loading /> :
                             this.state.beeFarms.map((farm) => {
-                                return <Card name={farm.id} onClick={this.handleItemClick.bind(this)}>
+                                return <Card key={farm.id} name={farm.id} onClick={this.handleItemClick}>
                                     <Card.Content>
                                         <Card.Header>{farm.name}</Card.Header>
                                         <Card.Meta>

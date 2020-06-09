@@ -6,7 +6,7 @@ import DeleteModal from "../components/modal/DeleteModal";
 import TablePaginatorComponent from "../components/other/TablePaginatorComponent";
 
 /*
- Страница котрольных сборов
+ Страница контрольных сборов
  */
 class ControlHarvestPage extends TablePaginatorComponent {
     constructor(props) {
@@ -61,9 +61,11 @@ class ControlHarvestPage extends TablePaginatorComponent {
                         </Table.Header>
 
                         <Table.Body>
-                            {this.state.items === null ? <Table.Row><Loader active inline /></Table.Row> :
+                            {this.state.items === null ? <Table.Row>
+                                    <Table.Cell><Loader active inline /></Table.Cell>
+                                </Table.Row> :
                                 this.state.items.map((item) => {
-                                    return <Table.Row>
+                                    return <Table.Row key={item.id}>
                                         <Table.Cell>{item["bee_family"].name}</Table.Cell>
                                         <Table.Cell>
                                             {item["date"] === null ? '' :

@@ -1,7 +1,6 @@
 import React from "react";
 import MainMenu from "../components/menu/MainMenu"
 import {Button, Container, Divider, Grid, Segment} from "semantic-ui-react";
-import {Redirect} from "react-router-dom";
 
 /*
  Компонент, представляющий подменю для
@@ -35,8 +34,11 @@ class HoneySelectPagePage extends React.Component {
     render() {
         const { referrer } = this.state;
 
-        if (referrer) return <Redirect to={referrer} />;
-        else return <div>
+        if (referrer) this.props.history.push({
+            pathname: referrer,
+        });
+
+        return <div>
             <Container>
                 <MainMenu activeItem={'Медосбор'} />
                 <Segment placeholder>

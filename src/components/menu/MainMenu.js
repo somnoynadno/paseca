@@ -1,6 +1,5 @@
 import React from 'react'
 import { Menu } from 'semantic-ui-react'
-import {Redirect} from "react-router-dom";
 
 import bee from '../../assets/bee.png'
 import PropTypes from "prop-types";
@@ -54,8 +53,10 @@ class MainMenu extends React.Component {
         const { activeItem } = this.state;
         const { referrer } = this.state;
 
-        if (referrer) return <Redirect to={referrer} />;
-        else return (
+        if (referrer) this.props.history.push({
+            pathname: referrer,
+        });
+        return (
             <Menu size='huge' stackable fluid widths={5}>
                 <Menu.Item name='Главная' onClick={this.handleItemClick} >
                     <img src={bee} alt="..." />
