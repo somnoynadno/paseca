@@ -40,7 +40,7 @@ class HoneySelectPagePage extends React.Component {
 
         return <div>
             <Container>
-                <MainMenu activeItem={'Медосбор'} />
+                <MainMenu activeItem={'Медосбор'} history={this.props.history} />
                 <Segment placeholder>
                     <Grid columns={2} relaxed='very' stackable padded='horizontally'>
                         <Grid.Column verticalAlign='middle' textAlign='center'>

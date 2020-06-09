@@ -1,15 +1,13 @@
 import React from "react";
 import MainMenu from "../components/menu/MainMenu"
-import {Button, Container, Grid, Menu, Modal, Segment} from "semantic-ui-react";
+import {Button, Container, Grid, Modal, Segment} from "semantic-ui-react";
 import PasecaModel from "../components/other/PasecaModel";
-import BeeFamiliesTable from "../components/tables/bee_farm/BeeFamiliesTable";
-import HivesTable from "../components/tables/bee_farm/HivesTable";
-import RemindersTable from "../components/tables/bee_farm/RemindersTable";
 import CreateBeeFamilyForm from "../components/forms/bee_farm/create/CreateBeeFamilyForm";
 import CreateReminderForm from "../components/forms/bee_farm/create/CreateReminderForm";
 import CreateHiveForm from "../components/forms/bee_farm/create/CreateHiveForm";
 import {GET_API} from "../http/GET_API";
 import EditBeeFarmForm from "../components/forms/bee_farm/edit/EditBeeFarmForm";
+import BeeFarmMenu from "../components/menu/BeeFarmMenu";
 
 /*
  Страница с выбраной пользователем пасекой.
@@ -43,10 +41,14 @@ class BeeFarmPage extends React.Component {
     }
 
     render() {
-        return <div>
+        if (this.state.beeFarm === null) return (<Container>
+            <MainMenu activeItem={'Мои пасеки'} history={this.props.history} />
+            <Segment style={{minHeight: "180px"}} loading />
+        </Container>
+        )
+        else return (
             <Container>
-                <MainMenu activeItem={'Мои пасеки'} />
-                {this.state.beeFarm === null ? <Segment style={{minHeight: "100px"}} loading /> :
+                <MainMenu activeItem={'Мои пасеки'} history={this.props.history} />
                 <Segment>
                     <Grid stackable>
                         <Grid.Row columns={3} >
@@ -122,49 +124,11 @@ class BeeFarmPage extends React.Component {
                                 </Modal.Content>
                             </Modal>
                         </Grid.Row>
-                        <Grid.Row columns={1}>
-                            <Grid.Column>
-                                <Menu stackable pointing secondary>
-                                    <Menu.Item
-                                        name='Семьи'
-                                        active={this.state.activeItem === 'Семьи'}
-                                        onClick={this.handleItemClick}
-                                    />
-                                    <Menu.Item
-                                        name='Ульи'
-                                        active={this.state.activeItem === 'Ульи'}
-                                        onClick={this.handleItemClick}
-                                    />
-                                    <Menu.Item
-                                        name='Напоминания'
-                                        active={this.state.activeItem === 'Напоминания'}
-                                        onClick={this.handleItemClick}
-                                    />
-                                </Menu>
-                            </Grid.Column>
-
-                            <Grid.Column>
-                                <Segment>
-                                    {this.state.activeItem === 'Семьи' ?
-                                        <BeeFamiliesTable beeFarm={this.state.beeFarm} />
-                                        : this.state.activeItem === 'Ульи' ?
-                                            <HivesTable beeFarm={this.state.beeFarm} />
-                                            : this.state.activeItem === 'Напоминания' ?
-                                                <RemindersTable beeFarm={this.state.beeFarm} />
-                                                // : this.state.activeItem === 'Роения' ?
-                                                //     <BeeFarmSwarmsTable beeFarm={this.state.beeFarm} />
-                                                //     : this.state.activeItem === 'Болезни' ?
-                                                //         <BeeFarmBeeDiseasesTable beeFarm={this.state.beeFarm} />
-                                                        : ''
-                                    }
-                                </Segment>
-                            </Grid.Column>
-                        </Grid.Row>
                     </Grid>
+                    <BeeFarmMenu beeFarm={this.state.beeFarm} />
                 </Segment>
-                }
             </Container>
-        </div>
+        )
     }
 }
 

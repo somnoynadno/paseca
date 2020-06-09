@@ -14,7 +14,7 @@ class WikiIndexPage extends React.Component {
     render() {
         return <div>
             <Container>
-                <MainMenu activeItem={'Вики'} />
+                <MainMenu activeItem={'Вики'} history={this.props.history} />
                 <Grid centered columns={4}>
                     <Grid.Column>
                         <Message compact>

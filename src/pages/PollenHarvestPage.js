@@ -19,7 +19,7 @@ class PollenHarvestPage extends TablePaginatorComponent {
     render() {
         return <div>
             <Container>
-                <MainMenu activeItem={'Медосбор'} />
+                <MainMenu activeItem={'Медосбор'} history={this.props.history} />
                 <Segment>
                     <Grid>
                         <Grid.Row columns={2} relaxed='very'>

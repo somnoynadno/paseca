@@ -6,11 +6,12 @@ import PropTypes from "prop-types";
 
 /*
  Главное меню. Рендерится на каждой странице.
- В props принимается активный элемент.
+ В props принимается активный элемент и история.
  */
 class MainMenu extends React.Component {
     static propTypes = {
-        activeItem : PropTypes.string.isRequired
+        activeItem : PropTypes.string.isRequired,
+        history: PropTypes.any.isRequired
     }
 
     constructor(props) {

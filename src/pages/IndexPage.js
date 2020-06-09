@@ -27,7 +27,7 @@ class IndexPage extends React.Component {
     render() {
         return <div>
             <Container>
-                <MainMenu activeItem={"Главная"} />
+                <MainMenu activeItem={"Главная"} history={this.props.history} />
                     <Segment><h1 style={{textAlign: "center"}}>Новости платформы</h1>
                         {this.state.news === null ? <Segment style={{minHeight: "100px"}} loading /> :
                             this.state.news.map((n) => {

@@ -38,7 +38,7 @@ class PreferencesPage extends React.Component {
     render() {
         return <div>
             <Container>
-                <MainMenu activeItem={'Личный кабинет'} />
+                <MainMenu activeItem={'Личный кабинет'} history={this.props.history} />
                 <Segment>
                 <Grid columns={4} divided stackable>
                     <Grid.Row>

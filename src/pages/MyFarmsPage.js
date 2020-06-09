@@ -53,7 +53,7 @@ class MyFarmsPage extends React.Component {
 
         return <div>
             <Container>
-                <MainMenu activeItem={'Мои пасеки'} />
+                <MainMenu activeItem={'Мои пасеки'} history={this.props.history} />
                 <Segment>
                     <Grid>
                         <Grid.Row columns={2} relaxed='very'>

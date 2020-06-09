@@ -15,7 +15,7 @@ class ErrorPage extends React.Component {
     render() {
         return <div>
             <Container>
-                <MainMenu activeItem={null} />
+                <MainMenu activeItem={null} history={this.props.history} />
                 <Segment style={{padding: "20px"}}>
                     <h1 style={{textAlign: "center"}}>Упс! Кажется, что-то пошло не так...</h1>
                     <hr /><br />
