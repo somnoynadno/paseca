@@ -1,9 +1,9 @@
 import React from "react";
-import MainMenu from "../components/MainMenu"
+import MainMenu from "../components/menu/MainMenu"
 import {Button, Container, Grid, Icon, Loader, Modal, Pagination, Segment, Table} from "semantic-ui-react";
-import CreateControlHarvestForm from "../forms/create/CreateControlHarvestForm";
-import DeleteModal from "../modal/DeleteModal";
-import TablePaginatorComponent from "../components/TablePaginatorComponent";
+import CreateControlHarvestForm from "../components/forms/harvests/CreateControlHarvestForm";
+import DeleteModal from "../components/modal/DeleteModal";
+import TablePaginatorComponent from "../components/other/TablePaginatorComponent";
 
 /*
  Страница котрольных сборов

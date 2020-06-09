@@ -1,5 +1,5 @@
 import React from "react";
-import MainMenu from "../components/MainMenu"
+import MainMenu from "../components/menu/MainMenu"
 import {Container, Message, Grid} from "semantic-ui-react";
 
 

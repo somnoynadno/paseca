@@ -1,5 +1,5 @@
 import React from "react";
-import MainMenu from "../components/MainMenu"
+import MainMenu from "../components/menu/MainMenu"
 import {Button, Container, Divider, Grid, Segment} from "semantic-ui-react";
 import {Redirect} from "react-router-dom";
 

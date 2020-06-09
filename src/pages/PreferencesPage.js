@@ -1,9 +1,9 @@
 import React from "react";
-import MainMenu from "../components/MainMenu"
+import MainMenu from "../components/menu/MainMenu"
 import {Button, Container, Grid, Image, Modal, Segment} from "semantic-ui-react";
 
 import user from '../assets/user.png';
-import CustomTypes from "../components/CustomTypes";
+import CustomTypesMenu from "../components/menu/CustomTypesMenu";
 import {GET_API} from "../http/GET_API";
 
 /*
@@ -77,7 +77,7 @@ class PreferencesPage extends React.Component {
                     </Grid.Row>
                 </Grid>
                 </Segment>
-                <CustomTypes />
+                <CustomTypesMenu />
             </Container>
         </div>
     }

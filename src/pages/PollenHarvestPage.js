@@ -1,9 +1,9 @@
 import React from "react";
-import MainMenu from "../components/MainMenu"
+import MainMenu from "../components/menu/MainMenu"
 import {Button, Container, Grid, Icon, Loader, Modal, Pagination, Segment, Table} from "semantic-ui-react";
-import CreatePollenHarvestForm from "../forms/create/CreatePollenHarvestForm";
-import DeleteModal from "../modal/DeleteModal";
-import TablePaginatorComponent from "../components/TablePaginatorComponent";
+import CreatePollenHarvestForm from "../components/forms/harvests/CreatePollenHarvestForm";
+import DeleteModal from "../components/modal/DeleteModal";
+import TablePaginatorComponent from "../components/other/TablePaginatorComponent";
 
 /*
  Страница сборов пыльцы

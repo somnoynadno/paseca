@@ -1,15 +1,15 @@
 import React from "react";
-import MainMenu from "../components/MainMenu"
+import MainMenu from "../components/menu/MainMenu"
 import {Button, Container, Grid, Menu, Modal, Segment} from "semantic-ui-react";
-import PasecaModel from "../components/PasecaModel";
-import BeeFarmBeeFamiliesTable from "../tables/BeeFarmBeeFamiliesTable";
-import BeeFarmHivesTable from "../tables/BeeFarmHivesTable";
-import BeeFarmRemindersTable from "../tables/BeeFarmRemindersTable";
-import CreateBeeFamilyForm from "../forms/create/CreateBeeFamilyForm";
-import CreateReminderForm from "../forms/create/CreateReminderForm";
-import CreateHiveForm from "../forms/create/CreateHiveForm";
+import PasecaModel from "../components/other/PasecaModel";
+import BeeFamiliesTable from "../components/tables/bee_farm/BeeFamiliesTable";
+import HivesTable from "../components/tables/bee_farm/HivesTable";
+import RemindersTable from "../components/tables/bee_farm/RemindersTable";
+import CreateBeeFamilyForm from "../components/forms/bee_farm/create/CreateBeeFamilyForm";
+import CreateReminderForm from "../components/forms/bee_farm/create/CreateReminderForm";
+import CreateHiveForm from "../components/forms/bee_farm/create/CreateHiveForm";
 import {GET_API} from "../http/GET_API";
-import EditBeeFarmForm from "../forms/edit/EditBeeFarmForm";
+import EditBeeFarmForm from "../components/forms/bee_farm/edit/EditBeeFarmForm";
 
 /*
  Страница с выбраной пользователем пасекой.
@@ -146,11 +146,11 @@ class BeeFarmPage extends React.Component {
                             <Grid.Column>
                                 <Segment>
                                     {this.state.activeItem === 'Семьи' ?
-                                        <BeeFarmBeeFamiliesTable beeFarm={this.state.beeFarm} />
+                                        <BeeFamiliesTable beeFarm={this.state.beeFarm} />
                                         : this.state.activeItem === 'Ульи' ?
-                                            <BeeFarmHivesTable beeFarm={this.state.beeFarm} />
+                                            <HivesTable beeFarm={this.state.beeFarm} />
                                             : this.state.activeItem === 'Напоминания' ?
-                                                <BeeFarmRemindersTable beeFarm={this.state.beeFarm} />
+                                                <RemindersTable beeFarm={this.state.beeFarm} />
                                                 // : this.state.activeItem === 'Роения' ?
                                                 //     <BeeFarmSwarmsTable beeFarm={this.state.beeFarm} />
                                                 //     : this.state.activeItem === 'Болезни' ?

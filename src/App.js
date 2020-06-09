@@ -17,7 +17,7 @@ import LoginPage from "./pages/LoginPage";
 import PreferencesPage from "./pages/PreferencesPage";
 import PollenHarvestPage from "./pages/PollenHarvestPage";
 import ControlHarvestPage from "./pages/ControlHarvestPage";
-import ErrorPage from "./helpers/ErrorPage";
+import ErrorPage from "./pages/ErrorPage";
 
 
 class App extends Component {
