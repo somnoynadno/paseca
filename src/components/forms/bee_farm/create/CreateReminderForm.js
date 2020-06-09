@@ -2,9 +2,15 @@ import * as React from "react";
 import {Button, Form, Input} from "semantic-ui-react";
 import {GET_API} from "../../../../http/GET_API";
 import {POST_API} from "../../../../http/POST_API";
+import PropTypes from "prop-types";
 
 
 class CreateReminderForm extends React.Component {
+    static propTypes = {
+        beeFarmID: PropTypes.number.isRequired,
+        reloadCallback: PropTypes.func.isRequired,
+    }
+
     constructor(props) {
         super(props);
 
@@ -22,10 +28,11 @@ class CreateReminderForm extends React.Component {
 
         this.handleSubmit = async () => {
             this.setState({errorText: ""})
-            await this.postAPI.CreateReminder(this.props.beeFarmID, this.state.title, this.state.text, this.state.date).then((resp) => {
+            await this.postAPI.CreateReminder(this.props.beeFarmID, this.state.title,
+                this.state.text, this.state.date).then(async (resp) => {
                 if (resp.constructor !== Error) {
-                    // everything is fine => reload page
-                    document.location.reload();
+                    // everything is fine => reload component
+                    await this.props.reloadCallback();
                 } else {
                     this.setState({errorText: resp.message});
                 }

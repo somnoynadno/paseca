@@ -2,9 +2,15 @@ import React from "react";
 import {Button, Form, Input, Select} from "semantic-ui-react";
 import {GET_API} from "../../../../http/GET_API";
 import {POST_API} from "../../../../http/POST_API";
+import PropTypes from "prop-types";
 
 
 class CreateHiveForm extends React.Component {
+    static propTypes = {
+        beeFarmID: PropTypes.number.isRequired,
+        reloadCallback: PropTypes.func.isRequired,
+    }
+
     constructor(props) {
         super(props);
 
@@ -29,14 +35,14 @@ class CreateHiveForm extends React.Component {
                 this.setState({errorText: ""})
                 await this.postAPI.CreateHive(this.props.beeFarmID, this.state.name,
                     this.state.hive_format_id, this.state.hive_frame_type_id
-                ).then((resp) => {
+                ).then(async (resp) => {
                     if (resp.constructor !== Error) {
-                        // everything is fine => reload page
-                        document.location.reload();
+                        // everything is fine => reload component
+                        await this.props.reloadCallback();
                     } else {
                         this.setState({errorText: resp.message});
                     }
-                })
+                });
             }
         }
     }

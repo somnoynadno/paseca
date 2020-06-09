@@ -8,10 +8,11 @@ import PropTypes from "prop-types";
 /*
  Embedded компонент для страницы пасеки.
  Предоставляет менюшку для её содержимого.
+ Принимает ID пасеки обязательным параметром.
  */
 class BeeFarmMenu extends React.Component {
     static propTypes = {
-        beeFarm: PropTypes.object.isRequired,
+        beeFarmID: PropTypes.number.isRequired,
     }
 
     constructor(props) {
@@ -19,12 +20,12 @@ class BeeFarmMenu extends React.Component {
 
         this.state = {
             activeItem: (localStorage.getItem( 'bee_farm_active_item' ) || null),
-            beeFarm: this.props.beeFarm
+            beeFarmID: this.props.beeFarmID
         }
 
         this.handleItemClick = (e, { name }) => {
-            this.setState({ activeItem: name })
-            localStorage.setItem("bee_farm_active_item", name)
+            this.setState({ activeItem: name });
+            localStorage.setItem("bee_farm_active_item", name);
         }
     }
 
@@ -55,15 +56,15 @@ class BeeFarmMenu extends React.Component {
                     <Grid.Column>
                         <Segment>
                             {this.state.activeItem === 'Семьи' ?
-                                <BeeFamiliesTable beeFarm={this.state.beeFarm} />
+                                <BeeFamiliesTable beeFarmID={this.state.beeFarmID} />
                                 : this.state.activeItem === 'Ульи' ?
-                                    <HivesTable beeFarm={this.state.beeFarm} />
+                                    <HivesTable beeFarmID={this.state.beeFarmID} />
                                     : this.state.activeItem === 'Напоминания' ?
-                                        <RemindersTable beeFarm={this.state.beeFarm} />
+                                        <RemindersTable beeFarmID={this.state.beeFarmID} />
                                         // : this.state.activeItem === 'Роения' ?
-                                        //     <BeeFarmSwarmsTable beeFarm={this.state.beeFarm} />
+                                        //     <BeeFarmSwarmsTable beeFarmID={this.state.beeFarmID} />
                                         //     : this.state.activeItem === 'Болезни' ?
-                                        //         <BeeFarmBeeDiseasesTable beeFarm={this.state.beeFarm} />
+                                        //         <BeeFarmBeeDiseasesTable beeFarmID={this.state.beeFarmID} />
                                         : ''
                             }
                         </Segment>

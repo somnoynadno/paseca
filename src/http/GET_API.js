@@ -204,4 +204,59 @@ export class GET_API extends API {
             });
         })
     }
+
+    GetRemindersByBeeFarmID(id) {
+        return new Promise((resolve) => {
+            HTTP.axios.get(`/lk/reminders_by_bee_farm_id/` + id)
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                HTTP.handleError(error);
+            });
+        })
+    }
+
+    GetBeeFamiliesByBeeFarmID(id) {
+        return new Promise((resolve) => {
+            HTTP.axios.get(`/lk/bee_families_by_bee_farm_id/` + id)
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                HTTP.handleError(error);
+            });
+        })
+    }
+
+    GetFamilyDiseasesByBeeFarmID(id) {
+        return new Promise((resolve) => {
+            HTTP.axios.get(`/lk/family_diseases_by_bee_farm_id/` + id)
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                HTTP.handleError(error);
+            });
+        })
+    }
+
+    GetHivesByBeeFarmID(id) {
+        return new Promise((resolve) => {
+            HTTP.axios.get(`/lk/hives_by_bee_farm_id/` + id)
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                HTTP.handleError(error);
+            });
+        })
+    }
+
+    GetSwarmsByBeeFarmID(id) {
+        return new Promise((resolve) => {
+            HTTP.axios.get(`/lk/swarms_by_bee_farm_id/` + id)
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                HTTP.handleError(error);
+            });
+        })
+    }
 }

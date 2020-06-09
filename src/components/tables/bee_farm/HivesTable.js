@@ -1,31 +1,69 @@
 import React from "react";
-import {Table} from "semantic-ui-react";
+import {Button, Modal, Segment, Table} from "semantic-ui-react";
 import DeleteModal from "../../modal/DeleteModal";
 import {DELETE_API} from "../../../http/DELETE_API";
+import CreateHiveForm from "../../forms/bee_farm/create/CreateHiveForm";
+import PropTypes from "prop-types";
+import {GET_API} from "../../../http/GET_API";
 
 
 class HivesTable extends React.Component {
+    static propTypes = {
+        beeFarmID: PropTypes.number.isRequired,
+    }
+
     constructor(props) {
         super(props);
 
+        this.state = {
+            hives: null,
+            modalOpen: false
+        }
+
         this.deleteAPI = new DELETE_API();
+        this.getAPI = new GET_API();
     }
 
     deleteHive = async (id) => {
         await this.deleteAPI.DeleteHiveByID(id)
-            .then((resp) => {
-                if (resp.constructor !== Error) {
-                    // everything is fine => remove delete button
-                    document.getElementById("delete-cell-" + id).innerHTML = 'успешно удалено';
-                    document.getElementById("delete-cell-" + id).style.color = 'green';
-                } else {
-                    console.log(resp.message);
-                }
+            .then(async (resp) => {
+                // everything is fine => fetch new data
+                await this.fetchData();
             })
     }
 
+    fetchData = async () => {
+        let data = await this.getAPI.GetHivesByBeeFarmID(this.props.beeFarmID);
+        this.setState({
+            hives: data,
+            modalOpen: false
+        });
+    }
+
+    componentDidMount = async () => {
+        await this.fetchData();
+    }
+
     render() {
-        return <div>
+        if (this.state.hives === null) return <Segment style={{minHeight: "100px"}} loading />
+        else return <div>
+            <Modal open={this.state.modalOpen}
+                   onClose={() => this.setState({modalOpen: false})}
+                   trigger={<Button
+                        color='yellow'
+                        content='Добавить улей'
+                        size='medium'
+                        icon='archive'
+                        onClick={() => this.setState({modalOpen: true})}
+                    />}>
+                <Modal.Header>Новый улей</Modal.Header>
+                <Modal.Content>
+                    <CreateHiveForm
+                        reloadCallback={this.fetchData.bind(this)}
+                        beeFarmID={this.props.beeFarmID}
+                    />
+                </Modal.Content>
+            </Modal>
             <Table celled>
                 <Table.Header>
                     <Table.Row>
@@ -38,7 +76,7 @@ class HivesTable extends React.Component {
                     </Table.Row>
                 </Table.Header>
                 <Table.Body>
-                    {this.props.beeFarm["hives"].map((hive, i) => {
+                    {this.state.hives.map((hive, i) => {
                         return <Table.Row key={i}>
                             <Table.Cell>{hive["name"]}</Table.Cell>
                             <Table.Cell>{hive["hive_format"]["name"]}</Table.Cell>

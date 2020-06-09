@@ -1,16 +1,29 @@
 import React from "react";
-import {Button, Modal, Table} from "semantic-ui-react";
+import {Button, Modal, Segment, Table} from "semantic-ui-react";
 import DeleteModal from "../../modal/DeleteModal";
 import {DELETE_API} from "../../../http/DELETE_API";
 import {POST_API} from "../../../http/POST_API";
+import CreateBeeFamilyForm from "../../forms/bee_farm/create/CreateBeeFamilyForm";
+import PropTypes from "prop-types";
+import {GET_API} from "../../../http/GET_API";
 
 
 class BeeFamiliesTable extends React.Component {
+    static propTypes = {
+        beeFarmID: PropTypes.number.isRequired,
+    }
+
     constructor(props) {
         super(props);
 
+        this.state = {
+            beeFamilies: null,
+            modalOpen: false
+        }
+
         this.deleteAPI = new DELETE_API();
         this.postAPI = new POST_API();
+        this.getAPI = new GET_API();
     }
 
     deleteBeeFamily = async (id) => {
@@ -28,8 +41,38 @@ class BeeFamiliesTable extends React.Component {
             })
     }
 
+    fetchData = async () => {
+        let data = await this.getAPI.GetBeeFamiliesByBeeFarmID(this.props.beeFarmID);
+        this.setState({
+            beeFamilies: data,
+            modalOpen: false
+        });
+    }
+
+    componentDidMount = async () => {
+        await this.fetchData();
+    }
+
     render() {
-        return <div>
+        if (this.state.beeFamilies === null) return <Segment style={{minHeight: "100px"}} loading />
+        else return <div>
+                <Modal open={this.state.modalOpen}
+                       onClose={() => this.setState({modalOpen: false})}
+                       trigger={<Button
+                            color='olive'
+                            content='Добавить семью'
+                            size='medium'
+                            icon='add'
+                            onClick={() => this.setState({modalOpen: true})}
+                       />}>
+                    <Modal.Header>Новая семья</Modal.Header>
+                    <Modal.Content>
+                        <CreateBeeFamilyForm
+                            reloadCallback={this.fetchData.bind(this)}
+                            beeFarmID={this.props.beeFarmID}
+                        />
+                    </Modal.Content>
+                </Modal>
                 <Table celled>
                     <Table.Header>
                         <Table.Row>
@@ -42,7 +85,7 @@ class BeeFamiliesTable extends React.Component {
                         </Table.Row>
                     </Table.Header>
                     <Table.Body>
-                    {this.props.beeFarm["bee_families"].map((bf, i) => {
+                    {this.state.beeFamilies.map((bf, i) => {
                         return <Table.Row key={i}>
                             <Table.Cell>{bf["name"]}</Table.Cell>
                             <Table.Cell>{bf["hive"] !== undefined ? bf["hive"]["name"] : '-'}</Table.Cell>

@@ -21,16 +21,15 @@ class MyFarmsPage extends React.Component {
         this.getAPI = new GET_API();
         this.postAPI = new GET_API();
 
-        this.handleItemClick = (e, { name }) => {
-            this.setState({ activeItem: name });
-            this.redirectToFarm(name);
+        this.handleItemClick = (e, { farm }) => {
+            this.redirectToFarm(farm);
         }
     }
 
-    redirectToFarm(name) {
+    redirectToFarm(farm) {
         this.setState({
             referrer: "bee_farm",
-            farmID: name
+            beeFarm: farm
         })
     }
 
@@ -42,12 +41,12 @@ class MyFarmsPage extends React.Component {
     };
 
     render() {
-        const { referrer, farmID } = this.state;
+        const { referrer, beeFarm } = this.state;
 
-        if (referrer && farmID) {
+        if (referrer && beeFarm) {
             this.props.history.push({
                 pathname: referrer,
-                state: { farmID: farmID }
+                state: { beeFarm: beeFarm }
             });
         }
 
@@ -80,7 +79,7 @@ class MyFarmsPage extends React.Component {
                     <Card.Group>
                         {this.state.beeFarms === null ? <Segment style={{minHeight: "100px", width: "100%"}} loading /> :
                             this.state.beeFarms.map((farm) => {
-                                return <Card key={farm.id} name={farm.id} onClick={this.handleItemClick}>
+                                return <Card key={farm.id} farm={farm} onClick={this.handleItemClick}>
                                     <Card.Content>
                                         <Card.Header>{farm.name}</Card.Header>
                                         <Card.Meta>

@@ -2,9 +2,16 @@ import {Button, Form, Select} from "semantic-ui-react";
 import React from "react";
 import {GET_API} from "../../../../http/GET_API";
 import {POST_API} from "../../../../http/POST_API";
+import PropTypes from "prop-types";
 
 
 class ChooseHiveForm extends React.Component {
+    static propTypes = {
+        coordX: PropTypes.number,
+        coordY: PropTypes.number,
+        reloadCallback: PropTypes.func.isRequired,
+    }
+
     constructor(props) {
         super(props)
 
@@ -30,8 +37,8 @@ class ChooseHiveForm extends React.Component {
                     this.state.coord_x, this.state.coord_y, this.props.beeFarmID)
                     .then((resp) => {
                         if (resp.constructor !== Error) {
-                            // everything is fine => reload page
-                            document.location.reload();
+                            // everything is fine => reload component
+                            this.props.reloadCallback();
                         } else {
                             this.setState({errorText: resp.message});
                         }
