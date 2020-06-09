@@ -74,7 +74,7 @@ class BeeFarmBeeFamiliesTable extends React.Component {
                                 />}>
                                     <Modal.Header>Семья {bf.name}</Modal.Header>
                                     <Modal.Content>
-                                        TODO: here
+                                        Скоро будет доступно
                                     </Modal.Content>
                                 </Modal>
                                 <DeleteModal deleteCallback={this.deleteBeeFamily.bind(this, bf.id)} />

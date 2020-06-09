@@ -9,6 +9,7 @@ import CreateBeeFamilyForm from "../forms/create/CreateBeeFamilyForm";
 import CreateReminderForm from "../forms/create/CreateReminderForm";
 import CreateHiveForm from "../forms/create/CreateHiveForm";
 import {GET_API} from "../http/GET_API";
+import EditBeeFarmForm from "../forms/edit/EditBeeFarmForm";
 
 /*
  Страница с выбраной пользователем пасекой.
@@ -117,7 +118,7 @@ class BeeFarmPage extends React.Component {
                             />}>
                                 <Modal.Header>Изменение пасеки</Modal.Header>
                                 <Modal.Content>
-                                    Скоро будет доступно
+                                    <EditBeeFarmForm beeFarm={this.state.beeFarm} />
                                 </Modal.Content>
                             </Modal>
                         </Grid.Row>
