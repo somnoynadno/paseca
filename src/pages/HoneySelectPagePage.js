@@ -1,7 +1,6 @@
 import React from "react";
-import MainMenu from "../components/MainMenu"
-import {Button, Container, Divider, Grid, Segment} from "semantic-ui-react";
-import {Redirect} from "react-router-dom";
+import MainMenu from "../components/menu/MainMenu"
+import {Button, Container, Divider, Grid, Header, Icon, Segment} from "semantic-ui-react";
 
 /*
  Компонент, представляющий подменю для
@@ -35,11 +34,21 @@ class HoneySelectPagePage extends React.Component {
     render() {
         const { referrer } = this.state;
 
-        if (referrer) return <Redirect to={referrer} />;
-        else return <div>
+        if (referrer) this.props.history.push({
+            pathname: referrer,
+        });
+
+        return <div>
             <Container>
-                <MainMenu activeItem={'Медосбор'} />
+                <MainMenu activeItem={'Медосбор'} history={this.props.history} />
                 <Segment placeholder>
+                    <Divider horizontal>
+                        <Header as='h4'>
+                            <Icon name='tag' />
+                            Ведения хозяйства
+                        </Header>
+                    </Divider>
+
                     <Grid columns={2} relaxed='very' stackable padded='horizontally'>
                         <Grid.Column verticalAlign='middle' textAlign='center'>
                             <Button.Group vertical>
@@ -72,7 +81,23 @@ class HoneySelectPagePage extends React.Component {
                         </Grid.Column>
                     </Grid>
 
-                    <Divider vertical>или</Divider>
+                    <Divider horizontal>
+                        <Header as='h4'>
+                            <Icon name='bar chart' />
+                            Статистика
+                        </Header>
+                    </Divider>
+                    <Button.Group>
+                        <Button content='Аналитика сборов'
+                                color='teal'
+                                size='big'
+                        />
+                        <Button
+                            content='Аналитика продаж'
+                            color='teal'
+                            size='big'
+                        />
+                    </Button.Group>
                 </Segment>
             </Container>
         </div>

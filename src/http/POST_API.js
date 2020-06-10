@@ -123,6 +123,36 @@ export class POST_API extends API {
         })
     }
 
+    CreateSwarm(order, date, beeFamilyID, swarmStatusID) {
+        return new Promise((resolve) => {
+            HTTP.axios.post(`/lk/swarm`, {
+                date: date,
+                order: parseInt(order),
+                bee_family_id: parseInt(beeFamilyID),
+                swarm_status_id: parseInt(swarmStatusID)
+            })
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                HTTP.handleError(error);
+            });
+        })
+    }
+
+    CreateFamilyDisease(beeFamilyID, beeDiseaseID) {
+        return new Promise((resolve) => {
+            HTTP.axios.post(`/lk/family_disease`, {
+                bee_family_id: parseInt(beeFamilyID),
+                bee_disease_id: parseInt(beeDiseaseID)
+            })
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                HTTP.handleError(error);
+            });
+        })
+    }
+
     CreateHive(beeFarmID, name, hiveFormatID, hiveFrameTypeID) {
         return new Promise((resolve) => {
             HTTP.axios.post(`/lk/hive`, {

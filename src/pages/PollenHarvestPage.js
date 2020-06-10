@@ -1,9 +1,9 @@
 import React from "react";
-import MainMenu from "../components/MainMenu"
+import MainMenu from "../components/menu/MainMenu"
 import {Button, Container, Grid, Icon, Loader, Modal, Pagination, Segment, Table} from "semantic-ui-react";
-import CreatePollenHarvestForm from "../forms/create/CreatePollenHarvestForm";
-import DeleteModal from "../modal/DeleteModal";
-import TablePaginatorComponent from "../components/TablePaginatorComponent";
+import CreatePollenHarvestForm from "../components/forms/harvests/CreatePollenHarvestForm";
+import DeleteModal from "../components/modal/DeleteModal";
+import TablePaginatorComponent from "../components/other/TablePaginatorComponent";
 
 /*
  Страница сборов пыльцы
@@ -19,7 +19,7 @@ class PollenHarvestPage extends TablePaginatorComponent {
     render() {
         return <div>
             <Container>
-                <MainMenu activeItem={'Медосбор'} />
+                <MainMenu activeItem={'Медосбор'} history={this.props.history} />
                 <Segment>
                     <Grid>
                         <Grid.Row columns={2} relaxed='very'>
@@ -61,9 +61,11 @@ class PollenHarvestPage extends TablePaginatorComponent {
                         </Table.Header>
 
                         <Table.Body>
-                            {this.state.items === null ? <Table.Row><Loader active inline /></Table.Row> :
+                            {this.state.items === null ? <Table.Row>
+                                    <Table.Cell><Loader active inline /></Table.Cell>
+                            </Table.Row> :
                                 this.state.items.map((item) => {
-                                    return <Table.Row>
+                                    return <Table.Row key={item.id}>
                                         <Table.Cell>{item["bee_farm"].name}</Table.Cell>
                                         <Table.Cell>
                                             {item["date"] === null ? '' :

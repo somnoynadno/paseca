@@ -1,8 +1,7 @@
 import React from "react";
-import MainMenu from "../components/MainMenu"
+import MainMenu from "../components/menu/MainMenu"
 import {Button, Card, Container, Grid, Icon, Modal, Segment} from "semantic-ui-react";
-import {Redirect} from "react-router-dom";
-import CreateBeeFarmForm from "../forms/create/CreateBeeFarmForm";
+import CreateBeeFarmForm from "../components/forms/bee_farm/create/CreateBeeFarmForm";
 import {GET_API} from "../http/GET_API";
 
 /*
@@ -22,16 +21,15 @@ class MyFarmsPage extends React.Component {
         this.getAPI = new GET_API();
         this.postAPI = new GET_API();
 
-        this.handleItemClick = (e, { name }) => {
-            this.setState({ activeItem: name });
-            this.redirectToFarm(name);
+        this.handleItemClick = (e, { farm }) => {
+            this.redirectToFarm(farm);
         }
     }
 
-    redirectToFarm(name) {
+    redirectToFarm(farm) {
         this.setState({
             referrer: "bee_farm",
-            farmID: name
+            beeFarm: farm
         })
     }
 
@@ -43,15 +41,18 @@ class MyFarmsPage extends React.Component {
     };
 
     render() {
-        const { referrer, farmID } = this.state;
+        const { referrer, beeFarm } = this.state;
 
-        if (referrer && farmID) return <Redirect to={{
-            pathname: referrer,
-            state: { farmID: farmID }
-        }} />;
-        else return <div>
+        if (referrer && beeFarm) {
+            this.props.history.push({
+                pathname: referrer,
+                state: { beeFarm: beeFarm }
+            });
+        }
+
+        return <div>
             <Container>
-                <MainMenu activeItem={'Мои пасеки'} />
+                <MainMenu activeItem={'Мои пасеки'} history={this.props.history} />
                 <Segment>
                     <Grid>
                         <Grid.Row columns={2} relaxed='very'>
@@ -78,7 +79,7 @@ class MyFarmsPage extends React.Component {
                     <Card.Group>
                         {this.state.beeFarms === null ? <Segment style={{minHeight: "100px", width: "100%"}} loading /> :
                             this.state.beeFarms.map((farm) => {
-                                return <Card name={farm.id} onClick={this.handleItemClick.bind(this)}>
+                                return <Card key={farm.id} farm={farm} onClick={this.handleItemClick}>
                                     <Card.Content>
                                         <Card.Header>{farm.name}</Card.Header>
                                         <Card.Meta>
