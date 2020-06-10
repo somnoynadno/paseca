@@ -59,7 +59,7 @@ class SwarmsTable extends React.Component {
                        icon='certificate'
                        onClick={() => this.setState({modalOpen: true})}
                    />}>
-                <Modal.Header>Новое напоминание</Modal.Header>
+                <Modal.Header>Новое роение</Modal.Header>
                 <Modal.Content>
                     <CreateSwarmForm
                         reloadCallback={this.fetchData.bind(this)}

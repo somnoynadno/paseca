@@ -172,6 +172,17 @@ export class GET_API extends API {
         })
     }
 
+    GetBeeDiseases() {
+        return new Promise((resolve) => {
+            HTTP.axios.get(`/lk/bee_diseases`)
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                HTTP.handleError(error);
+            });
+        })
+    }
+
     GetHiveFormats() {
         return new Promise((resolve) => {
             HTTP.axios.get(`/lk/hive_formats`)
