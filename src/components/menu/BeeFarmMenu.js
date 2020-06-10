@@ -4,6 +4,7 @@ import BeeFamiliesTable from "../tables/bee_farm/BeeFamiliesTable";
 import HivesTable from "../tables/bee_farm/HivesTable";
 import RemindersTable from "../tables/bee_farm/RemindersTable";
 import PropTypes from "prop-types";
+import SwarmsTable from "../tables/bee_farm/SwarmsTable";
 
 /*
  Embedded компонент для страницы пасеки.
@@ -50,6 +51,11 @@ class BeeFarmMenu extends React.Component {
                                 active={this.state.activeItem === 'Напоминания'}
                                 onClick={this.handleItemClick}
                             />
+                            <Menu.Item
+                                name='Роения'
+                                active={this.state.activeItem === 'Роения'}
+                                onClick={this.handleItemClick}
+                            />
                         </Menu>
                     </Grid.Column>
 
@@ -61,8 +67,8 @@ class BeeFarmMenu extends React.Component {
                                     <HivesTable beeFarmID={this.state.beeFarmID} />
                                     : this.state.activeItem === 'Напоминания' ?
                                         <RemindersTable beeFarmID={this.state.beeFarmID} />
-                                        // : this.state.activeItem === 'Роения' ?
-                                        //     <BeeFarmSwarmsTable beeFarmID={this.state.beeFarmID} />
+                                        : this.state.activeItem === 'Роения' ?
+                                            <SwarmsTable beeFarmID={this.state.beeFarmID} />
                                         //     : this.state.activeItem === 'Болезни' ?
                                         //         <BeeFarmBeeDiseasesTable beeFarmID={this.state.beeFarmID} />
                                         : ''

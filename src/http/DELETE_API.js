@@ -91,6 +91,28 @@ export class DELETE_API extends API {
         })
     }
 
+    DeleteSwarmByID(id) {
+        return new Promise((resolve) => {
+            HTTP.axios.delete(`/lk/swarm/` + id)
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                HTTP.handleError(error);
+            });
+        })
+    }
+
+    DeleteFamilyDiseaseByID(id) {
+        return new Promise((resolve) => {
+            HTTP.axios.delete(`/lk/family_disease/` + id)
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                HTTP.handleError(error);
+            });
+        })
+    }
+
     DeleteHoneySaleByID(id) {
         return new Promise((resolve) => {
             HTTP.axios.delete(`/lk/honey_sale/` + id)

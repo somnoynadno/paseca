@@ -161,6 +161,17 @@ export class GET_API extends API {
         })
     }
 
+    GetSwarmStatuses() {
+        return new Promise((resolve) => {
+            HTTP.axios.get(`/lk/swarm_statuses`)
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                HTTP.handleError(error);
+            });
+        })
+    }
+
     GetHiveFormats() {
         return new Promise((resolve) => {
             HTTP.axios.get(`/lk/hive_formats`)
