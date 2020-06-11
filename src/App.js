@@ -6,18 +6,18 @@ import {
     withRouter
 } from "react-router-dom"
 
-import IndexPage from "./pages/IndexPage";
-import HoneyHarvestPage from "./pages/HoneyHarvestPage";
-import HoneySalePage from "./pages/HoneySalePage";
-import HoneySelectPagePage from "./pages/HoneySelectPagePage";
-import WikiIndexPage from "./pages/WikiIndexPage";
-import MyFarmsPage from "./pages/MyFarmsPage";
-import BeeFarmPage from "./pages/BeeFarmPage";
-import LoginPage from "./pages/LoginPage";
-import PreferencesPage from "./pages/PreferencesPage";
-import PollenHarvestPage from "./pages/PollenHarvestPage";
-import ControlHarvestPage from "./pages/ControlHarvestPage";
-import ErrorPage from "./pages/ErrorPage";
+import IndexPage from "./pages/other/IndexPage";
+import HoneyHarvestPage from "./pages/harvests/HoneyHarvestPage";
+import HoneySalePage from "./pages/harvests/HoneySalePage";
+import HarvestsSelectPage from "./pages/harvests/HarvestsSelectPage";
+import WikiIndexPage from "./pages/wiki/WikiIndexPage";
+import MyFarmsPage from "./pages/bee_farm/MyFarmsPage";
+import BeeFarmPage from "./pages/bee_farm/BeeFarmPage";
+import LoginPage from "./pages/auth/LoginPage";
+import PreferencesPage from "./pages/lk/PreferencesPage";
+import PollenHarvestPage from "./pages/harvests/PollenHarvestPage";
+import ControlHarvestPage from "./pages/harvests/ControlHarvestPage";
+import ErrorPage from "./pages/other/ErrorPage";
 
 
 class App extends Component {
@@ -34,7 +34,7 @@ class App extends Component {
                     <Route history={history} exact path='/honey_sale' component={HoneySalePage} />
                     <Route history={history} exact path='/control_harvest' component={ControlHarvestPage} />
                     <Route history={history} exact path='/pollen_harvest' component={PollenHarvestPage} />
-                    <Route history={history} exact path='/honey_select' component={HoneySelectPagePage} />
+                    <Route history={history} exact path='/honey_select' component={HarvestsSelectPage} />
                     <Route history={history} exact path='/my_farms' component={MyFarmsPage} />
                     <Route history={history} exact path='/preferences' component={PreferencesPage} />
                     <Route history={history} exact path='/wiki' component={WikiIndexPage} />

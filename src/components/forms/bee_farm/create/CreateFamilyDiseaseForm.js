@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, Form, Input, Select} from "semantic-ui-react";
+import {Button, Form, Select} from "semantic-ui-react";
 import {GET_API} from "../../../../http/GET_API";
 import {POST_API} from "../../../../http/POST_API";
 import PropTypes from "prop-types";

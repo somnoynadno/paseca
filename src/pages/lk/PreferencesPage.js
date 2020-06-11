@@ -1,10 +1,10 @@
 import React from "react";
-import MainMenu from "../components/menu/MainMenu"
+import MainMenu from "../../components/menu/MainMenu"
 import {Button, Container, Grid, Image, Modal, Segment} from "semantic-ui-react";
 
-import user from '../assets/user.png';
-import CustomTypesMenu from "../components/menu/CustomTypesMenu";
-import {GET_API} from "../http/GET_API";
+import user from '../../assets/user.png';
+import CustomTypesMenu from "../../components/menu/CustomTypesMenu";
+import {GET_API} from "../../http/GET_API";
 
 /*
  Страница личного кабинета пользователя.
@@ -65,7 +65,7 @@ class PreferencesPage extends React.Component {
                                     <Button>Изменить данные</Button>
                                     <Button>Изменить пароль</Button>
                                     <Button>Управление подпиской</Button>
-                                    <Button>Связаться с поддержкой</Button>
+                                    <Button>Нужна помощь?</Button>
                                 </Button.Group>
                             }>
                                 <Modal.Header>В разработке</Modal.Header>

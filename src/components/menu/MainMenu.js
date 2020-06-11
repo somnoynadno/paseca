@@ -39,7 +39,7 @@ class MainMenu extends React.Component {
         let r = null;
         if (name === 'Мои пасеки')      r = '/my_farms';
         if (name === 'Медосбор')        r = '/honey_select';
-        if (name === 'Вики')            r = '/wiki';
+        if (name === 'Справочник')      r = '/wiki';
         if (name === 'Личный кабинет')  r = '/preferences';
         if (name === 'Главная')         r = '/';
 
@@ -61,7 +61,7 @@ class MainMenu extends React.Component {
             <Menu size='huge' stackable fluid widths={5}>
                 <Menu.Item name='Главная' onClick={this.handleItemClick} >
                     <img src={bee} alt="..." />
-                    &nbsp;PASECA&nbsp;<i style={{fontSize: "8pt"}}>(v0.92)</i>
+                    &nbsp;PASECA&nbsp;<i style={{fontSize: "8pt"}}>(v0.93)</i>
                 </Menu.Item>
                 <Menu.Item
                     name='Мои пасеки'
@@ -74,8 +74,8 @@ class MainMenu extends React.Component {
                     onClick={this.handleItemClick}
                 />
                 <Menu.Item
-                    name='Вики'
-                    active={activeItem === 'Вики'}
+                    name='Справочник'
+                    active={activeItem === 'Справочник'}
                     onClick={this.handleItemClick}
                 />
                 <Menu.Item

@@ -281,4 +281,37 @@ export class GET_API extends API {
             });
         })
     }
+
+    GetWikiSections() {
+        return new Promise((resolve) => {
+            HTTP.axios.get(`/lk/wiki_sections`)
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                HTTP.handleError(error);
+            });
+        })
+    }
+
+    GetWikiPagesBySectionID(id) {
+        return new Promise((resolve) => {
+            HTTP.axios.get(`/lk/wiki_pages_by_section_id/` + id)
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                HTTP.handleError(error);
+            });
+        })
+    }
+
+    GetWikiPageByID(id) {
+        return new Promise((resolve) => {
+            HTTP.axios.get(`/lk/wiki_page/` + id)
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                HTTP.handleError(error);
+            });
+        })
+    }
 }

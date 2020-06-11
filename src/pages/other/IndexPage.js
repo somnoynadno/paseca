@@ -1,7 +1,7 @@
 import React from "react";
-import MainMenu from "../components/menu/MainMenu"
+import MainMenu from "../../components/menu/MainMenu"
 import {Container, Message, Segment} from "semantic-ui-react";
-import {GET_API} from "../http/GET_API";
+import {GET_API} from "../../http/GET_API";
 
 /*
  Стартовая страница с новостями платформы.
