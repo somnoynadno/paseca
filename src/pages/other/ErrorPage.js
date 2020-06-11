@@ -1,7 +1,7 @@
 import React from "react";
-import MainMenu from "../components/menu/MainMenu"
+import MainMenu from "../../components/menu/MainMenu"
 import {Container, Grid, Image, Message, Segment} from "semantic-ui-react";
-import bee from "../assets/bee.png";
+import bee from "../../assets/bee.png";
 
 /*
  Компонент для обработки ошибок HTTP

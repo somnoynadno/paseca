@@ -1,12 +1,12 @@
 import React from "react";
-import MainMenu from "../components/menu/MainMenu"
+import MainMenu from "../../components/menu/MainMenu"
 import {Button, Container, Divider, Grid, Header, Icon, Segment} from "semantic-ui-react";
 
 /*
  Компонент, представляющий подменю для
  выбора следующей страницы
  */
-class HoneySelectPagePage extends React.Component {
+class HarvestsSelectPage extends React.Component {
     constructor(props) {
         super(props);
 
@@ -104,4 +104,4 @@ class HoneySelectPagePage extends React.Component {
     }
 }
 
-export default HoneySelectPagePage;
+export default HarvestsSelectPage;

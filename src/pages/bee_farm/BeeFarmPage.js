@@ -1,10 +1,10 @@
 import React from "react";
-import MainMenu from "../components/menu/MainMenu"
+import MainMenu from "../../components/menu/MainMenu"
 import {Button, Container, Grid, Modal, Segment} from "semantic-ui-react";
-import PasecaModel from "../components/other/PasecaModel";
-import {GET_API} from "../http/GET_API";
-import EditBeeFarmForm from "../components/forms/bee_farm/edit/EditBeeFarmForm";
-import BeeFarmMenu from "../components/menu/BeeFarmMenu";
+import PasecaModel from "../../components/other/PasecaModel";
+import {GET_API} from "../../http/GET_API";
+import EditBeeFarmForm from "../../components/forms/bee_farm/edit/EditBeeFarmForm";
+import BeeFarmMenu from "../../components/menu/BeeFarmMenu";
 
 /*
  Страница с выбраной пользователем пасекой.

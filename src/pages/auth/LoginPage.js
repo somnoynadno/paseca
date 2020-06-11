@@ -1,8 +1,8 @@
 import React from 'react';
-import '../index.css';
+import '../../index.css';
 
-import {API} from '../http/API';
 import {Button, Container, Form, Grid, Input, Segment} from "semantic-ui-react";
+import {API} from "../../http/API";
 
 /*
  Компонент, который всегда рендерится при отсутствии токена.
