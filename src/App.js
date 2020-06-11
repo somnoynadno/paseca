@@ -18,6 +18,7 @@ import PreferencesPage from "./pages/lk/PreferencesPage";
 import PollenHarvestPage from "./pages/harvests/PollenHarvestPage";
 import ControlHarvestPage from "./pages/harvests/ControlHarvestPage";
 import ErrorPage from "./pages/other/ErrorPage";
+import WinterIndexPage from "./pages/winter/WinterIndexPage";
 
 
 class App extends Component {
@@ -38,6 +39,7 @@ class App extends Component {
                     <Route history={history} exact path='/my_farms' component={MyFarmsPage} />
                     <Route history={history} exact path='/preferences' component={PreferencesPage} />
                     <Route history={history} exact path='/wiki' component={WikiIndexPage} />
+                    <Route history={history} exact path='/winter' component={WinterIndexPage} />
                     <Route history={history} exact path='/error' component={ErrorPage} />
                 </Switch>
             </div>
