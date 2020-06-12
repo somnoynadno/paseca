@@ -37,7 +37,7 @@ class PreferencesPage extends React.Component {
     logout() {
         localStorage.removeItem('token');
         localStorage.removeItem('user_id');
-        this.setState({referrer: "/login"});
+        this.setState({referrer: "/"});
     }
 
     render() {

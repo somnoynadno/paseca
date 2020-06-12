@@ -6,7 +6,7 @@ import {
     withRouter
 } from "react-router-dom"
 
-import IndexPage from "./pages/other/IndexPage";
+import NewsPage from "./pages/other/NewsPage";
 import HoneyHarvestPage from "./pages/harvests/HoneyHarvestPage";
 import HoneySalePage from "./pages/harvests/HoneySalePage";
 import HarvestsSelectPage from "./pages/harvests/HarvestsSelectPage";
@@ -21,6 +21,7 @@ import ErrorPage from "./pages/other/ErrorPage";
 import WinterIndexPage from "./pages/winter/WinterIndexPage";
 import SubscriptionsPage from "./pages/lk/SubscriptionsPage";
 import HelpPage from "./pages/lk/HelpPage";
+import IndexPage from "./pages/other/IndexPage";
 
 
 class App extends Component {
@@ -31,6 +32,7 @@ class App extends Component {
             <div className="App">
                 <Switch>
                     <Route history={history} exact path='/' component={IndexPage} />
+                    <Route history={history} exact path='/news' component={NewsPage} />
                     <Route history={history} exact path='/login' component={LoginPage} />
                     <Route history={history} exact path='/bee_farm' component={BeeFarmPage} />
                     <Route history={history} exact path='/honey_harvest' component={HoneyHarvestPage} />

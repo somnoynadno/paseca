@@ -22,7 +22,7 @@ class MainMenu extends React.Component {
         let r = null;
 
         if (token === null || token === undefined) {
-            r = '/login'
+            if (this.props.activeItem !== 'Главная') r = '/login';
         }
 
         this.state = {
@@ -43,7 +43,9 @@ class MainMenu extends React.Component {
         if (name === 'Справочник')      r = '/wiki';
         if (name === 'Личный кабинет')  r = '/preferences';
         if (name === 'Зима')            r = '/winter';
-        if (name === 'Главная')         r = '/';
+        if (name === 'Главная') {
+            r = (localStorage.getItem('token') ? '/news' : '/');
+        }
 
         if (window.location.pathname !== r) {
             this.setState({
