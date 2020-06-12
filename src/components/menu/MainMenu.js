@@ -3,6 +3,7 @@ import { Menu } from 'semantic-ui-react'
 
 import bee from '../../assets/bee.png'
 import PropTypes from "prop-types";
+import {API_VERSION} from "../../globals";
 
 /*
  Главное меню. Рендерится на каждой странице.
@@ -62,7 +63,7 @@ class MainMenu extends React.Component {
             <Menu size='huge' stackable fluid widths={6}>
                 <Menu.Item name='Главная' onClick={this.handleItemClick} >
                     <img src={bee} alt="..." />
-                    &nbsp;PASECA&nbsp;<i style={{fontSize: "8pt"}}>(v0.94)</i>
+                    &nbsp;PASECA&nbsp;<i style={{fontSize: "8pt"}}>(v{API_VERSION})</i>
                 </Menu.Item>
                 <Menu.Item
                     name='Мои пасеки'

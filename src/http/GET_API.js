@@ -314,4 +314,15 @@ export class GET_API extends API {
             });
         })
     }
+
+    GetSubscriptionTypes() {
+        return new Promise((resolve) => {
+            HTTP.axios.get(`/lk/subscription_types`)
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                HTTP.handleError(error);
+            });
+        })
+    }
 }

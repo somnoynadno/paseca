@@ -19,6 +19,8 @@ import PollenHarvestPage from "./pages/harvests/PollenHarvestPage";
 import ControlHarvestPage from "./pages/harvests/ControlHarvestPage";
 import ErrorPage from "./pages/other/ErrorPage";
 import WinterIndexPage from "./pages/winter/WinterIndexPage";
+import SubscriptionsPage from "./pages/lk/SubscriptionsPage";
+import HelpPage from "./pages/lk/HelpPage";
 
 
 class App extends Component {
@@ -40,6 +42,8 @@ class App extends Component {
                     <Route history={history} exact path='/preferences' component={PreferencesPage} />
                     <Route history={history} exact path='/wiki' component={WikiIndexPage} />
                     <Route history={history} exact path='/winter' component={WinterIndexPage} />
+                    <Route history={history} exact path='/subscriptions' component={SubscriptionsPage} />
+                    <Route history={history} exact path='/help' component={HelpPage} />
                     <Route history={history} exact path='/error' component={ErrorPage} />
                 </Switch>
             </div>
