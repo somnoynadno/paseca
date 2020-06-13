@@ -14,7 +14,7 @@ class WinterIndexPage extends React.Component {
     render() {
         return <div>
             <Container>
-                <MainMenu activeItem={'Зима'} history={this.props.history} />
+                <MainMenu activeItem={'Зимовка'} history={this.props.history} />
                 <Grid centered columns={4}>
                     <Grid.Column>
                         <Message compact>

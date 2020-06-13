@@ -1,5 +1,5 @@
 import React from "react";
-import {Container, Message, Grid, Segment} from "semantic-ui-react";
+import {Container, Grid, Segment} from "semantic-ui-react";
 import MainMenu from "../../components/menu/MainMenu";
 import {SUPPORT_EMAIL} from "../../globals";
 

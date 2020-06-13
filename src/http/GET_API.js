@@ -325,4 +325,15 @@ export class GET_API extends API {
             });
         })
     }
+
+    GetHoneyHarvestsGroupByAmount() {
+        return new Promise((resolve) => {
+            HTTP.axios.get(`/lk/honey_harvest_stats`)
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                HTTP.handleError(error);
+            });
+        })
+    }
 }

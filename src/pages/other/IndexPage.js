@@ -1,5 +1,5 @@
 import React from "react";
-import {Container, Message, Grid, Segment, List, Statistic, Button} from "semantic-ui-react";
+import {Container, Segment, List, Statistic, Button} from "semantic-ui-react";
 import MainMenu from "../../components/menu/MainMenu";
 import {API} from "../../http/API";
 

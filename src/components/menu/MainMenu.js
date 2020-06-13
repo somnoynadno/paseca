@@ -42,7 +42,7 @@ class MainMenu extends React.Component {
         if (name === 'Медосбор')        r = '/honey_select';
         if (name === 'Справочник')      r = '/wiki';
         if (name === 'Личный кабинет')  r = '/preferences';
-        if (name === 'Зима')            r = '/winter';
+        if (name === 'Зимовка')            r = '/winter';
         if (name === 'Главная') {
             r = (localStorage.getItem('token') ? '/news' : '/');
         }
@@ -78,8 +78,8 @@ class MainMenu extends React.Component {
                     onClick={this.handleItemClick}
                 />
                 <Menu.Item
-                    name='Зима'
-                    active={activeItem === 'Зима'}
+                    name='Зимовка'
+                    active={activeItem === 'Зимовка'}
                     onClick={this.handleItemClick}
                 />
                 <Menu.Item
