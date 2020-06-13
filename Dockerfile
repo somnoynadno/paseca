@@ -7,7 +7,6 @@ COPY package.json yarn.lock ./
 RUN npm install --production
 
 COPY . ./
-RUN yarn add react-router-dom
 RUN npm run build
 
 # Stage 2 - release
