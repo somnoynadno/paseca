@@ -46,7 +46,8 @@ class CreateControlHarvestForm extends React.Component {
         await this.getAPI.GetUsersBeeFamilies().then((resp) => {
                 let options = [];
                 for (let r of resp) {
-                    options.push({text: r.name + " (" + r["bee_farm_name"] + ")", value: r.id.toString()})
+                    if (r["is_control"])
+                        options.push({text: r.name + " (" + r["bee_farm_name"] + ")", value: r.id.toString()})
                 }
                 this.setState({beeFamilies: options})
             }

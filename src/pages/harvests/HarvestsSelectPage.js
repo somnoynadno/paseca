@@ -21,10 +21,12 @@ class HarvestsSelectPage extends React.Component {
 
     redirectByContent(content) {
         let r = null;
-        if (content === 'Сбор мёда') r = '/honey_harvest';
+        if (content === 'Сбор мёда')         r = '/honey_harvest';
         if (content === 'Контрольные сборы') r = '/control_harvest';
-        if (content === 'Сборы пыльцы') r = '/pollen_harvest';
-        if (content === 'Продажи')    r = '/honey_sale';
+        if (content === 'Сборы пыльцы')      r = '/pollen_harvest';
+        if (content === 'Продажи')           r = '/honey_sale';
+        if (content === 'Аналитика сборов')  r = '/harvest_stats';
+        if (content === 'Аналитика продаж')  r = '/sale_stats';
 
         this.setState({
             referrer: r
@@ -91,11 +93,13 @@ class HarvestsSelectPage extends React.Component {
                         <Button content='Аналитика сборов'
                                 color='teal'
                                 size='big'
+                                onClick={this.handleItemClick.bind(this)}
                         />
                         <Button
                             content='Аналитика продаж'
                             color='teal'
                             size='big'
+                            onClick={this.handleItemClick.bind(this)}
                         />
                     </Button.Group>
                 </Segment>

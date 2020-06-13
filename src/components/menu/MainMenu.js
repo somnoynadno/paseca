@@ -3,6 +3,7 @@ import { Menu } from 'semantic-ui-react'
 
 import bee from '../../assets/bee.png'
 import PropTypes from "prop-types";
+import {API_VERSION} from "../../globals";
 
 /*
  Главное меню. Рендерится на каждой странице.
@@ -21,7 +22,7 @@ class MainMenu extends React.Component {
         let r = null;
 
         if (token === null || token === undefined) {
-            r = '/login'
+            if (this.props.activeItem !== 'Главная') r = '/login';
         }
 
         this.state = {
@@ -41,7 +42,10 @@ class MainMenu extends React.Component {
         if (name === 'Медосбор')        r = '/honey_select';
         if (name === 'Справочник')      r = '/wiki';
         if (name === 'Личный кабинет')  r = '/preferences';
-        if (name === 'Главная')         r = '/';
+        if (name === 'Зимовка')            r = '/winter';
+        if (name === 'Главная') {
+            r = (localStorage.getItem('token') ? '/news' : '/');
+        }
 
         if (window.location.pathname !== r) {
             this.setState({
@@ -58,10 +62,10 @@ class MainMenu extends React.Component {
             pathname: referrer,
         });
         return (
-            <Menu size='huge' stackable fluid widths={5}>
+            <Menu size='huge' stackable fluid widths={6}>
                 <Menu.Item name='Главная' onClick={this.handleItemClick} >
                     <img src={bee} alt="..." />
-                    &nbsp;PASECA&nbsp;<i style={{fontSize: "8pt"}}>(v0.93)</i>
+                    &nbsp;PASECA&nbsp;<i style={{fontSize: "8pt"}}>(v{API_VERSION})</i>
                 </Menu.Item>
                 <Menu.Item
                     name='Мои пасеки'
@@ -71,6 +75,11 @@ class MainMenu extends React.Component {
                 <Menu.Item
                     name='Медосбор'
                     active={activeItem === 'Медосбор'}
+                    onClick={this.handleItemClick}
+                />
+                <Menu.Item
+                    name='Зимовка'
+                    active={activeItem === 'Зимовка'}
                     onClick={this.handleItemClick}
                 />
                 <Menu.Item

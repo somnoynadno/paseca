@@ -51,7 +51,8 @@ class WikiInnerContent extends React.Component {
     render() {
         if (this.state.wikiPages === null) return <Segment style={{minHeight: "100px"}} loading />
         if (this.state.selectedPage) return <Segment>
-            <div dangerouslySetInnerHTML={{__html: this.state.selectedPage.content}} />
+            <div style={{overflow: "scroll"}}
+                 dangerouslySetInnerHTML={{__html: this.state.selectedPage.content}} />
             <hr /><br />
             <p>Опубликовано: {
             (new Date(this.state.selectedPage["created_at"]))

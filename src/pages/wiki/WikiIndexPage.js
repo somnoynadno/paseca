@@ -42,7 +42,7 @@ class WikiIndexPage extends React.Component {
                 <MainMenu activeItem={'Справочник'} history={this.props.history} />
                 <Segment>
                     <h1>Справочник пчеловода</h1>
-                    <Menu size={"huge"} secondary>
+                    <Menu size={"huge"} secondary stackable>
                         {this.state.wikiSections.map((ws, i) => {
                             return <Menu.Item
                                 key={i}

@@ -17,9 +17,14 @@ class PreferencesPage extends React.Component {
 
         this.state = {
             user: null,
+            referrer: null
         };
 
         this.api = new GET_API();
+    }
+
+    handleItemClick = (e, { name }) => {
+        this.setState({ referrer: name });
     }
 
     componentDidMount = async () => {
@@ -32,10 +37,14 @@ class PreferencesPage extends React.Component {
     logout() {
         localStorage.removeItem('token');
         localStorage.removeItem('user_id');
-        window.location.href = '/login';
+        this.setState({referrer: "/"});
     }
 
     render() {
+        if (this.state.referrer) this.props.history.push({
+            pathname: this.state.referrer,
+        });
+
         return <div>
             <Container>
                 <MainMenu activeItem={'Личный кабинет'} history={this.props.history} />
@@ -64,8 +73,14 @@ class PreferencesPage extends React.Component {
                                 <Button.Group vertical>
                                     <Button>Изменить данные</Button>
                                     <Button>Изменить пароль</Button>
-                                    <Button>Управление подпиской</Button>
-                                    <Button>Нужна помощь?</Button>
+                                    <Button name={'/subscriptions'}
+                                            onClick={this.handleItemClick}>
+                                        Управление подпиской
+                                    </Button>
+                                    <Button name={'/help'}
+                                            onClick={this.handleItemClick}>
+                                        Нужна помощь?
+                                    </Button>
                                 </Button.Group>
                             }>
                                 <Modal.Header>В разработке</Modal.Header>
