@@ -38,7 +38,7 @@ class SubscriptionsPage extends React.Component {
                             <Grid.Column>
                                 <Card.Group centered itemsPerRow={2}>
                                 {this.state.subscriptionTypes.map((st) => {
-                                    return <Card key={st.id}>
+                                    return <Card raised key={st.id}>
                                         <Card.Content header={st.name} />
                                         <Card.Content description={st.description.split('\n')
                                             .map((text, index) => {

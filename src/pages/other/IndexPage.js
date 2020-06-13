@@ -1,5 +1,5 @@
 import React from "react";
-import {Container, Segment, List, Statistic, Button} from "semantic-ui-react";
+import {Container, Segment, List, Statistic, Button, Transition} from "semantic-ui-react";
 import MainMenu from "../../components/menu/MainMenu";
 import {API} from "../../http/API";
 
@@ -12,7 +12,8 @@ class IndexPage extends React.Component {
         super(props);
 
         this.state = {
-            stats: null
+            stats: null,
+            visible: false
         }
 
         this.api = new API();
@@ -20,7 +21,7 @@ class IndexPage extends React.Component {
 
     componentDidMount = async () => {
         let items = await this.api.GetStatsForLanding();
-        this.setState({stats: items});
+        this.setState({stats: items, visible: true});
     }
 
     render() {
@@ -28,11 +29,15 @@ class IndexPage extends React.Component {
             <Container>
                 <MainMenu activeItem={"Главная"} history={this.props.history} />
                 <Segment.Group padded size={"huge"}>
+                    <Transition visible={this.state.visible} animation='fade' duration={1200}>
                     <Segment padded>
                         <p><strong>PASECA</strong> — современная платформа для ведения пчелиного хозяйства.</p>
                     </Segment>
+                    </Transition>
+                    <Transition visible={this.state.visible} animation='fade' duration={2000}>
+
                     <Segment padded>
-                        <p>Наш сервис предоставляет Вам следующие возможности:</p>
+                        <p>Наш сервис предоставляет следующие возможности:</p>
                         <List style={{marginLeft: "20px"}} relaxed>
                             <List.Item>
                                 <List.Icon name='archive' />
@@ -52,38 +57,44 @@ class IndexPage extends React.Component {
                             </List.Item>
                         </List>
                     </Segment>
+                    </Transition>
+                    <Transition visible={this.state.visible} animation='fade' duration={4000}>
+
                     <Segment padded>
                         {this.state.stats === null ? '' :
-                        <Statistic.Group widths='three' size='big'>
-                            <Statistic>
-                                <Statistic.Value>
-                                    {this.state.stats["UsersCount"]}
-                                    <br />
-                                </Statistic.Value>
-                                <Statistic.Label>Пользователей</Statistic.Label>
-                            </Statistic>
-
-                            <Statistic>
-                                <Statistic.Value>
-                                    {this.state.stats["BeeFarmsCount"]}
-                                    <br />
-                                </Statistic.Value>
-                                <Statistic.Label>Создано пасек</Statistic.Label>
-                            </Statistic>
-
-                            <Statistic>
-                                <Statistic.Value>
-                                    {this.state.stats["BeeFamiliesCount"]}
-                                    <br />
-                                </Statistic.Value>
-                                <Statistic.Label>Пчелосемей</Statistic.Label>
-                            </Statistic>
-                        </Statistic.Group>
+                            <Statistic.Group widths='three' size='big'>
+                                <Statistic>
+                                    <Statistic.Value>
+                                        {this.state.stats["UsersCount"]}
+                                        <br />
+                                    </Statistic.Value>
+                                    <Statistic.Label>Пользователей</Statistic.Label>
+                                </Statistic>
+                                <Statistic>
+                                    <Statistic.Value>
+                                        {this.state.stats["BeeFarmsCount"]}
+                                        <br />
+                                    </Statistic.Value>
+                                    <Statistic.Label>Создано пасек</Statistic.Label>
+                                </Statistic>
+                                <Statistic>
+                                    <Statistic.Value>
+                                        {this.state.stats["BeeFamiliesCount"]}
+                                        <br />
+                                    </Statistic.Value>
+                                    <Statistic.Label>Пчелосемей</Statistic.Label>
+                                </Statistic>
+                            </Statistic.Group>
                         }
                     </Segment>
-                    <Segment padded textAlign={"center"}>
-                        <Button primary size={"big"}>Присоединиться</Button>
-                    </Segment>
+                    </Transition>
+                    <Transition visible={this.state.visible} animation='fade' duration={3000}>
+                        <Segment padded textAlign={"center"}>
+                            <Button primary size={"big"}>
+                                Присоединиться
+                            </Button>
+                        </Segment>
+                    </Transition>
                 </Segment.Group>
             </Container>
         </div>
