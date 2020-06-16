@@ -90,9 +90,11 @@ class IndexPage extends React.Component {
                     </Transition>
                     <Transition visible={this.state.visible} animation='fade' duration={3000}>
                         <Segment padded textAlign={"center"}>
-                            <Button primary size={"big"}>
-                                Присоединиться
-                            </Button>
+                            <a href={'/register'}>
+                                <Button primary size={"big"}>
+                                    Присоединиться
+                                </Button>
+                            </a>
                         </Segment>
                     </Transition>
                 </Segment.Group>
