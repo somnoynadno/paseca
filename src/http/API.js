@@ -21,6 +21,23 @@ export class API {
         })
     }
 
+    RegisterUser(email, password, name, surname) {
+        return new Promise((resolve) => {
+            axios.post(apiAddress + `/auth/register`, {
+                email: email,
+                password: password,
+                name: name,
+                surname: surname
+            })
+                .then(response => {
+                    resolve(response.data);
+                }).catch(error => {
+                console.log(error);
+                resolve(error);
+            });
+        })
+    }
+
     // STATS
     GetStatsForLanding() {
         return new Promise((resolve) => {

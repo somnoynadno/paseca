@@ -7,8 +7,11 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
+    "history": "^4.10.1",
+    "react-google-recaptcha": "^2.1.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "recharts": "^1.8.5",
     "semantic-ui-css": "^2.4.1",
@@ -36,7 +39,5 @@
     ]
   },
   "devDependencies": {
-    "history": "^4.10.1",
-    "react-router-dom": "^5.2.0"
   }
 }

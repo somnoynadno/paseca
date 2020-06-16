@@ -24,6 +24,7 @@ import HelpPage from "./pages/lk/HelpPage";
 import IndexPage from "./pages/other/IndexPage";
 import HarvestStatsPage from "./pages/harvests/analytics/HarvestStatsPage";
 import SaleStatsPage from "./pages/harvests/analytics/SaleStatsPage";
+import RegistrationPage from "./pages/auth/RegistrationPage";
 
 
 class App extends Component {
@@ -36,6 +37,7 @@ class App extends Component {
                     <Route history={history} exact path='/' component={IndexPage} />
                     <Route history={history} exact path='/news' component={NewsPage} />
                     <Route history={history} exact path='/login' component={LoginPage} />
+                    <Route history={history} exact path='/register' component={RegistrationPage} />
                     <Route history={history} exact path='/bee_farm' component={BeeFarmPage} />
                     <Route history={history} exact path='/honey_harvest' component={HoneyHarvestPage} />
                     <Route history={history} exact path='/honey_sale' component={HoneySalePage} />

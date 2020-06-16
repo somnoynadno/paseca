@@ -68,7 +68,9 @@ class LoginPage extends React.Component {
                                 />
                                 <div style={{color: "red"}}>{this.state.errorText}</div>
                                 <br />
-                                <Form.Field control={Button}>Войти</Form.Field>
+                                <Form.Field style={{float: "left"}} control={Button}>Войти</Form.Field>
+                                <div style={{float: "right"}}><a href={'/register'}>Нет аккаунта?</a></div>
+                                <br style={{clear: "both"}} />
                             </Form>
                         </Segment>
                     </Grid.Column>
