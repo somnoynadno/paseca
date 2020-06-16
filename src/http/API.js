@@ -21,13 +21,14 @@ export class API {
         })
     }
 
-    RegisterUser(email, password, name, surname) {
+    RegisterUser(email, password, name, surname, captcha) {
         return new Promise((resolve) => {
             axios.post(apiAddress + `/auth/register`, {
                 email: email,
                 password: password,
                 name: name,
-                surname: surname
+                surname: surname,
+                captcha: captcha
             })
                 .then(response => {
                     resolve(response.data);
