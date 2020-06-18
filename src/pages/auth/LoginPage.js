@@ -30,6 +30,8 @@ class LoginPage extends React.Component {
                 if (resp.constructor !== Error) {
                     localStorage.setItem('token', resp["token"]);
                     localStorage.setItem('user_id', resp["user_id"]);
+                    localStorage.setItem('subscription_expired', resp["subscription_expired"]);
+                    localStorage.setItem('subscription_type_id', resp["subscription_type_id"]);
                     window.location.href = '/';
                 } else {
                     this.setState({errorText: "Неверные логин или пароль"});

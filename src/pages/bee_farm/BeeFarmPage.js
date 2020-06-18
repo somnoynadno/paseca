@@ -71,7 +71,7 @@ class BeeFarmPage extends React.Component {
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>
-                    <BeeFarmMenu beeFarmID={this.state.beeFarm.id} />
+                    <BeeFarmMenu history={this.props.history} beeFarmID={this.state.beeFarm.id} />
                 </Segment>
             </Container>
         )

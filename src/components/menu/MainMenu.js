@@ -4,6 +4,7 @@ import { Menu } from 'semantic-ui-react'
 import bee from '../../assets/bee.png'
 import PropTypes from "prop-types";
 import {API_VERSION} from "../../globals";
+import {checkPermissionByPathname} from "../../permissions";
 
 /*
  Главное меню. Рендерится на каждой странице.
@@ -42,14 +43,15 @@ class MainMenu extends React.Component {
         if (name === 'Медосбор')        r = '/honey_select';
         if (name === 'Справочник')      r = '/wiki';
         if (name === 'Личный кабинет')  r = '/preferences';
-        if (name === 'Зимовка')            r = '/winter';
+        if (name === 'Зимовка')         r = '/winter';
         if (name === 'Главная') {
             r = (localStorage.getItem('token') ? '/news' : '/');
         }
 
-        if (window.location.pathname !== r) {
+        let permittedPath = checkPermissionByPathname(r);
+        if (window.location.pathname !== permittedPath) {
             this.setState({
-                referrer: r
+                referrer: permittedPath
             })
         }
     }
