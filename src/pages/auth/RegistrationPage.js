@@ -9,8 +9,8 @@ import ReCAPTCHA from "react-google-recaptcha";
  Страница регистрации
  */
 class RegistrationPage extends React.Component {
-    constructor(props, context) {
-        super(props, context);
+    constructor(props) {
+        super(props);
 
         this.state = {
             email: '',
@@ -21,6 +21,7 @@ class RegistrationPage extends React.Component {
             errorText: ''
         };
         this.api = new API();
+        this.captcha = null;
 
         this.handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
@@ -33,12 +34,20 @@ class RegistrationPage extends React.Component {
 
         if (!this.validateData()) return;
 
-        await this.api.RegisterUser(this.state.email, this.state.password, this.state.name, this.state.surname)
+        await this.api.RegisterUser(this.state.email, this.state.password,
+            this.state.name, this.state.surname, this.captcha)
             .then((resp) => {
                 if (resp.constructor !== Error) {
                     window.location.href = '/login';
                 } else {
-                    this.setState({errorText: "Пользователь с такой почтой уже зарегистирован"});
+                    console.log(resp);
+                    if (resp.response.status === 400) {
+                        this.setState({errorText: "Пользователь с такой почтой уже зарегистирован"});
+                    } else if (resp.response.status === 401) {
+                        this.setState({errorText: "Проблемы с капчей, повторите попытку позже"});
+                    } else {
+                        this.setState({errorText: "Неожиданная ошибка сервера. Свяжитесь с администратором."});
+                    }
                 }
             })
     }
@@ -54,11 +63,17 @@ class RegistrationPage extends React.Component {
             return false
         }
 
+        if (!this.captcha) {
+            this.setState({errorText: "Вы точно не робот?"});
+            return false
+        }
+
         return true
     }
 
     onCaptchaChanged(value) {
         console.log("Captcha value:", value);
+        this.captcha = value;
     }
 
     render() {
@@ -125,8 +140,8 @@ class RegistrationPage extends React.Component {
                                 <br />
 
                                 <ReCAPTCHA
-                                    sitekey="6LdggqUZAAAAAGgsQaztEjRXdO-fKnH1XnP84QEa"
-                                    onChange={this.onCaptchaChanged}
+                                    sitekey="6LddjqUZAAAAAKpWlnuNRX01-x4QoazMilSeiAWA"
+                                    onChange={this.onCaptchaChanged.bind(this)}
                                 />
                                 <br />
 

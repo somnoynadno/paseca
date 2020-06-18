@@ -15,6 +15,7 @@ import FamilyDiseasesTable from "../tables/bee_farm/FamilyDiseasesTable";
 class BeeFarmMenu extends React.Component {
     static propTypes = {
         beeFarmID: PropTypes.number.isRequired,
+        history: PropTypes.any.isRequired
     }
 
     constructor(props) {
@@ -74,9 +75,9 @@ class BeeFarmMenu extends React.Component {
                                     : this.state.activeItem === 'Напоминания' ?
                                         <RemindersTable beeFarmID={this.state.beeFarmID} />
                                         : this.state.activeItem === 'Роения' ?
-                                            <SwarmsTable beeFarmID={this.state.beeFarmID} />
+                                            <SwarmsTable history={this.props.history} beeFarmID={this.state.beeFarmID} />
                                             : this.state.activeItem === 'Болезни' ?
-                                                <FamilyDiseasesTable beeFarmID={this.state.beeFarmID} />
+                                                <FamilyDiseasesTable history={this.props.history} beeFarmID={this.state.beeFarmID} />
                                         : ''
                             }
                         </Segment>

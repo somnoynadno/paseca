@@ -1,7 +1,7 @@
 import React from "react";
 import {Container, Grid, Segment} from "semantic-ui-react";
-import MainMenu from "../../components/menu/MainMenu";
-import {SUPPORT_EMAIL} from "../../globals";
+import MainMenu from "../../../components/menu/MainMenu";
+import {SUPPORT_EMAIL} from "../../../globals";
 
 /*
  Страница помощи по сервису

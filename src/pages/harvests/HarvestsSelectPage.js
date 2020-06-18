@@ -1,6 +1,7 @@
 import React from "react";
 import MainMenu from "../../components/menu/MainMenu"
 import {Button, Container, Divider, Grid, Header, Icon, Segment} from "semantic-ui-react";
+import {checkPermissionByPathname} from "../../permissions";
 
 /*
  Компонент, представляющий подменю для
@@ -28,8 +29,9 @@ class HarvestsSelectPage extends React.Component {
         if (content === 'Аналитика сборов')  r = '/harvest_stats';
         if (content === 'Аналитика продаж')  r = '/sale_stats';
 
+        let permittedPath = checkPermissionByPathname(r);
         this.setState({
-            referrer: r
+            referrer: permittedPath
         })
     }
 

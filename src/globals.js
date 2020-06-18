@@ -1,2 +1,2 @@
-export const SUPPORT_EMAIL = "somnoynadno@yandex.ru";
-export const API_VERSION = "0.95";
+export const SUPPORT_EMAIL = "support@example.com";
+export const API_VERSION = "0.95.3";

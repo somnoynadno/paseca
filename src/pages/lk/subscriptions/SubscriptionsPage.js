@@ -1,11 +1,11 @@
 import React from "react";
 import {Container, Grid, Card, Icon, Segment} from "semantic-ui-react";
-import MainMenu from "../../components/menu/MainMenu";
-import {GET_API} from "../../http/GET_API";
-import {SUPPORT_EMAIL} from "../../globals";
+import MainMenu from "../../../components/menu/MainMenu";
+import {GET_API} from "../../../http/GET_API";
+import {SUPPORT_EMAIL} from "../../../globals";
 
 /*
- Страница с видами подписок
+ Страница со всеми видами подписок
  */
 class SubscriptionsPage extends React.Component {
     constructor(props) {

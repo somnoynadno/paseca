@@ -11,6 +11,7 @@ import CreateFamilyDiseaseForm from "../../forms/bee_farm/create/CreateFamilyDis
 class FamilyDiseasesTable extends React.Component {
     static propTypes = {
         beeFarmID: PropTypes.number.isRequired,
+        history: PropTypes.any.isRequired
     }
 
     constructor(props) {
@@ -48,6 +49,15 @@ class FamilyDiseasesTable extends React.Component {
     }
 
     render() {
+        let r = null;
+        if (parseInt(localStorage.getItem("subscription_type_id")) < 3) r = '/subscription_not_sufficient';
+        else if (localStorage.getItem("subscription_expired") === 'true') r = '/subscription_expired';
+
+        if (r) {
+            localStorage.setItem("bee_farm_active_item", null);
+            this.props.history.push({pathname: r});
+        }
+
         if (this.state.familyDiseases === null) return <Segment style={{minHeight: "100px"}} loading />
         else return <div>
             <Modal open={this.state.modalOpen}

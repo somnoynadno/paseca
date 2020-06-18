@@ -1,10 +1,10 @@
 import React from "react";
-import MainMenu from "../../components/menu/MainMenu"
+import MainMenu from "../../../components/menu/MainMenu"
 import {Button, Container, Grid, Image, Modal, Segment} from "semantic-ui-react";
 
-import user from '../../assets/user.png';
-import CustomTypesMenu from "../../components/menu/CustomTypesMenu";
-import {GET_API} from "../../http/GET_API";
+import user from '../../../assets/user.png';
+import CustomTypesMenu from "../../../components/menu/CustomTypesMenu";
+import {GET_API} from "../../../http/GET_API";
 
 /*
  Страница личного кабинета пользователя.
@@ -35,9 +35,15 @@ class PreferencesPage extends React.Component {
     };
 
     logout() {
+        this.cleanLocalStorage();
+        this.setState({referrer: "/"});
+    }
+
+    cleanLocalStorage() {
         localStorage.removeItem('token');
         localStorage.removeItem('user_id');
-        this.setState({referrer: "/"});
+        localStorage.removeItem('subscription_type_id');
+        localStorage.removeItem('subscription_expired');
     }
 
     render() {
