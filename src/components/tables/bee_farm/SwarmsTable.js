@@ -50,8 +50,8 @@ class SwarmsTable extends React.Component {
 
     render() {
         let r = null;
-        if (parseInt(localStorage.getItem("subscription_type_id")) < 2) r = '/subscription_not_sufficient';
-        else if (localStorage.getItem("subscription_expired")) r = '/subscription_expired';
+        if (parseInt(localStorage.getItem("subscription_type_id")) < 3) r = '/subscription_not_sufficient';
+        else if (localStorage.getItem("subscription_expired") === 'true') r = '/subscription_expired';
 
         if (r) {
             localStorage.setItem("bee_farm_active_item", null);

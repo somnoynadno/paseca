@@ -4,7 +4,8 @@
  */
 export function checkPermissionByPathname(pathname) {
     let subscription_type_id = parseInt(localStorage.getItem("subscription_type_id"));
-    let isExpired = localStorage.getItem("subscription_expired");
+    let isExpired = (localStorage.getItem("subscription_expired") === "true");
+    console.log(isExpired)
     let exit = false;
 
     function permitPath(path, permitted_id) {
