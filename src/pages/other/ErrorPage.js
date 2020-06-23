@@ -10,6 +10,10 @@ class ErrorPage extends React.Component {
     constructor(props) {
         super(props);
         this.code = window.location.search.toString().replace('?', '').split('=')[1];
+
+        // prevent more 402 errors
+        localStorage.removeItem('bee_farm_active_item');
+        localStorage.removeItem('custom_types_active_item');
     }
 
     render() {
