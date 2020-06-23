@@ -4,6 +4,7 @@ import '../../index.css';
 import {Button, Container, Form, Grid, Input, Segment} from "semantic-ui-react";
 import {API} from "../../http/API";
 import ReCAPTCHA from "react-google-recaptcha";
+import PrivacyPolicyModal from "../../components/modal/PrivacyPolicyModal";
 
 /*
  Страница регистрации
@@ -146,6 +147,7 @@ class RegistrationPage extends React.Component {
                                 <br />
 
                                 <Form.Field control={Button}>Зарегистироваться</Form.Field>
+                                <PrivacyPolicyModal />
                             </Form>
                         </Segment>
                     </Grid.Column>
