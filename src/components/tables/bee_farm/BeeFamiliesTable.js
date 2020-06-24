@@ -6,6 +6,7 @@ import {POST_API} from "../../../http/POST_API";
 import CreateBeeFamilyForm from "../../forms/bee_farm/create/CreateBeeFamilyForm";
 import PropTypes from "prop-types";
 import {GET_API} from "../../../http/GET_API";
+import BeeFamilyModal from "../../modal/BeeFamilyModal";
 
 
 class BeeFamiliesTable extends React.Component {
@@ -110,16 +111,7 @@ class BeeFamiliesTable extends React.Component {
                                 <Button id={"check-" + bf.id} color="blue" icon="eye"
                                         disabled={false}
                                         onClick={this.doInspectionByID.bind(this, bf.id)} />
-                                <Modal trigger={<Button
-                                    color='green'
-                                    size='medium'
-                                    icon='pencil'
-                                />}>
-                                    <Modal.Header>Семья {bf.name}</Modal.Header>
-                                    <Modal.Content>
-                                        Скоро будет доступно
-                                    </Modal.Content>
-                                </Modal>
+                                <BeeFamilyModal beeFamilyID={bf.id} />
                                 <DeleteModal deleteCallback={this.deleteBeeFamily.bind(this, bf.id)} />
                             </Table.Cell>
                         </Table.Row>

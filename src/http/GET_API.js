@@ -336,4 +336,15 @@ export class GET_API extends API {
             });
         })
     }
+
+    GetBeeFamilyByID(id) {
+        return new Promise((resolve) => {
+            HTTP.axios.get(`/lk/bee_family/` + id)
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                HTTP.handleError(error);
+            });
+        })
+    }
 }
