@@ -2,6 +2,7 @@ import {Button, Modal} from "semantic-ui-react";
 import React from "react";
 import PropTypes from "prop-types";
 import {GET_API} from "../../http/GET_API";
+import EditBeeFamilyForm from "../forms/bee_farm/edit/EditBeeFamilyForm";
 
 
 class BeeFamilyModal extends React.Component {
@@ -13,7 +14,8 @@ class BeeFamilyModal extends React.Component {
         super(props);
 
         this.state = {
-            beeFamily: null
+            beeFamily: null,
+            modalOpen: false
         }
 
         this.getAPI = new GET_API();
@@ -22,7 +24,8 @@ class BeeFamilyModal extends React.Component {
     fetchBeeFamily = async () => {
         let bf = await this.getAPI.GetBeeFamilyByID(this.props.beeFamilyID);
         this.setState({
-            beeFamily: bf
+            beeFamily: bf,
+            modalOpen: false
         })
     }
 
@@ -42,6 +45,25 @@ class BeeFamilyModal extends React.Component {
             icon='pencil'
         />}>
             <Modal.Header>Семья {bf.name}</Modal.Header>
+            <Modal open={this.state.modalOpen}
+                   onClose={() => this.setState({modalOpen: false})}
+                   trigger={<Button
+                       floated={"right"}
+                       color='blue'
+                       content='Изменить семью'
+                       size='medium'
+                       icon='pencil'
+                       style={{margin: "15px"}}
+                       onClick={() => this.setState({modalOpen: true})}
+                   />}>
+                <Modal.Header>Изменить семью</Modal.Header>
+                <Modal.Content>
+                    <EditBeeFamilyForm
+                        reloadCallback={this.fetchBeeFamily.bind(this)}
+                        beeFamily={this.state.beeFamily}
+                    />
+                </Modal.Content>
+            </Modal>
             <Modal.Content>
                 <h3>Информация</h3>
                 <ul>

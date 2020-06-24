@@ -21,12 +21,13 @@ export function preprocessDataForLineChart (data, groupColumn) {
         return r;
     }, Object.create(null));
 
-    Object.keys(reduced).forEach(function(key) {
+    Object.keys(reduced).forEach(function (key) {
         let s = {}
         s.date = (new Date(key)).toLocaleString('ru', {
             year: 'numeric',
             month: 'long',
-            day: 'numeric',});
+            day: 'numeric',
+        });
 
         console.log(key, reduced[key]);
         for (let elem of reduced[key]) {
@@ -36,4 +37,17 @@ export function preprocessDataForLineChart (data, groupColumn) {
     });
 
     return result;
+}
+
+/*
+* Простая проверка наличия объекта в списке
+* */
+ export function containsObject(obj, list) {
+    let i;
+    for (i = 0; i < list.length; i++) {
+        if (list[i].value === obj.value) {
+            return true;
+        }
+    }
+    return false;
 }

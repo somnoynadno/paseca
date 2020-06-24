@@ -5,17 +5,8 @@ import PropTypes from "prop-types";
 import {PUT_API} from "../../../../http/PUT_API";
 import DeleteModal from "../../../modal/DeleteModal";
 import {DELETE_API} from "../../../../http/DELETE_API";
+import {containsObject} from "../../../../helpers";
 
-function containsObject(obj, list) {
-    let i;
-    for (i = 0; i < list.length; i++) {
-        if (list[i].value === obj.value) {
-            return true;
-        }
-    }
-
-    return false;
-}
 
 class EditBeeFarmForm extends React.Component {
     static propTypes = {

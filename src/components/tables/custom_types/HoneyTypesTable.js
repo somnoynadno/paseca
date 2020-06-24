@@ -51,7 +51,7 @@ class HoneyTypesTable extends React.Component {
                     <CreateCustomHoneyTypeForm />
                 </Modal.Content>
             </Modal>
-            <div><h2>Типы рамок</h2></div>
+            <div><h2>Виды мёда</h2></div>
             <Table celled>
                 <Table.Header>
                     <Table.Row>
