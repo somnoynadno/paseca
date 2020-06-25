@@ -67,7 +67,13 @@ class PreferencesPage extends React.Component {
                                     <h3>{this.state.user.email}</h3>
                                     <span>Подписка: {this.state.user["subscription_type"].name}</span><br />
                                     <span>Статус: {this.state.user["subscription_status"].status}</span><br />
-                                    <span>Дата окончания: {this.state.user["subscription_end"]}</span><br />
+                                    <span>Дата окончания: {this.state.user["subscription_end"] ?
+                                        (new Date(this.state.user["subscription_end"]))
+                                            .toLocaleString('ru', {
+                                            year: 'numeric',
+                                            month: 'long',
+                                            day: 'numeric',}) : ''}
+                                    </span><br />
                                     <hr /><br />
                                 </div>
                             }

@@ -6,6 +6,7 @@ import {POST_API} from "../../../http/POST_API";
 import PropTypes from "prop-types";
 import {GET_API} from "../../../http/GET_API";
 import CreateSwarmForm from "../../forms/bee_farm/create/CreateSwarmForm";
+import EditSwarmForm from "../../forms/bee_farm/edit/EditSwarmForm";
 
 
 class SwarmsTable extends React.Component {
@@ -19,7 +20,8 @@ class SwarmsTable extends React.Component {
 
         this.state = {
             swarms: null,
-            modalOpen: false
+            modalEditOpen: false,
+            modalCreateOpen: false
         }
 
         this.deleteAPI = new DELETE_API();
@@ -40,7 +42,8 @@ class SwarmsTable extends React.Component {
         let data = await this.getAPI.GetSwarmsByBeeFarmID(this.props.beeFarmID);
         this.setState({
             swarms: data,
-            modalOpen: false
+            modalEditOpen: false,
+            modalCreateOpen: false
         });
     }
 
@@ -60,14 +63,14 @@ class SwarmsTable extends React.Component {
 
         if (this.state.swarms === null) return <Segment style={{minHeight: "100px"}} loading />
         else return <div>
-            <Modal open={this.state.modalOpen}
-                   onClose={() => this.setState({modalOpen: false})}
+            <Modal open={this.state.modalCreateOpen}
+                   onClose={() => this.setState({modalCreateOpen: false})}
                    trigger={<Button
                        color='orange'
                        content='Создать роение'
                        size='medium'
                        icon='certificate'
-                       onClick={() => this.setState({modalOpen: true})}
+                       onClick={() => this.setState({modalCreateOpen: true})}
                    />}>
                 <Modal.Header>Новое роение</Modal.Header>
                 <Modal.Content>
@@ -101,6 +104,22 @@ class SwarmsTable extends React.Component {
                             </Table.Cell>
                             <Table.Cell id={"delete-cell-" + s.id}>
                                 <ButtonGroup>
+                                    <Modal open={this.state.modalEditOpen}
+                                           onClose={() => this.setState({modalEditOpen: false})}
+                                           trigger={<Button
+                                               color='green'
+                                               size='medium'
+                                               icon='pencil'
+                                               onClick={() => this.setState({modalEditOpen: true})}
+                                           />}>
+                                        <Modal.Header>Изменить роение</Modal.Header>
+                                        <Modal.Content>
+                                            <EditSwarmForm
+                                                reloadCallback={this.fetchData.bind(this)}
+                                                swarm={s}
+                                            />
+                                        </Modal.Content>
+                                    </Modal>
                                     <DeleteModal deleteCallback={this.deleteSwarm.bind(this, s.id)} />
                                 </ButtonGroup>
                             </Table.Cell>
