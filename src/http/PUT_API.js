@@ -39,4 +39,20 @@ export class PUT_API extends API {
             });
         })
     }
+
+    EditSwarm(id, order, date, swarmStatusID) {
+        return new Promise((resolve) => {
+            HTTP.axios.put(`/lk/swarm/` + id, {
+                id: parseInt(id),
+                date: date,
+                order: parseInt(order),
+                swarm_status_id: parseInt(swarmStatusID)
+            })
+                .then(response =>{
+                    resolve(response.data);
+                }).catch(function(error) {
+                HTTP.handleError(error);
+            });
+        })
+    }
 }

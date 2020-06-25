@@ -17,8 +17,8 @@ class EditBeeFamilyForm extends React.Component {
 
         this.state = {
             // aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            last_inspection_date: this.props.beeFamily.last_inspection_date,
-            queen_bee_born_date: this.props.beeFamily.queen_bee_born_date,
+            last_inspection_date: new Date(this.props.beeFamily.last_inspection_date).toISOString().split('T')[0],
+            queen_bee_born_date: new Date(this.props.beeFamily.queen_bee_born_date).toISOString().split('T')[0],
             bee_family_status_id: this.props.beeFamily.bee_family_status_id,
             bee_breed_id: this.props.beeFamily.bee_breed_id,
             parent1_id: this.props.beeFamily.parent1_id,
@@ -53,8 +53,6 @@ class EditBeeFamilyForm extends React.Component {
                     if (resp.constructor !== Error) {
                         // everything is fine => reload component
                         await this.props.reloadCallback();
-                    } else {
-                        this.setState({errorText: resp.message});
                     }
                 });
             }

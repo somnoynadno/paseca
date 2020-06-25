@@ -37,8 +37,6 @@ class EditBeeFarmForm extends React.Component {
                 if (resp.constructor !== Error) {
                     // everything is fine => reload page
                     document.location.reload();
-                } else {
-                    this.setState({errorText: resp.message});
                 }
             })
         }
