@@ -13,7 +13,7 @@ export function getRandomColor() {
 /*
 * Фунция, группирующая данные по дате для построения LineChart
 *  */
-export function preprocessDataForLineChart (data, groupColumn) {
+export function preprocessDataForLineChart (data, groupColumn, targetColumn="amount") {
     let result = [];
     let reduced = data.reduce(function (r, a) {
         r[a.date] = r[a.date] || [];
@@ -31,7 +31,7 @@ export function preprocessDataForLineChart (data, groupColumn) {
 
         console.log(key, reduced[key]);
         for (let elem of reduced[key]) {
-            s[elem[groupColumn].name] = elem.amount;
+            s[elem[groupColumn].name] = elem[targetColumn];
         }
         result.push(s);
     });
