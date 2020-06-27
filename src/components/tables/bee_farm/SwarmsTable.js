@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, ButtonGroup, Modal, Segment, Table} from "semantic-ui-react";
+import {Button, ButtonGroup, Icon, Modal, Segment, Table} from "semantic-ui-react";
 import {DELETE_API} from "../../../http/DELETE_API";
 import DeleteModal from "../../modal/DeleteModal";
 import {POST_API} from "../../../http/POST_API";
@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
 import {GET_API} from "../../../http/GET_API";
 import CreateSwarmForm from "../../forms/bee_farm/create/CreateSwarmForm";
 import EditSwarmForm from "../../forms/bee_farm/edit/EditSwarmForm";
+import {sortByKey} from "../../../helpers";
 
 
 class SwarmsTable extends React.Component {
@@ -21,7 +22,8 @@ class SwarmsTable extends React.Component {
         this.state = {
             swarms: null,
             modalEditOpen: false,
-            modalCreateOpen: false
+            modalCreateOpen: false,
+            order: false
         }
 
         this.deleteAPI = new DELETE_API();
@@ -83,10 +85,30 @@ class SwarmsTable extends React.Component {
             <Table celled>
                 <Table.Header>
                     <Table.Row>
-                        <Table.HeaderCell>Семья</Table.HeaderCell>
-                        <Table.HeaderCell>Порядок</Table.HeaderCell>
-                        <Table.HeaderCell>Статус</Table.HeaderCell>
-                        <Table.HeaderCell>Дата</Table.HeaderCell>
+                        <Table.HeaderCell>
+                            Семья
+                            <Icon link name='arrow down' onClick={() =>
+                                this.setState({swarms: sortByKey(this.state.swarms, "bee_family_id", this.state.order),
+                                    order: !this.state.order})} />
+                        </Table.HeaderCell>
+                        <Table.HeaderCell>
+                            Порядок
+                            <Icon link name='arrow down' onClick={() =>
+                                this.setState({swarms: sortByKey(this.state.swarms, "order", this.state.order),
+                                    order: !this.state.order})} />
+                        </Table.HeaderCell>
+                        <Table.HeaderCell>
+                            Статус
+                            <Icon link name='arrow down' onClick={() =>
+                                this.setState({swarms: sortByKey(this.state.swarms, "swarm_status_id", this.state.order),
+                                    order: !this.state.order})} />
+                        </Table.HeaderCell>
+                        <Table.HeaderCell>
+                            Дата
+                            <Icon link name='arrow down' onClick={() =>
+                                this.setState({swarms: sortByKey(this.state.swarms, "date", this.state.order),
+                                    order: !this.state.order})} />
+                        </Table.HeaderCell>
                         <Table.HeaderCell>Опции</Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>

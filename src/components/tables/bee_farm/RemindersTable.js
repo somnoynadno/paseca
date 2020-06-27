@@ -1,11 +1,12 @@
 import React from "react";
-import {Button, ButtonGroup, Modal, Segment, Table} from "semantic-ui-react";
+import {Button, ButtonGroup, Icon, Modal, Segment, Table} from "semantic-ui-react";
 import {DELETE_API} from "../../../http/DELETE_API";
 import DeleteModal from "../../modal/DeleteModal";
 import {POST_API} from "../../../http/POST_API";
 import CreateReminderForm from "../../forms/bee_farm/create/CreateReminderForm";
 import PropTypes from "prop-types";
 import {GET_API} from "../../../http/GET_API";
+import {sortByKey} from "../../../helpers";
 
 
 class RemindersTable extends React.Component {
@@ -18,7 +19,8 @@ class RemindersTable extends React.Component {
 
         this.state = {
             reminders: null,
-            modalOpen: false
+            modalOpen: false,
+            order: false
         }
 
         this.deleteAPI = new DELETE_API();
@@ -80,7 +82,12 @@ class RemindersTable extends React.Component {
                     <Table.Row>
                         <Table.HeaderCell>Название</Table.HeaderCell>
                         <Table.HeaderCell>Описание</Table.HeaderCell>
-                        <Table.HeaderCell>Дата</Table.HeaderCell>
+                        <Table.HeaderCell>
+                            Дата
+                            <Icon link name='arrow down' onClick={() =>
+                                this.setState({reminders: sortByKey(this.state.reminders, "date", this.state.order),
+                                    order: !this.state.order})} />
+                        </Table.HeaderCell>
                         <Table.HeaderCell>Опции</Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>

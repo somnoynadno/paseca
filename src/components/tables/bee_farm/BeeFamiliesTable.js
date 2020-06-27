@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, Modal, Segment, Table} from "semantic-ui-react";
+import {Button, Icon, Modal, Segment, Table} from "semantic-ui-react";
 import DeleteModal from "../../modal/DeleteModal";
 import {DELETE_API} from "../../../http/DELETE_API";
 import {POST_API} from "../../../http/POST_API";
@@ -7,6 +7,7 @@ import CreateBeeFamilyForm from "../../forms/bee_farm/create/CreateBeeFamilyForm
 import PropTypes from "prop-types";
 import {GET_API} from "../../../http/GET_API";
 import BeeFamilyModal from "../../modal/BeeFamilyModal";
+import {sortByKey} from "../../../helpers";
 
 
 class BeeFamiliesTable extends React.Component {
@@ -19,7 +20,8 @@ class BeeFamiliesTable extends React.Component {
 
         this.state = {
             beeFamilies: null,
-            modalOpen: false
+            modalOpen: false,
+            order: false
         }
 
         this.deleteAPI = new DELETE_API();
@@ -77,11 +79,36 @@ class BeeFamiliesTable extends React.Component {
                 <Table celled>
                     <Table.Header>
                         <Table.Row>
-                            <Table.HeaderCell>Семья</Table.HeaderCell>
-                            <Table.HeaderCell>Улей</Table.HeaderCell>
-                            <Table.HeaderCell>Статус</Table.HeaderCell>
-                            <Table.HeaderCell>Рождена</Table.HeaderCell>
-                            <Table.HeaderCell>Осмотрена</Table.HeaderCell>
+                            <Table.HeaderCell>
+                                Семья
+                                <Icon link name='arrow down' onClick={() =>
+                                    this.setState({beeFamilies: sortByKey(this.state.beeFamilies, "name", this.state.order),
+                                        order: !this.state.order})} />
+                            </Table.HeaderCell>
+                            <Table.HeaderCell>
+                                Улей
+                                <Icon link name='arrow down' onClick={() =>
+                                    this.setState({beeFamilies: sortByKey(this.state.beeFamilies, "hive_id", this.state.order),
+                                        order: !this.state.order})} />
+                            </Table.HeaderCell>
+                            <Table.HeaderCell>
+                                Статус
+                                <Icon link name='arrow down' onClick={() =>
+                                    this.setState({beeFamilies: sortByKey(this.state.beeFamilies, "bee_family_status_id", this.state.order),
+                                        order: !this.state.order})} />
+                            </Table.HeaderCell>
+                            <Table.HeaderCell>
+                                Рождена
+                                <Icon link name='arrow down' onClick={() =>
+                                    this.setState({beeFamilies: sortByKey(this.state.beeFamilies, "queen_bee_born_date", this.state.order),
+                                        order: !this.state.order})} />
+                            </Table.HeaderCell>
+                            <Table.HeaderCell>
+                                Осмотрена
+                                <Icon link name='arrow down' onClick={() =>
+                                    this.setState({beeFamilies: sortByKey(this.state.beeFamilies, "last_inspection_date", this.state.order),
+                                        order: !this.state.order})} />
+                            </Table.HeaderCell>
                             <Table.HeaderCell>Опции</Table.HeaderCell>
                         </Table.Row>
                     </Table.Header>

@@ -1,10 +1,11 @@
 import React from "react";
-import {Button, Modal, Segment, Table} from "semantic-ui-react";
+import {Button, Icon, Modal, Segment, Table} from "semantic-ui-react";
 import DeleteModal from "../../modal/DeleteModal";
 import {DELETE_API} from "../../../http/DELETE_API";
 import CreateHiveForm from "../../forms/bee_farm/create/CreateHiveForm";
 import PropTypes from "prop-types";
 import {GET_API} from "../../../http/GET_API";
+import {sortByKey} from "../../../helpers";
 
 
 class HivesTable extends React.Component {
@@ -17,7 +18,8 @@ class HivesTable extends React.Component {
 
         this.state = {
             hives: null,
-            modalOpen: false
+            modalOpen: false,
+            order: false
         }
 
         this.deleteAPI = new DELETE_API();
@@ -67,10 +69,25 @@ class HivesTable extends React.Component {
             <Table celled>
                 <Table.Header>
                     <Table.Row>
-                        <Table.HeaderCell>Номер</Table.HeaderCell>
-                        <Table.HeaderCell>Тип улья</Table.HeaderCell>
+                        <Table.HeaderCell>
+                            Номер
+                            <Icon link name='arrow down' onClick={() =>
+                                this.setState({hives: sortByKey(this.state.hives, "name", this.state.order),
+                                    order: !this.state.order})} />
+                        </Table.HeaderCell>
+                        <Table.HeaderCell>
+                            Тип улья
+                            <Icon link name='arrow down' onClick={() =>
+                                this.setState({hives: sortByKey(this.state.hives, "hive_frame_type_id", this.state.order),
+                                    order: !this.state.order})} />
+                        </Table.HeaderCell>
                         <Table.HeaderCell>Размер улья</Table.HeaderCell>
-                        <Table.HeaderCell>Формат рамки</Table.HeaderCell>
+                        <Table.HeaderCell>
+                            Формат рамки
+                            <Icon link name='arrow down' onClick={() =>
+                                this.setState({hives: sortByKey(this.state.hives, "hive_format_id", this.state.order),
+                                    order: !this.state.order})} />
+                        </Table.HeaderCell>
                         <Table.HeaderCell>Установлен?</Table.HeaderCell>
                         <Table.HeaderCell>Опции</Table.HeaderCell>
                     </Table.Row>
