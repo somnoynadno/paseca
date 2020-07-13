@@ -24,6 +24,7 @@ class MainMenu extends React.Component {
 
         if (token === null || token === undefined) {
             if (this.props.activeItem !== 'Главная') r = '/login';
+            if (window.location.href === '/subscriptions') r = null;
         }
 
         this.state = {
