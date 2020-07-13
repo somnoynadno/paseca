@@ -53,8 +53,9 @@ class SubscriptionsPage extends React.Component {
                                 })}
                                 </Card.Group>
                                 <br /><hr /><br />
-                                <p>Для приобретения подписки можно связаться
-                                    со мной по почте <strong>{SUPPORT_EMAIL}</strong></p>
+                                {/*<p>Для приобретения подписки можно связаться*/}
+                                {/*    со мной по почте <strong>{SUPPORT_EMAIL}</strong></p>*/}
+                                Приобретение подписок временно недоступно.
                             </Grid.Column>
                         </Segment>
                     </Grid.Row>

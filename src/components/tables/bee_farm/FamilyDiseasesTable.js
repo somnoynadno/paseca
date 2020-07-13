@@ -1,11 +1,12 @@
 import React from "react";
-import {Button, ButtonGroup, Modal, Segment, Table} from "semantic-ui-react";
+import {Button, ButtonGroup, Icon, Modal, Segment, Table} from "semantic-ui-react";
 import {DELETE_API} from "../../../http/DELETE_API";
 import DeleteModal from "../../modal/DeleteModal";
 import {POST_API} from "../../../http/POST_API";
 import PropTypes from "prop-types";
 import {GET_API} from "../../../http/GET_API";
 import CreateFamilyDiseaseForm from "../../forms/bee_farm/create/CreateFamilyDiseaseForm";
+import {sortByKey} from "../../../helpers";
 
 
 class FamilyDiseasesTable extends React.Component {
@@ -19,7 +20,8 @@ class FamilyDiseasesTable extends React.Component {
 
         this.state = {
             familyDiseases: null,
-            modalOpen: false
+            modalOpen: false,
+            order: false
         }
 
         this.deleteAPI = new DELETE_API();
@@ -80,9 +82,24 @@ class FamilyDiseasesTable extends React.Component {
             <Table celled>
                 <Table.Header>
                     <Table.Row>
-                        <Table.HeaderCell>Семья</Table.HeaderCell>
-                        <Table.HeaderCell>Болезнь</Table.HeaderCell>
-                        <Table.HeaderCell>Добавлена</Table.HeaderCell>
+                        <Table.HeaderCell>
+                            Семья
+                            <Icon link name='arrow down' onClick={() =>
+                                this.setState({familyDiseases: sortByKey(this.state.familyDiseases, "bee_family_id", this.state.order),
+                                    order: !this.state.order})} />
+                        </Table.HeaderCell>
+                        <Table.HeaderCell>
+                            Болезнь
+                            <Icon link name='arrow down' onClick={() =>
+                                this.setState({familyDiseases: sortByKey(this.state.familyDiseases, "bee_disease_id", this.state.order),
+                                    order: !this.state.order})} />
+                        </Table.HeaderCell>
+                        <Table.HeaderCell>
+                            Добавлена
+                            <Icon link name='arrow down' onClick={() =>
+                                this.setState({familyDiseases: sortByKey(this.state.familyDiseases, "created_at", this.state.order),
+                                    order: !this.state.order})} />
+                        </Table.HeaderCell>
                         <Table.HeaderCell>Опции</Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>

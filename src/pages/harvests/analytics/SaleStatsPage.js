@@ -26,7 +26,7 @@ class SaleStatsPage extends React.Component {
         let honeySalesUnique = Array.from(new Set(honeySales.map((v) => {return v["bee_farm"].name })));
 
         this.setState({
-            honeySales: preprocessDataForLineChart(honeySales, "bee_farm"),
+            honeySales: preprocessDataForLineChart(honeySales, "bee_farm", "total_price"),
             honeySalesUnique: honeySalesUnique
         });
     }
